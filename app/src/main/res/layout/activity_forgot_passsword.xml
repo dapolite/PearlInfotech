@@ -5,10 +5,9 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
-android:background="@color/colorPrimary"
-    tools:context=".Login">
-
+    tools:context=".ForgotPasssword">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,6 +28,7 @@ android:background="@color/colorPrimary"
             app:srcCompat="@drawable/areotri2" />
     </LinearLayout>
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,6 +40,7 @@ android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
+            android:layout_weight="1"
             android:background="@drawable/rectanglehomescreen"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,14 +54,12 @@ android:background="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-
                 android:adjustViewBounds="true"
-                android:maxWidth="200dp"
-                android:maxHeight="200dp"
+                android:maxWidth="250dp"
+                android:maxHeight="250dp"
                 android:src="@drawable/logo"
                 android:scaleType="fitCenter"
-
-                android:background="@drawable/circleagain" />
+                android:background="@drawable/circlebg" />
 
             <TextView
                 android:id="@+id/textView"
@@ -68,8 +67,8 @@ android:background="@color/colorPrimary"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:gravity="center"
-                android:text="Login"
-                android:textSize="50sp"
+                android:text="Forgot Password?"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -81,20 +80,7 @@ android:background="@color/colorPrimary"
                 android:background="@drawable/btnsstroke"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="10dp" />
-
-            <EditText
-                android:id="@+id/uname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/btnsstroke"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="Username"
-                android:inputType="textPersonName"
+                android:hint="Enter Mobile Number"
                 android:padding="10dp" />
 
             <Button
@@ -103,21 +89,15 @@ android:background="@color/colorPrimary"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
                 android:background="@drawable/btnbg"
-                android:text="@string/login"
+                android:text="Reset Password"
                 android:textColor="#fff" />
 
-            <TextView
-                android:id="@+id/fp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/colorGrad21"
-                android:text="Forgot Password?Click Here"
-                android:textSize="15sp" />
 
         </LinearLayout>
 
     </ScrollView>
+
+
 
 
     <!-- negative margin to half of height -->
