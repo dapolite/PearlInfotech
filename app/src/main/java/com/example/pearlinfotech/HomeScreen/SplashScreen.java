@@ -1,7 +1,4 @@
-package com.example.pearlinfotech;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.pearlinfotech.HomeScreen;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -12,6 +9,11 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.pearlinfotech.R;
 
 public class SplashScreen extends AppCompatActivity {
     ProgressBar mprogressBar;
@@ -26,10 +28,10 @@ public class SplashScreen extends AppCompatActivity {
 
 
         Animation anim1 = AnimationUtils.loadAnimation(this,R.anim.anim_down);
-            ImageView img =(ImageView)findViewById(R.id.imageView);
+            ImageView img = findViewById(R.id.imageView);
             img.setAnimation(anim1);
 
-            mprogressBar = (ProgressBar) findViewById(R.id.progressBar);
+            mprogressBar = findViewById(R.id.progressBar);
             ObjectAnimator anim = ObjectAnimator.ofInt(mprogressBar, "progress", 0, 100);
             anim.setDuration(4000);
             anim.setInterpolator(new DecelerateInterpolator());
@@ -41,7 +43,7 @@ public class SplashScreen extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    startActivity(new Intent(SplashScreen.this,MainActivity.class));
+                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
                     finish();
 
                 }

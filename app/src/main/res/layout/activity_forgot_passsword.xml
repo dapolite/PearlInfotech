@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
-    tools:context=".ForgotPasssword">
+    tools:context=".Login.ForgotPasssword">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -68,6 +68,7 @@
                 android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="Forgot Password?"
+                android:textColor="#000"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 

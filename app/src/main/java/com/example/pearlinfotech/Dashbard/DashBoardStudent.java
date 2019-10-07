@@ -1,10 +1,11 @@
-package com.example.pearlinfotech;
+package com.example.pearlinfotech.Dashbard;
 
-import androidx.appcompat.app.ActionBar;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.widget.Toolbar;
+import com.example.pearlinfotech.R;
 
 public class DashBoardStudent extends AppCompatActivity {
     androidx.appcompat.widget.Toolbar mActionBarToolbar;
@@ -12,9 +13,12 @@ public class DashBoardStudent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board_student);
+        SharedPreferences sharedpreferences = getSharedPreferences("user",MODE_PRIVATE);
         mActionBarToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mActionBarToolbar);
-        getSupportActionBar().setTitle("My title");
+        getSupportActionBar().setTitle("Dashboard");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
 }

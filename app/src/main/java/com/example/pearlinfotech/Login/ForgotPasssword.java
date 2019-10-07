@@ -1,9 +1,11 @@
-package com.example.pearlinfotech;
+package com.example.pearlinfotech.Login;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.example.pearlinfotech.R;
 
 public class ForgotPasssword extends AppCompatActivity {
 

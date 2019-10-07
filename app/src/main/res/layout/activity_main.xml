@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".HomeScreen.MainActivity"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
    >
@@ -50,6 +50,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="20"
+                android:scaleType="fitCenter"
+                android:minHeight="250dp"
+                android:minWidth="250dp"
+                android:adjustViewBounds="true"
                 app:srcCompat="@drawable/logo" />
 
             <Button
@@ -58,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+
                 android:layout_weight="1"
                 android:drawableTop="@drawable/buttonabout"
                 android:background="@drawable/btnbg"
