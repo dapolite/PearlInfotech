@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pearlinfotech">
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:hardwareAccelerated="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        tools:ignore="InnerclassSeparator"
         android:theme="@style/AppTheme">
-        <activity android:name=".Attendance.AttendanceFaculty"></activity>
-        <activity android:name=".Attendance.AttendanceFacultyExtra" />
+        <activity android:name=".student_attendance_sheet"></activity>
+        <activity android:name=".Admin.AddFaculty" />
+        <activity android:name=".Admin.AddStudent" />
+        <activity android:name=".Attendance.AttendanceFaculty" />
         <activity android:name=".SaveUser" />
         <activity android:name=".Dashbard.DashboardFaculty" />
         <activity android:name=".Dashbard.DashboardAdmin" />
-        <activity android:name=".Users" />
         <activity android:name=".Login.ForgotPasssword" />
         <activity android:name=".HomeScreen.MainActivity" />
         <activity android:name=".Dashbard.DashBoardStudent" />
@@ -23,7 +27,7 @@
         <activity android:name=".HomeScreen.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

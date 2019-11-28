@@ -1,83 +1,170 @@
 package com.example.pearlinfotech.Attendance;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.pearlinfotech.R;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
-public class AttendanceFaculty extends AppCompatActivity  {
-    RecyclerView recyclerView;
-    StudentAdapter adapter;
-    FirebaseFirestore db;
-    String cors;
-    RecyclerView.LayoutManager layoutManager;
-    Calendar calendar;
-    CollectionReference cRef;
-    String date;
-    String[] pa;
+
+public class AttendanceFaculty extends AppCompatActivity {
+    String teacher_id;
+    String class_selected;
+    Spinner period;
+    String periodno;
+    ArrayList<String> selectedItems;
+    ArrayList<String> nonselectedItems;
+    Toolbar mToolbar;
+
+    ArrayList<String> ul;
+    ListView listView;
+    ArrayList Userlist = new ArrayList<>();
+    ArrayList Usernames = new ArrayList<>();
+    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference dbAttendance;
+    String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+    private ArrayAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_faculty);
-        db = FirebaseFirestore.getInstance();
-        cRef=db.collection("student");
-        pa=getResources().getStringArray(R.array.pa);
-        Intent intent = getIntent();
-        cors= intent.getStringExtra("COURSE");
-        date= intent.getStringExtra("DATE");
-        setUpRecyclerView();
-    }
+        mToolbar = findViewById(R.id.takeattendancebar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Attendance");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        period = findViewById(R.id.spinner4);
 
-    public void setUpRecyclerView(){
-        com.google.firebase.firestore.Query query = cRef.whereEqualTo("course_name",cors);
-        FirestoreRecyclerOptions<StudentItem> options = new FirestoreRecyclerOptions.Builder<StudentItem>()
-                .setQuery(query,StudentItem.class)
-                .build();
-        adapter = new StudentAdapter(options);
-        recyclerView=findViewById(R.id.list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(AttendanceFaculty.this));
-        recyclerView.setAdapter(adapter);
-                adapter.setOnItemClickListener(new StudentAdapter.OnItemClickListener() {
+
+        selectedItems = new ArrayList<String>();
+
+        TextView classname = findViewById(R.id.textView);
+        classname.setText("CSE");
+
+        //to get class name from teacherlogin
+        Bundle bundle1 = getIntent().getExtras();
+        class_selected = bundle1.getString("class_selected");
+        teacher_id = bundle1.getString("tid");
+        //  Toast.makeText(getApplicationContext(), teacher_id, Toast.LENGTH_LONG).show();
+
+        classname.setText(class_selected);
+
+
+        DatabaseReference dbuser = ref.child("Student");
+
+        dbuser.orderByChild("classes").equalTo(class_selected).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onItemClick(DocumentSnapshot documentSnapshot, int pos) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(AttendanceFaculty.this);
-                builder.setTitle("Mark Attendance");
-                builder.setSingleChoiceItems(pa, 0, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    }
-                });
-                AlertDialog dialog=builder.create();
-                dialog.show();
+                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+                    Userlist.add(dsp.child("sid").getValue().toString());
+                    Usernames.add(dsp.child("sname").getValue().toString());
+
+
+                }
+                OnStart(Userlist);
+
             }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG).show();
+            }
+
         });
 
+
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
+
+    public void OnStart(ArrayList<String> userlist) {
+        nonselectedItems = userlist;
+        ListView chl = findViewById(R.id.checkable_list);
+        chl.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        ArrayAdapter<String> aa = new ArrayAdapter<String>(this, R.layout.checkable_list_layout, R.id.txt_title, userlist);
+        chl.setAdapter(aa);
+        chl.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = ((TextView) view).getText().toString();
+                if (selectedItems.contains(selectedItem))
+                    selectedItems.remove(selectedItem);
+                else
+                    selectedItems.add(selectedItem);
+
+            }
+
+        });
+
+
+    }
+
+    public void showSelectedItems(View view) {
+        String selItems = "";
+        periodno = period.getSelectedItem().toString();
+        if (periodno.equals("Select Period")) {
+            Toast.makeText(this, "Select a class", Toast.LENGTH_LONG).show();
+
+        } else {
+            ref = FirebaseDatabase.getInstance().getReference();
+
+            dbAttendance = ref.child("attendance").child(date);
+
+            for (String item : selectedItems) {
+                Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
+                nonselectedItems.remove(item);
+                dbAttendance.child(item).child(periodno).setValue("P" + " / " + teacher_id);
+                if (selItems == "")
+                    selItems = item;
+                else
+                    selItems += "/" + item;
+            }
+            // Toast.makeText(this, selItems, Toast.LENGTH_LONG).show();
+
+
+            //for  absent
+            for (String item : nonselectedItems) {
+                Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
+                dbAttendance.child(item).child(periodno).setValue("A" + " / " + teacher_id);
+                //Toast.makeText(this, "absentees:" + nonselectedItems, Toast.LENGTH_LONG).show();
+
+            }
+        }
+
+
+    }
+
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
-
-
 }

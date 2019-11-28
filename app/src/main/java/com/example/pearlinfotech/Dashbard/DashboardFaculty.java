@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
-import com.example.pearlinfotech.Attendance.AttendanceFacultyExtra;
+import com.example.pearlinfotech.Attendance.AttendanceFaculty;
 import com.example.pearlinfotech.R;
 
 public class DashboardFaculty extends AppCompatActivity  {
@@ -25,7 +25,7 @@ CardView atten,timetable,perf,notif;
         setContentView(R.layout.activity_dashboard_faculty);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String user=preferences.getString("uname",null);
-        mActionBarToolbar = findViewById(R.id.toolbardashf);
+        mActionBarToolbar = findViewById(R.id.ftoolbar);
         setSupportActionBar(mActionBarToolbar);
         getSupportActionBar().setTitle(user);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -34,7 +34,7 @@ CardView atten,timetable,perf,notif;
         atten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(DashboardFaculty.this,AttendanceFacultyExtra.class);
+                Intent intent = new Intent(DashboardFaculty.this, AttendanceFaculty.class);
                 startActivity(intent);
             }
         });
