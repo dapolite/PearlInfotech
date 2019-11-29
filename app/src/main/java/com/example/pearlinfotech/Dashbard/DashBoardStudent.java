@@ -14,7 +14,7 @@ public class DashBoardStudent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board_student);
         SharedPreferences sharedpreferences = getSharedPreferences("user",MODE_PRIVATE);
-        mActionBarToolbar = findViewById(R.id.toolbar);
+        mActionBarToolbar = findViewById(R.id.dshstudentbar);
         setSupportActionBar(mActionBarToolbar);
         getSupportActionBar().setTitle("Dashboard");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

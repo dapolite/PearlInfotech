@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "64429137642",
+    "firebase_url": "https://student-management-pearl.firebaseio.com",
+    "project_id": "student-management-pearl",
+    "storage_bucket": "student-management-pearl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64429137642:android:5b433865a0367697d8c193",
+        "android_client_info": {
+          "package_name": "com.example.pearlinfotech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64429137642-ecrtf7sohji4vsuhlam0d3cg0kar9cph.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pearlinfotech",
+            "certificate_hash": "eb0d1de3fcc0dcababfcf5704a8253f429fd41af"
+          }
+        },
+        {
+          "client_id": "64429137642-652k84k60gsnpr8cbg1p2t6k5vb6rp12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiKvkErtJ1QlYk1tS_Xl7YW5IBIEuXcjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64429137642-652k84k60gsnpr8cbg1p2t6k5vb6rp12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
