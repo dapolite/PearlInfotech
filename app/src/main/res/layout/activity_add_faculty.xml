@@ -8,6 +8,13 @@
     android:orientation="vertical"
     tools:context=".Admin.AddFaculty">
 
+    <include
+        android:id="@+id/studashtoolbar"
+        layout="@layout/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,6 +90,19 @@
             app:layout_constraintVertical_bias="0.701"
             tools:layout_editor_absoluteX="8dp" />
 
+        <Spinner
+            android:id="@+id/spinner3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/btnsstroke"
+            android:entries="@array/classes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.549"
+            tools:layout_editor_absoluteX="8dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -137,25 +157,8 @@
         </LinearLayout>
 
 
-        <Spinner
-            android:id="@+id/spinner3"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/btnsstroke"
-            android:entries="@array/classes"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.549"
-            tools:layout_editor_absoluteX="8dp" />
+
     </LinearLayout>
 
-    <include
-        android:id="@+id/ftoolbar"
-        layout="@layout/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp" />
 
 </LinearLayout>

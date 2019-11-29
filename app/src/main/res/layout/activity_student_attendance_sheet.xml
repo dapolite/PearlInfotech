@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context=".student_attendance_sheet">
 
+    <include
+        android:id="@+id/studentsheet"
+        layout="@layout/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp" />
+
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
@@ -37,13 +44,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.017" />
-
-    <include
-        android:id="@+id/studentsheet"
-        layout="@layout/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp" />
 
 
 </LinearLayout>
