@@ -98,17 +98,6 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="10dp" />
-
-            <Button
-                android:id="@+id/loginbtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:background="@drawable/btnbg"
-                android:text="@string/login"
-                android:onClick="onButtonClick"
-                android:textColor="#fff" />
-
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
@@ -119,6 +108,17 @@
                 android:textColor="#2B2727"
                 android:textColorHint="#857E7E"
                 tools:layout_editor_absoluteX="8dp" />
+
+            <Button
+                android:id="@+id/loginbtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/btnbg"
+                android:onClick="onButtonClick"
+                android:text="@string/login"
+                android:textColor="#fff" />
+
 
             <TextView
                 android:id="@+id/fp"
@@ -134,6 +134,4 @@
 
     </ScrollView>
 
-
-    <!-- negative margin to half of height -->
 </androidx.constraintlayout.widget.ConstraintLayout>
