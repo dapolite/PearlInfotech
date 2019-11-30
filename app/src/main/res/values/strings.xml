@@ -24,6 +24,12 @@
     <string name="submitattfac">Submit</string>
     <string name="textviewaccfac">TextView</string>
     <string name="tchname">Teacher Name</string>
+    <string name="fee_admin_tv1">Fee Details</string>
+    <string name="student_name_fee_admin">Student Name</string>
+    <string name="total_fees_fee_admin">Total Fees</string>
+    <string name="course_fee_admin">Course</string>
+    <string name="paid_fee_admin">Paid</string>
+    <string name="submit_fee_admin">Submit</string>
 
     <string-array name="periods">
         <item>CMAT</item>
@@ -33,5 +39,16 @@
     <string-array name="pa">
         <item>Present</item>
         <item>Absent</item>
+    </string-array>
+
+    <string-array name="mode">
+        <item> Select Payment Mode</item>
+        <item>Cash</item>
+        <item>Cheque</item>
+    </string-array>
+    <string-array name="installment">
+        <item>Select Installment</item>
+        <item> Full Installment</item>
+        <item> Half Installment</item>
     </string-array>
 </resources>
