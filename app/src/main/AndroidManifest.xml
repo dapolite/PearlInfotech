@@ -11,9 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        tools:ignore="InnerclassSeparator"
-        android:theme="@style/AppTheme">
-        <activity android:name=".student_attendance_sheet"></activity>
+        android:theme="@style/AppTheme"
+        tools:ignore="InnerclassSeparator">
+        <activity android:name=".Admin.FacultyList"></activity>
+        <activity android:name=".Admin.StudentList" />
+        <activity android:name=".student_attendance_sheet" />
         <activity android:name=".Admin.AddFaculty" />
         <activity android:name=".Admin.AddStudent" />
         <activity android:name=".Attendance.AttendanceFaculty" />
@@ -28,6 +30,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

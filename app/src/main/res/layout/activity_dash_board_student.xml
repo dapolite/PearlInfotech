@@ -1,225 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_height="match_parent">
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:fitsSystemWindows="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nestedScrollView"
-                android:layout_width="match_parent"
-
-                android:layout_height="match_parent"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="50dp"
-
-                    android:orientation="vertical">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:layout_margin="15dp"
-                        android:background="#fff"
-                        android:innerRadius="0dp"
-                        app:cardBackgroundColor="@color/colorAccent"
-                        app:cardCornerRadius="30dp"
-                        app:cardElevation="3dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/imageView5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_margin="10dp"
-                                android:layout_weight="1"
-                                android:adjustViewBounds="true"
-                                android:maxWidth="60dp"
-                                android:maxHeight="100dp"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/calendar" />
-
-                            <TextView
-                                android:id="@+id/textView7"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_margin="20dp"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:text="Time Table"
-                                android:textColor="#fff"
-                                android:textSize="20sp" />
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:layout_margin="15dp"
-                        android:innerRadius="0dp"
-                        app:cardBackgroundColor="@color/colorAccent"
-                        app:cardCornerRadius="35dp"
-                        app:cardElevation="5dp"
-
-
-                        >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/imageView57"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_margin="10dp"
-                                android:layout_weight="1"
-                                android:adjustViewBounds="true"
-                                android:maxWidth="60dp"
-                                android:maxHeight="100dp"
-                                android:scaleType="fitCenter"
-
-                                app:srcCompat="@drawable/conversation" />
-
-                            <TextView
-                                android:id="@+id/textView79"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_margin="20dp"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:text="Notices"
-
-                                android:textColor="#fff"
-                                android:textSize="20sp" />
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:layout_margin="15dp"
-                        android:innerRadius="0dp"
-                        app:cardBackgroundColor="@color/colorAccent"
-                        app:cardCornerRadius="35dp"
-                        app:cardElevation="5dp"
-
-                        >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/test"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_margin="10dp"
-                                android:layout_weight="1"
-                                android:adjustViewBounds="true"
-                                android:maxWidth="60dp"
-                                android:maxHeight="100dp"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/test" />
-
-                            <TextView
-                                android:id="@+id/textView44"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_margin="20dp"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:text="Attendance"
-                                android:textColor="#fff"
-                                android:textSize="20sp" />
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="15dp"
-                        android:innerRadius="0dp"
-                        app:cardBackgroundColor="@color/colorAccent"
-                        app:cardCornerRadius="35dp"
-
-                        app:cardElevation="5dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/imageView55"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_margin="10dp"
-                                android:layout_weight="1"
-                                android:adjustViewBounds="true"
-                                android:maxWidth="60dp"
-                                android:maxHeight="100dp"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/performance" />
-
-                            <TextView
-                                android:id="@+id/textView77"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_margin="20dp"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:text="Time Table"
-                                android:textColor="#fff"
-                                android:textSize="20sp" />
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-            </androidx.core.widget.NestedScrollView>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
 
     <include
         android:id="@+id/dshstudentbar"
@@ -228,5 +12,310 @@
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="8dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollViewdashs"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="50dp"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ttdashscard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:layout_margin="15dp"
+                    android:background="#fff"
+                    android:innerRadius="0dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ttdashs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:maxWidth="60dp"
+                            android:maxHeight="60dp"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/calendar" />
+
+                        <TextView
+                            android:id="@+id/ttdashstxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Time Table"
+                            android:textColor="#fff"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/notifdashscard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:innerRadius="0dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="35dp"
+                    android:clickable="true"
+                    app:cardElevation="5dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/notifdashs"
+                            android:layout_width="24dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:maxWidth="60dp"
+                            android:maxHeight="60dp"
+                            android:scaleType="fitCenter"
+
+                            app:srcCompat="@drawable/conversation" />
+
+                        <TextView
+                            android:id="@+id/notifdashstxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Notices"
+
+                            android:textColor="#fff"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/attendancescard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:clickable="true"
+                    android:innerRadius="0dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="35dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/attendashs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:maxWidth="60dp"
+                            android:maxHeight="60dp"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/test" />
+
+                        <TextView
+                            android:id="@+id/attendashstxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Attendance"
+                            android:textColor="#fff"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/perfdashscard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:innerRadius="0dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="35dp"
+                    android:clickable="true"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/perfdashs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:maxWidth="60dp"
+                            android:maxHeight="60dp"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/performance" />
+
+                        <TextView
+                            android:id="@+id/perfdashstxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Performance"
+                            android:textColor="#fff"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/feesdashscard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:innerRadius="0dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="35dp"
+                    android:clickable="true"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/feesdashs"
+                            android:layout_width="6dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:maxWidth="60dp"
+                            android:maxHeight="60dp"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/money" />
+
+                        <TextView
+                            android:id="@+id/feesdashstxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Fees"
+                            android:textColor="#fff"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/examsdashscard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:innerRadius="0dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="35dp"
+android:clickable="true"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/examsdashs"
+                            android:layout_width="14dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:maxWidth="60dp"
+                            android:maxHeight="60dp"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/exam" />
+
+                        <TextView
+                            android:id="@+id/examdashstxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Exams"
+                            android:textColor="#fff"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

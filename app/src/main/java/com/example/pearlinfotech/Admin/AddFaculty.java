@@ -33,7 +33,7 @@ public class AddFaculty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_faculty);
 
-        databaseTeacher = FirebaseDatabase.getInstance().getReference("Teacher");
+        databaseTeacher = FirebaseDatabase.getInstance().getReference("Faculty");
 
         Tname = findViewById(R.id.editText1);
         Tid = findViewById(R.id.editText3);

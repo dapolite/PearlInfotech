@@ -6,6 +6,13 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/dashbftoolbar"
+        layout="@layout/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,7 +40,7 @@
                     android:id="@+id/ttdashfcard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:clickable="true"
                     android:layout_margin="15dp"
                     android:background="#fff"
                     android:innerRadius="0dp"
@@ -56,7 +63,7 @@
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
                             android:maxWidth="60dp"
-                            android:maxHeight="100dp"
+                            android:maxHeight="60dp"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/calendar" />
 
@@ -83,7 +90,7 @@
                     app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="35dp"
                     app:cardElevation="5dp"
-
+                    android:clickable="true"
 
                     >
 
@@ -95,14 +102,14 @@
 
                         <ImageView
                             android:id="@+id/notifdashf"
-                            android:layout_width="wrap_content"
+                            android:layout_width="24dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
                             android:maxWidth="60dp"
-                            android:maxHeight="100dp"
+                            android:maxHeight="60dp"
                             android:scaleType="fitCenter"
 
                             app:srcCompat="@drawable/conversation" />
@@ -148,7 +155,7 @@
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
                             android:maxWidth="60dp"
-                            android:maxHeight="100dp"
+                            android:maxHeight="60dp"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/test" />
 
@@ -174,7 +181,7 @@
                     android:innerRadius="0dp"
                     app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="35dp"
-
+                    android:clickable="true"
                     app:cardElevation="5dp">
 
                     <LinearLayout
@@ -192,7 +199,7 @@
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
                             android:maxWidth="60dp"
-                            android:maxHeight="100dp"
+                            android:maxHeight="60dp"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/performance" />
 
@@ -204,55 +211,12 @@
                             android:layout_margin="20dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Time Table"
+                            android:text="Performance"
                             android:textColor="#fff"
                             android:textSize="20sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/feesdashfcard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:innerRadius="0dp"
-                    app:cardBackgroundColor="@color/colorAccent"
-                    app:cardCornerRadius="35dp"
-
-                    app:cardElevation="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/feesdashf"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:adjustViewBounds="true"
-                            android:maxWidth="60dp"
-                            android:maxHeight="100dp"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/money" />
-
-                        <TextView
-                            android:id="@+id/feesdashftxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="20dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Fees"
-                            android:textColor="#fff"
-                            android:textSize="20sp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/examsdashfcard"
@@ -262,7 +226,7 @@
                     android:innerRadius="0dp"
                     app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="35dp"
-
+                    android:clickable="true"
                     app:cardElevation="5dp">
 
                     <LinearLayout
@@ -273,14 +237,14 @@
 
                         <ImageView
                             android:id="@+id/examsdashf"
-                            android:layout_width="wrap_content"
+                            android:layout_width="14dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
                             android:maxWidth="60dp"
-                            android:maxHeight="100dp"
+                            android:maxHeight="60dp"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/exam" />
 
@@ -311,13 +275,6 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
     </androidx.core.widget.NestedScrollView>
-
-    <include
-        android:id="@+id/dashbftoolbar"
-        layout="@layout/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp" />
 
 
 </LinearLayout>
