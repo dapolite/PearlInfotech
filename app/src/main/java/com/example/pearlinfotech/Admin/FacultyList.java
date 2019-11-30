@@ -42,10 +42,8 @@ public class FacultyList extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                      desc = ds.child("tname").getValue(String.class);
-
-                    arrayList.add(desc);
+                     arrayList.add(desc);
                 }
-
                 adapter.notifyDataSetChanged();
             }
 
