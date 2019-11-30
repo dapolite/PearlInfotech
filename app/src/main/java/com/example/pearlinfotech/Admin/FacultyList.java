@@ -3,9 +3,12 @@ package com.example.pearlinfotech.Admin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +40,7 @@ public class FacultyList extends AppCompatActivity {
         listView = findViewById(R.id.faclistview);
         adapter=new ArrayAdapter<>(FacultyList.this,android.R.layout.simple_list_item_1,arrayList);
         listView.setAdapter(adapter);
+
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -49,6 +53,17 @@ public class FacultyList extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                String item = ((TextView)view).getText().toString();
+
+                Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
 
             }
         });

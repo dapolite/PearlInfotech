@@ -18,13 +18,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="40dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="40dp"
-
-        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:padding="60dp"
         android:background="@drawable/rectanglehomescreen"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Student"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="40sp"/>
 
         <EditText
             android:id="@+id/editText1"
@@ -35,7 +46,9 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/btnsstroke"
             android:ems="10"
-            android:hint="new student name"
+            android:hint="Student Name"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:inputType="textPersonName"
             android:textColor="#2B2727"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +63,9 @@
             android:layout_margin="10dp"
             android:background="@drawable/btnsstroke"
             android:ems="10"
-            android:hint="ID"
+            android:hint="UserID"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:inputType="textPersonName"
             android:textColor="#2B2727"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +82,9 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/btnsstroke"
             android:ems="10"
-            android:hint="password"
+            android:hint="Password"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:inputType="textPassword"
             android:textColor="#2B2727"
             app:layout_constraintBottom_toBottomOf="parent"

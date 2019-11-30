@@ -33,16 +33,16 @@ public class StudentList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_list);
-        button=findViewById(R.id.addfac);
+        button=findViewById(R.id.addstu);
         mRef = FirebaseDatabase.getInstance().getReference("Student");
-        listView = findViewById(R.id.faclistview);
+        listView = findViewById(R.id.stulistview);
         adapter=new ArrayAdapter<>(StudentList.this,android.R.layout.simple_list_item_1,arrayList);
         listView.setAdapter(adapter);
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    desc = ds.child("tname").getValue(String.class);
+                    desc = ds.child("sname").getValue(String.class);
                     arrayList.add(desc);
                 }
                 adapter.notifyDataSetChanged();
