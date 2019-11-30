@@ -13,9 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="InnerclassSeparator">
-        <activity android:name=".Admin.FacultyList"></activity>
+        <activity android:name=".Attendance.AttendanceExtra"></activity>
+        <activity android:name=".Admin.FacultyList" />
         <activity android:name=".Admin.StudentList" />
-        <activity android:name=".student_attendance_sheet" />
+        <activity android:name=".Attendance.student_attendance_sheet" />
         <activity android:name=".Admin.AddFaculty" />
         <activity android:name=".Admin.AddStudent" />
         <activity android:name=".Attendance.AttendanceFaculty" />
