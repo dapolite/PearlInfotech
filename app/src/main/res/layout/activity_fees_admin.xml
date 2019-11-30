@@ -15,15 +15,21 @@
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="8dp" />
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false">
+
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginRight="30dp"
         android:layout_gravity="center"
-        android:gravity="center"
+            android:layout_marginTop="70dp"
+        android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
         android:background="@drawable/rectanglehomescreen"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="60dp">
 
@@ -31,27 +37,27 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textStyle="bold"
+            android:text="@string/fee_admin_tv1"
             android:textColor="@color/colorAccent"
-            android:text="@string/fee_admin_tv1" />
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/btnsstroke"
             android:ems="10"
-            android:importantForAutofill="no"
+            android:gravity="center"
             android:hint="@string/student_name_fee_admin"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:textColor="#2B2727"
-            android:layout_gravity="center"
-            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.055"
@@ -61,14 +67,14 @@
             android:id="@+id/editText3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/btnsstroke"
             android:ems="10"
-            android:importantForAutofill="no"
-            android:hint="@string/total_fees_fee_admin"
-            android:layout_gravity="center"
             android:gravity="center"
+            android:hint="@string/total_fees_fee_admin"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:textColor="#2B2727"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -80,14 +86,14 @@
             android:id="@+id/editText4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/btnsstroke"
             android:ems="10"
-            android:importantForAutofill="no"
-            android:hint="@string/course_fee_admin"
-            android:layout_gravity="center"
             android:gravity="center"
+            android:hint="@string/course_fee_admin"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:textColor="#2B2727"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -100,14 +106,14 @@
             android:id="@+id/editText5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:importantForAutofill="no"
             android:background="@drawable/btnsstroke"
             android:ems="10"
-            android:hint="@string/paid_fee_admin"
-            android:layout_gravity="center"
             android:gravity="center"
+            android:hint="@string/paid_fee_admin"
+            android:importantForAutofill="no"
             android:inputType="textPassword"
             android:textColor="#2B2727"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -157,6 +163,7 @@
                 android:id="@+id/button9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
@@ -165,9 +172,8 @@
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/btnbg"
-                android:text="@string/submit_fee_admin"
-                android:layout_gravity="center"
                 android:gravity="center"
+                android:text="@string/submit_fee_admin"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -180,9 +186,8 @@
 
         </LinearLayout>
 
-
-
     </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
 </LinearLayout>

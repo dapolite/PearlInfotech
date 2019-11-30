@@ -42,7 +42,7 @@
     </string-array>
 
     <string-array name="mode">
-        <item> Select Payment Mode</item>
+        <item> Payment Mode</item>
         <item>Cash</item>
         <item>Cheque</item>
     </string-array>
