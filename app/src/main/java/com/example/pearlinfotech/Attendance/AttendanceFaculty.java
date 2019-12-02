@@ -10,9 +10,9 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.pearlinfotech.R;
 import com.google.firebase.database.DataSnapshot;
@@ -41,6 +41,7 @@ public class AttendanceFaculty extends AppCompatActivity {
     ArrayList Usernames = new ArrayList<>();
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference dbAttendance;
+    DatabaseReference dbStudent;
     String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     private ArrayAdapter adapter;
 
@@ -48,19 +49,39 @@ public class AttendanceFaculty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_faculty);
-        mToolbar = findViewById(R.id.takeattendancebar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Attendance");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        period = findViewById(R.id.spinner4);
+//      mToolbar = findViewById(R.id.takeattendancebar);
+        ref = FirebaseDatabase.getInstance().getReference();
+        dbStudent = ref.child("Student");
+        dbAttendance = ref.child("attendance");
 
+        dbStudent.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String sid,P1="-",P2="-",P3="-",P4="-",P5="-",P6="-",P7="-",P8="-";
+                Attendance_sheet a = new Attendance_sheet(P1,P2,P3,P4,P5,P6,P7,P8);
+
+                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+                    sid=dsp.child("sid").getValue().toString();
+                    dbAttendance.child(date).child(sid).setValue(a);
+
+                }
+                Toast.makeText(getApplicationContext(),"successfully created "+date+" db", Toast.LENGTH_LONG).show();
+            }
+
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "something wrong", Toast.LENGTH_LONG).show();
+            }
+
+        });
 
         selectedItems = new ArrayList<String>();
 
         TextView classname = findViewById(R.id.textView);
         classname.setText("CSE");
-
-        //to get class name from teacherlogin
         Bundle bundle1 = getIntent().getExtras();
         class_selected = bundle1.getString("class_selected");
         teacher_id = bundle1.getString("tid");
@@ -98,7 +119,7 @@ public class AttendanceFaculty extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -168,3 +189,43 @@ public class AttendanceFaculty extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+class Attendance_sheet {
+    String p1,p2,p3,p4,p5,p6,p7,p8;
+
+    public Attendance_sheet(String p1, String p2, String p3, String p4, String p5, String p6, String p7, String p8) {
+        this.p1=p1;
+        this.p2=p2;
+        this.p3=p3;
+        this.p4=p4;
+        this.p5=p5;
+        this.p6=p6;
+        this.p7=p7;
+        this.p8=p8;
+
+    }
+
+    public String getP1() {
+        return p1;
+    }
+    public String getP2() {
+        return p2;
+    }
+    public String getP3() {
+        return p3;
+    }
+    public String getP4() {
+        return p4;
+    }
+    public String getP5() { return p5; }
+    public String getP6() {
+        return p6;
+    }
+    public String getP7() {
+        return p7;
+    }
+    public String getP8() {
+        return p8;
+    }
+}
+

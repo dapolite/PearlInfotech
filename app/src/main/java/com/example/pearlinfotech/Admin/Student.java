@@ -6,14 +6,13 @@ public class Student {
     String classes;
     String spass;
 
-  /*  public Student(String sname, String sid){
 
-    }*/
 
     Student(String sname, String sid, String classes, String spass) {
         this.sname = sname;
         this.sid = sid;
         this.classes = classes;
+        this.spass=spass;
     }
 
     public String getSname() {

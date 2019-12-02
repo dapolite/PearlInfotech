@@ -1,0 +1,73 @@
+package com.example.pearlinfotech.Fees;
+
+public class Fee {
+    public Fee(String sname, int total, int paid, String course,String type1, String type2) {
+        this.sname = sname;
+        this.total = total;
+        this.paid = paid;
+        this.course = course;
+        this.type1 = type1;
+        this.type2 = type2;
+    }
+
+    String sname;
+    int total;
+    int paid;
+    String type1;
+
+    public String getType1() {
+        return type1;
+    }
+
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
+
+    public String getType2() {
+        return type2;
+    }
+
+    public void setType2(String type2) {
+        this.type2 = type2;
+    }
+
+    public Fee() {
+
+    }
+
+    String type2;
+
+    public String getSName() {
+        return sname;
+    }
+
+    public void setSName(String sname) {
+        this.sname = sname;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getPaid() {
+        return paid;
+    }
+
+    public void setPaid(int paid) {
+        this.paid = paid;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    String course;
+}
