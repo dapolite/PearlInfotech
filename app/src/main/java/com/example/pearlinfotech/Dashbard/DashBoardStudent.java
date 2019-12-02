@@ -66,7 +66,7 @@ public class DashBoardStudent extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        cv2=findViewById(R.id.feesdashacard);
+        cv2=findViewById(R.id.feesdashscard);
         cv2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
