@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,42 +13,50 @@
         layout="@layout/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginRight="40dp"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:padding="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="70dp"
         android:background="@drawable/rectanglehomescreen"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashbftoolbar"
+        app:layout_constraintVertical_bias="0.49">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Add Student"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="40sp"/>
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editText1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/btnsstroke"
             android:ems="10"
-            android:hint="Student Name"
-            android:layout_gravity="center"
             android:gravity="center"
+            android:hint="Student Name"
             android:inputType="textPersonName"
             android:textColor="#2B2727"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -60,12 +68,12 @@
             android:id="@+id/editText3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="10dp"
             android:background="@drawable/btnsstroke"
             android:ems="10"
-            android:hint="UserID"
-            android:layout_gravity="center"
             android:gravity="center"
+            android:hint="UserID"
             android:inputType="textPersonName"
             android:textColor="#2B2727"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -77,14 +85,14 @@
             android:id="@+id/editText4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/btnsstroke"
             android:ems="10"
-            android:hint="Password"
-            android:layout_gravity="center"
             android:gravity="center"
+            android:hint="Password"
             android:inputType="textPassword"
             android:textColor="#2B2727"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -162,4 +170,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
