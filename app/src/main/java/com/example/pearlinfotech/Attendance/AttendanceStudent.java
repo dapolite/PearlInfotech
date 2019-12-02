@@ -29,25 +29,30 @@ public class AttendanceStudent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_student);
-        mDatabase = FirebaseDatabase.getInstance().getReference("StudentAttendance");
-
+        String s="Shivangi";
         Bundle bundle1 = getIntent().getExtras();
         sname = bundle1.getString("sname");
+        mDatabase = FirebaseDatabase.getInstance().getReference("StudentAttendance"+"/"+s);
+
+
         Log.d("TAG",sname);
+
        // Log.d("TAG",String.valueOf(count));
          mDatabase.addValueEventListener(new ValueEventListener() {
              @Override
              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                  for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                      num2=snapshot.getKey();
                       num=snapshot.getValue().toString();
+                      if(num.equals("Present")){
+                          counta=counta+1;
+                      }
                      //if(num=="Present"){
                      //    count=counta++;
                      //}
 
                  }
                  //Log.d("TAG",String.valueOf(count));
-                 Log.d("TAG",num + " " + num2);
+                 Log.d("TAG",num + " " + counta);
              }
 
              @Override

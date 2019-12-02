@@ -39,7 +39,7 @@ public class DashBoardStudent extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         message = bundle.getString("message");
         mActionBarToolbar.setTitle(message+"'s Dashboard"+"("+date+")");
-//        TextView txtView = (TextView) findViewById(R.id.textView1);
+//      TextView txtView = (TextView) findViewById(R.id.textView1);
         db=FirebaseDatabase.getInstance();
         ref=db.getReference("Student").child(message);
 //        txtView.setText("Welcome :"+message);
