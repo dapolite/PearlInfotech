@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.pearlinfotech">
+    package="com.example.pearlinfotech" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,10 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="InnerclassSeparator">
-        <activity android:name=".student_fees"></activity>
-        <activity android:name=".Attendance.AttendanceExtra" />
         tools:ignore="InnerclassSeparator" >
+        <activity android:name=".Fees.student_fees" />
+        <activity android:name=".Attendance.AttendanceExtra" />
         <activity android:name=".Attendance.AttendanceStudent" >
         </activity>
         <activity android:name=".Admin.FacultyList" />
@@ -30,7 +31,7 @@
         <activity android:name=".HomeScreen.MainActivity" />
         <activity android:name=".Dashbard.DashBoardStudent" />
         <activity android:name=".Login.Login" />
-        <activity android:name=".HomeScreen.SplashScreen">
+        <activity android:name=".HomeScreen.SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -39,7 +40,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

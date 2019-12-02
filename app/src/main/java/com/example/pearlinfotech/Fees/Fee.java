@@ -1,7 +1,7 @@
 package com.example.pearlinfotech.Fees;
 
 public class Fee {
-    public Fee(String sname, int total, int paid, String course,String type1, String type2) {
+    public Fee(String sname, long total, long paid, String course,String type1, String type2) {
         this.sname = sname;
         this.total = total;
         this.paid = paid;
@@ -11,8 +11,8 @@ public class Fee {
     }
 
     String sname;
-    int total;
-    int paid;
+    long total;
+    long paid;
     String type1;
 
     public String getType1() {
@@ -45,7 +45,7 @@ public class Fee {
         this.sname = sname;
     }
 
-    public int getTotal() {
+    public long getTotal() {
         return total;
     }
 
@@ -53,7 +53,7 @@ public class Fee {
         this.total = total;
     }
 
-    public int getPaid() {
+    public long getPaid() {
         return paid;
     }
 
