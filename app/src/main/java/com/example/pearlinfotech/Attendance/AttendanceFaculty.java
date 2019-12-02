@@ -10,9 +10,9 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.pearlinfotech.R;
 import com.google.firebase.database.DataSnapshot;
@@ -34,13 +34,14 @@ public class AttendanceFaculty extends AppCompatActivity {
     ArrayList<String> selectedItems;
     ArrayList<String> nonselectedItems;
     Toolbar mToolbar;
-
+    ArrayAdapter<String> aa;
     ArrayList<String> ul;
     ListView listView;
     ArrayList Userlist = new ArrayList<>();
     ArrayList Usernames = new ArrayList<>();
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference dbAttendance;
+    DatabaseReference stuAttendance;
     DatabaseReference dbStudent;
     String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     private ArrayAdapter adapter;
@@ -49,36 +50,11 @@ public class AttendanceFaculty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_faculty);
-//      mToolbar = findViewById(R.id.takeattendancebar);
-        period = findViewById(R.id.spinner4);
+        mToolbar = findViewById(R.id.ftoolbar);
+        //period = findViewById(R.id.spinner4);
         ref = FirebaseDatabase.getInstance().getReference();
         dbStudent = ref.child("Student");
         dbAttendance = ref.child("attendance");
-
-        dbStudent.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String sid,P1="-",P2="-",P3="-",P4="-",P5="-",P6="-",P7="-",P8="-";
-                Attendance_sheet a = new Attendance_sheet(P1,P2,P3,P4,P5,P6,P7,P8);
-
-                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                    sid=dsp.child("sid").getValue().toString();
-                    dbAttendance.child(date).child(sid).setValue(a);
-
-                }
-                Toast.makeText(getApplicationContext(),"successfully created "+date+" db", Toast.LENGTH_LONG).show();
-            }
-
-
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "something wrong", Toast.LENGTH_LONG).show();
-            }
-
-        });
-
         selectedItems = new ArrayList<String>();
 
         TextView classname = findViewById(R.id.textView);
@@ -86,7 +62,6 @@ public class AttendanceFaculty extends AppCompatActivity {
         Bundle bundle1 = getIntent().getExtras();
         class_selected = bundle1.getString("class_selected");
         teacher_id = bundle1.getString("tid");
-        //  Toast.makeText(getApplicationContext(), teacher_id, Toast.LENGTH_LONG).show();
 
         classname.setText(class_selected);
 
@@ -98,7 +73,7 @@ public class AttendanceFaculty extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                    Userlist.add(dsp.child("sid").getValue().toString());
+                    Userlist.add(dsp.child("sname").getValue().toString());
                     Usernames.add(dsp.child("sname").getValue().toString());
 
 
@@ -120,7 +95,6 @@ public class AttendanceFaculty extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -129,7 +103,7 @@ public class AttendanceFaculty extends AppCompatActivity {
         ListView chl = findViewById(R.id.checkable_list);
         chl.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        ArrayAdapter<String> aa = new ArrayAdapter<String>(this, R.layout.checkable_list_layout, R.id.txt_title, userlist);
+         aa = new ArrayAdapter<String>(this, R.layout.checkable_list_layout, R.id.txt_title, userlist);
         chl.setAdapter(aa);
         chl.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -148,38 +122,31 @@ public class AttendanceFaculty extends AppCompatActivity {
 
     public void showSelectedItems(View view) {
         String selItems = "";
-        periodno = period.getSelectedItem().toString();
-        if (periodno.equals("Select Period")) {
-            Toast.makeText(this, "Select a class", Toast.LENGTH_LONG).show();
-
-        } else {
             ref = FirebaseDatabase.getInstance().getReference();
 
-            dbAttendance = ref.child("attendance").child(date);
+            dbAttendance = ref.child("Attendance").child(date).child(class_selected).child(teacher_id);
 
             for (String item : selectedItems) {
                 Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
                 nonselectedItems.remove(item);
-                dbAttendance.child(item).child(periodno).setValue("P" + " / " + teacher_id);
+                dbAttendance.child(item).setValue("Present");
+                stuAttendance=ref.child("StudentAttendance").child(item);
+                stuAttendance.child(date).setValue("Present");
+                aa.notifyDataSetChanged();
                 if (selItems == "")
                     selItems = item;
                 else
                     selItems += "/" + item;
             }
-            // Toast.makeText(this, selItems, Toast.LENGTH_LONG).show();
-
-
-            //for  absent
             for (String item : nonselectedItems) {
                 Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
-                dbAttendance.child(item).child(periodno).setValue("A" + " / " + teacher_id);
-                //Toast.makeText(this, "absentees:" + nonselectedItems, Toast.LENGTH_LONG).show();
+                dbAttendance.child(item).setValue("Absent");
+                stuAttendance=ref.child("StudentAttendance").child(item);
+                stuAttendance.child(date).setValue("Absent");
+                aa.notifyDataSetChanged();
 
             }
         }
-
-
-    }
 
 
     @Override
@@ -191,42 +158,4 @@ public class AttendanceFaculty extends AppCompatActivity {
     }
 }
 
-class Attendance_sheet {
-    String p1,p2,p3,p4,p5,p6,p7,p8;
-
-    public Attendance_sheet(String p1, String p2, String p3, String p4, String p5, String p6, String p7, String p8) {
-        this.p1=p1;
-        this.p2=p2;
-        this.p3=p3;
-        this.p4=p4;
-        this.p5=p5;
-        this.p6=p6;
-        this.p7=p7;
-        this.p8=p8;
-
-    }
-
-    public String getP1() {
-        return p1;
-    }
-    public String getP2() {
-        return p2;
-    }
-    public String getP3() {
-        return p3;
-    }
-    public String getP4() {
-        return p4;
-    }
-    public String getP5() { return p5; }
-    public String getP6() {
-        return p6;
-    }
-    public String getP7() {
-        return p7;
-    }
-    public String getP8() {
-        return p8;
-    }
-}
 
