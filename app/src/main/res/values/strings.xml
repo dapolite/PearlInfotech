@@ -24,13 +24,32 @@
     <string name="submitattfac">Submit</string>
     <string name="textviewaccfac">TextView</string>
     <string name="tchname">Teacher Name</string>
-    <string name="fee_admin_tv1">Fee Details</string>
+
+    <string name="performance_pf">Performance</string>
+    <string name="student_name_pf">Student Name</string>
+    <string name="topic_pf">Topic</string>
+    <string name="total_pf">Total</string>
+    <string name="correct_pf">Correct</string>
+    <string name="incorrect_pf">Incorrect</string>
+    <string name="submit_pf">Submit</string>
+
+    <string name="fee_admin_tv1">Fee Admin</string>
     <string name="student_name_fee_admin">Student Name</string>
     <string name="total_fees_fee_admin">Total Fees</string>
     <string name="course_fee_admin">Course</string>
     <string name="paid_fee_admin">Paid</string>
     <string name="submit_fee_admin">Submit</string>
 
+    <string name="performance_ps">Performance</string>
+    <string name="name_ps">Name</string>
+    <string name="topic_ps">Topic</string>
+    <string name="total_ps">Total</string>
+    <string name="correct_ps">Correct</string>
+    <string name="incorrect_ps">Incorrect</string>
+    <string name="percentage_ps">Percentage</string>
+    <string name="test_name">Test Name</string>
+
+    >>>>>>> 321ca69... Performance Faculty Done.
     <string-array name="periods">
         <item>CMAT</item>
         <item>CAT</item>
@@ -41,14 +60,13 @@
         <item>Absent</item>
     </string-array>
 
-    <string-array name="mode">
-        <item> Payment Mode</item>
-        <item>Cash</item>
-        <item>Cheque</item>
-    </string-array>
     <string-array name="installment">
-        <item>Select Installment</item>
-        <item> Full Installment</item>
-        <item> Half Installment</item>
+        <item>Full</item>
+        <item>Partial</item>
+    </string-array>
+
+    <string-array name="mode">
+        <item>Cheque</item>
+        <item>Cash</item>
     </string-array>
 </resources>
