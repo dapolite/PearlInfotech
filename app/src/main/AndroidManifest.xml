@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pearlinfotech">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
@@ -13,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="InnerclassSeparator">
-        <activity android:name=".Attendance.AttendanceExtra"/>
+        <activity android:name=".student_fees"></activity>
+        <activity android:name=".Attendance.AttendanceExtra" />
         <activity android:name=".Admin.FacultyList" />
         <activity android:name=".Admin.StudentList" />
         <activity android:name=".Attendance.student_attendance_sheet" />
@@ -21,7 +24,7 @@
         <activity android:name=".Admin.AddStudent" />
         <activity android:name=".Attendance.AttendanceFaculty" />
         <activity android:name=".SaveUser" />
-        <activity android:name=".Fees.fees_admin"/>
+        <activity android:name=".Fees.fees_admin" />
         <activity android:name=".Dashbard.DashboardFaculty" />
         <activity android:name=".Dashbard.DashboardAdmin" />
         <activity android:name=".Login.ForgotPasssword" />
@@ -37,7 +40,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
