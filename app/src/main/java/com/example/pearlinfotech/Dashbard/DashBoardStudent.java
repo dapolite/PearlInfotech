@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView;
 
 import com.example.pearlinfotech.Attendance.AttendanceStudent;
 import com.example.pearlinfotech.R;
+import com.example.pearlinfotech.student_fees;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -59,6 +60,18 @@ public class DashBoardStudent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(DashBoardStudent.this, AttendanceStudent.class);
+                Bundle basket= new Bundle();
+                basket.putString("sname",sname);
+                i.putExtras(basket);
+                startActivity(i);
+            }
+        });
+        cv2=findViewById(R.id.feesdashscard);
+        cv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i=new Intent(DashBoardStudent.this, student_fees.class);
                 Bundle basket= new Bundle();
                 basket.putString("sname",sname);
                 i.putExtras(basket);
