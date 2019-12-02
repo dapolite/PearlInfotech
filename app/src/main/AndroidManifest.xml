@@ -16,8 +16,8 @@
         <activity android:name=".Attendance.AttendanceExtra"></activity>
         <activity android:name=".Admin.FacultyList" />
         <activity android:name=".Admin.StudentList" />
-        <activity android:name=".Attendance.student_attendance_sheet" />
         <activity android:name=".Admin.AddFaculty" />
+        <activity android:name=".Fees.fees_admin" />
         <activity android:name=".Admin.AddStudent" />
         <activity android:name=".Attendance.AttendanceFaculty" />
         <activity android:name=".SaveUser" />
