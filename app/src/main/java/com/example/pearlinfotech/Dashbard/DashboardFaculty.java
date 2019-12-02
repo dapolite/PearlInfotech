@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.example.pearlinfotech.Attendance.AttendanceFaculty;
+import com.example.pearlinfotech.Performance.Performance_faculty;
 import com.example.pearlinfotech.R;
 
 import java.text.SimpleDateFormat;
@@ -39,10 +40,10 @@ String message;
         Bundle bundle1 = getIntent().getExtras();
         message = bundle1.getString("message");
         setSupportActionBar(mActionBarToolbar);
-        getSupportActionBar().setTitle(message+"'s Dashboard  - "+date);
+        getSupportActionBar().setTitle(message + "'s Dashboard  - " + date);
 
         TextView txtView = findViewById(R.id.tvdashf);
-        txtView.setText("Welcome : "+message);
+        txtView.setText("Welcome : " + message);
         spinner2.setOnItemSelectedListener(this);
         List<String> categories = new ArrayList<String>();
         categories.add("CSE");
@@ -55,15 +56,23 @@ String message;
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(dataAdapter);
 
-        atten=findViewById(R.id.attendancefcard);
+        atten = findViewById(R.id.attendancefcard);
         atten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle basket= new Bundle();
+                Bundle basket = new Bundle();
                 basket.putString("class_selected", item);
                 basket.putString("tid", message);
                 Intent intent = new Intent(DashboardFaculty.this, AttendanceFaculty.class);
                 intent.putExtras(basket);
+                startActivity(intent);
+            }
+        });
+        perf = findViewById(R.id.perfdashfcard);
+        perf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardFaculty.this, Performance_faculty.class);
                 startActivity(intent);
             }
         });
