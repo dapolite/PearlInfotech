@@ -36,7 +36,6 @@ String message;
         Spinner spinner2 = findViewById(R.id.spinner2);
 
 
-        //to get username from login page
         Bundle bundle1 = getIntent().getExtras();
         message = bundle1.getString("message");
         setSupportActionBar(mActionBarToolbar);

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/txt_title"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
     android:gravity="center_vertical"
-    android:hint="@string/namechcklst"
-    android:padding="5sp"
+    android:textSize="25dp"
+    android:hint="Name"
+    android:textStyle="bold"
     android:textColor="#000"
-    android:textSize="20sp" />
+    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+    android:padding="5sp"
+    />

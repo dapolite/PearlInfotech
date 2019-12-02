@@ -7,7 +7,9 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.pearlinfotech.Admin.AddStudent;
 import com.example.pearlinfotech.Admin.FacultyList;
+import com.example.pearlinfotech.Fees.fees_admin;
 import com.example.pearlinfotech.R;
 
 public class DashboardAdmin extends AppCompatActivity {
@@ -25,5 +27,24 @@ public class DashboardAdmin extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        cv2=findViewById(R.id.feesdashacard);
+        cv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(DashboardAdmin.this, fees_admin.class);
+                startActivity(i);
+            }
+        });
+        cv3=findViewById(R.id.studdashacard);
+        cv3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(DashboardAdmin.this, AddStudent.class);
+                startActivity(i);
+            }
+        });
+
+
+
     }
 }
