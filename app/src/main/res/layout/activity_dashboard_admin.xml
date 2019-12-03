@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,10 +13,19 @@
         tools:layout_editor_absoluteX="8dp" />
 
     <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/dashbstoolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="70dp"
         android:fitsSystemWindows="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollViewdasha"
@@ -39,9 +48,9 @@
                     android:id="@+id/studdashacard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-android:clickable="true"
                     android:layout_margin="15dp"
                     android:background="#fff"
+                    android:clickable="true"
                     android:innerRadius="0dp"
                     app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="30dp"
@@ -85,12 +94,11 @@ android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
+                    android:clickable="true"
                     android:innerRadius="0dp"
                     app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="35dp"
-                    app:cardElevation="5dp"
-                    android:clickable="true"
-                    >
+                    app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -176,8 +184,8 @@ android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
-                    android:innerRadius="0dp"
                     android:clickable="true"
+                    android:innerRadius="0dp"
                     app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="35dp"
 
@@ -221,10 +229,10 @@ android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
+                    android:clickable="true"
                     android:innerRadius="0dp"
                     app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="35dp"
-                    android:clickable="true"
                     app:cardElevation="5dp">
 
                     <LinearLayout
@@ -274,4 +282,4 @@ android:clickable="true"
     </androidx.core.widget.NestedScrollView>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
