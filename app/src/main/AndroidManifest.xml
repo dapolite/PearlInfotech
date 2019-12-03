@@ -25,7 +25,7 @@
         <activity android:name=".Admin.AddStudent" />
         <activity android:name=".Attendance.AttendanceFaculty" />
         <activity android:name=".SaveUser" />
-        <activity android:name=".Performance.Performance_faculty"/>
+        <activity android:name=".Performances.Performance_faculty"/>
         <activity android:name=".Dashbard.DashboardFaculty" />
         <activity android:name=".Dashbard.DashboardAdmin" />
         <activity android:name=".Login.ForgotPasssword" />
@@ -33,7 +33,7 @@
         <activity android:name=".Dashbard.DashBoardStudent" />
         <activity android:name=".Login.Login" />
         <activity android:name=".Fees.fees_admin"/>
-        <activity android:name=".Performance.Performance_student"/>
+        <activity android:name=".Performances.Performance_student"/>
         <activity android:name=".HomeScreen.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
