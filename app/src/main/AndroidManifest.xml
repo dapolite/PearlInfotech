@@ -13,16 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="InnerclassSeparator">
-        <activity android:name="Fees.student_fees"/>
-        <activity android:name=".Attendance.AttendanceExtra" />
+
         tools:ignore="InnerclassSeparator" >
+        <activity android:name=".Fees.student_fees"/>
+        <activity android:name=".Attendance.AttendanceExtra" />
         <activity android:name=".Attendance.AttendanceStudent" >
         </activity>
         <activity android:name=".Admin.FacultyList" />
         <activity android:name=".Admin.StudentList" />
         <activity android:name=".Admin.AddFaculty" />
         <activity android:name=".Admin.AddStudent" />
-        <activity android:name=".Fees.fees_admin"/>
         <activity android:name=".Attendance.AttendanceFaculty" />
         <activity android:name=".SaveUser" />
         <activity android:name=".Performance.Performance_faculty"/>
@@ -32,7 +32,7 @@
         <activity android:name=".HomeScreen.MainActivity" />
         <activity android:name=".Dashbard.DashBoardStudent" />
         <activity android:name=".Login.Login" />
-
+        <activity android:name=".Fees.fees_admin"/>
         <activity android:name=".Performance.Performance_student"/>
         <activity android:name=".HomeScreen.SplashScreen">
             <intent-filter>

@@ -1,6 +1,7 @@
 package com.example.pearlinfotech.Fees;
 
 public class Fee {
+
     public Fee(String sname, long total, long paid, String course,String type1, String type2) {
         this.sname = sname;
         this.total = total;

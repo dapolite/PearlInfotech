@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -23,10 +25,11 @@ import java.util.ArrayList;
 public class student_fees extends AppCompatActivity {
     private RecyclerView mRvData;
     private DisplayAllData allDataAdapter;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase,mDB;
     private TextView mTvEmpty;
+    ArrayList<String> getkey=new ArrayList<>();
     private FirebaseDatabase mFirebaseInstance;
-    String sname;
+    String stuname;
     private ArrayList<Fee> mUserList = new ArrayList<>();
 
     @Override
@@ -34,21 +37,55 @@ public class student_fees extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_fees);
         Bundle bundle1 = getIntent().getExtras();
-        sname = bundle1.getString("sname");
+        stuname = bundle1.getString("sname");
         mFirebaseInstance = FirebaseDatabase.getInstance();
         mDatabase = mFirebaseInstance.getReference("Fees");
+        mDB=mDatabase.child(stuname);
         mRvData = findViewById(R.id.feercv);
         mRvData.setLayoutManager(new LinearLayoutManager(this));
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        Query query=FirebaseDatabase.getInstance().getReference("Fees/"+stuname).orderByChild("sname").equalTo(stuname);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mUserList.clear();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    String key=dataSnapshot1.getKey();
+                    getkey.add(key);
+                    Fee fee = dataSnapshot1.getValue(Fee.class);
+                    if (fee.sname.equals(stuname)) {
+                        mUserList.add(fee);
+                    }
+                }
+                for (Fee f : mUserList) {
+                    if (f.getSName() != null && f.getSName().contains(stuname)) {
+                        allDataAdapter = new DisplayAllData(student_fees.this, mUserList);
+                        mRvData.setAdapter(allDataAdapter);
+                        allDataAdapter.notifyDataSetChanged();
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+/*        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mUserList.clear();
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    Fee fee = dataSnapshot1.getValue(Fee.class);
-                    mUserList.add(fee);
+               for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                   String key=dataSnapshot1.getKey();
+                   getkey.add(key);
+                       Fee fee = dataSnapshot1.getValue(Fee.class);
+                       if (fee.sname.equals(stuname)) {
+                           mUserList.add(fee);
+                       }
                 }
                 for (Fee f : mUserList) {
-                    if (f.getSName() != null && f.getSName().contains(sname)) {
+                    if (f.getSName() != null && f.getSName().contains(stuname)) {
                         allDataAdapter = new DisplayAllData(student_fees.this, mUserList);
                         mRvData.setAdapter(allDataAdapter);
                         allDataAdapter.notifyDataSetChanged();
@@ -63,7 +100,7 @@ public class student_fees extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
     }
 }
