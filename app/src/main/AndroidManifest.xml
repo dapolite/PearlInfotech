@@ -15,13 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="InnerclassSeparator" >
+        <activity android:name=".Fees.student_fees" />
+        <activity android:name=".Attendance.AttendanceExtra" />
         <activity android:name=".Attendance.AttendanceStudent" >
         </activity>
-        <activity android:name=".Attendance.AttendanceExtra" />
         <activity android:name=".Admin.FacultyList" />
         <activity android:name=".Admin.StudentList" />
         <activity android:name=".Admin.AddFaculty" />
-        <activity android:name=".Fees.fees_admin" />
         <activity android:name=".Admin.AddStudent" />
         <activity android:name=".Attendance.AttendanceFaculty" />
         <activity android:name=".SaveUser" />

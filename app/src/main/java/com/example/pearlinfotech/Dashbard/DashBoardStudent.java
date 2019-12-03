@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.pearlinfotech.Attendance.AttendanceStudent;
+import com.example.pearlinfotech.Fees.student_fees;
 import com.example.pearlinfotech.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,7 +40,7 @@ public class DashBoardStudent extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         message = bundle.getString("message");
         mActionBarToolbar.setTitle(message+"'s Dashboard"+"("+date+")");
-//        TextView txtView = (TextView) findViewById(R.id.textView1);
+//      TextView txtView = (TextView) findViewById(R.id.textView1);
         db=FirebaseDatabase.getInstance();
         ref=db.getReference("Student").child(message);
 //        txtView.setText("Welcome :"+message);
@@ -59,6 +60,18 @@ public class DashBoardStudent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(DashBoardStudent.this, AttendanceStudent.class);
+                Bundle basket= new Bundle();
+                basket.putString("sname",sname);
+                i.putExtras(basket);
+                startActivity(i);
+            }
+        });
+        cv2=findViewById(R.id.feesdashscard);
+        cv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i=new Intent(DashBoardStudent.this, student_fees.class);
                 Bundle basket= new Bundle();
                 basket.putString("sname",sname);
                 i.putExtras(basket);
