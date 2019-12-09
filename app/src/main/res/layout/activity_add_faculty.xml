@@ -11,26 +11,29 @@
     <include
         android:id="@+id/addf"
         layout="@layout/appbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        app:layout_constraintTop_toBottomOf="@+id/addf"
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="0dp"
         android:background="@drawable/rectanglehomescreen"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="60dp"
+        android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addf"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -51,6 +54,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_margin="10dp"
             android:background="@drawable/btnsstroke"
             android:ems="10"
             android:gravity="center"
@@ -73,29 +77,12 @@
             android:ems="10"
             android:gravity="center"
             android:hint="UserId"
+            android:layout_margin="10dp"
             android:inputType="textPersonName"
             android:textColor="#2B2727"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.221"
-            tools:layout_editor_absoluteX="8dp" />
-
-        <EditText
-            android:id="@+id/editText4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/btnsstroke"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Subject"
-            android:inputType="textPersonName"
-            android:textColor="#2B2727"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.378"
             tools:layout_editor_absoluteX="8dp" />
 
 
@@ -110,12 +97,46 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Password"
+            android:layout_margin="10dp"
             android:inputType="textPassword"
             android:textColor="#2B2727"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.701"
             tools:layout_editor_absoluteX="8dp" />
+
+        <EditText
+            android:id="@+id/emailaf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Email"
+            android:layout_margin="10dp"
+            android:background="@drawable/btnsstroke"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:hint="Phone"
+            android:id="@+id/phnoaf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:background="@drawable/btnsstroke"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/dateaf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="10dp"
+            android:inputType="none"
+            android:gravity="center"
+            android:hint="Join Date"
+            android:background="@drawable/btnsstroke" />
 
         <Spinner
             android:id="@+id/spinner3"
@@ -127,6 +148,7 @@
             android:background="@drawable/btnsstroke"
             android:entries="@array/classes"
             android:gravity="center"
+            android:layout_margin="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.549"

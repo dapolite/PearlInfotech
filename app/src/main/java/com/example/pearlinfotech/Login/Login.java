@@ -22,12 +22,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.raywenderlich.android.validatetor.ValidateTor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Login extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    ValidateTor validateTor = new ValidateTor();
 
     private static long back_pressed;
     EditText username, password;
@@ -77,6 +79,12 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
 
         userid = username.getText().toString();
         pass = password.getText().toString();
+        if (validateTor.isEmpty(userid)) {
+            username.setError("Field is empty!");
+        }
+        if (validateTor.isEmpty(pass)) {
+            password.setError("Field is empty!");
+        }
         mDialog = new ProgressDialog(this);
         mDialog.setMessage("Please Wait..." + userid);
         mDialog.setTitle("Loading");

@@ -50,8 +50,11 @@ public class AttendanceFaculty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_faculty);
-        mToolbar = findViewById(R.id.ftoolbar);
-        //period = findViewById(R.id.spinner4);
+        Toolbar toolbar = findViewById(R.id.ftoolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Take Attendance");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         ref = FirebaseDatabase.getInstance().getReference();
         dbStudent = ref.child("Student");
         dbAttendance = ref.child("attendance");

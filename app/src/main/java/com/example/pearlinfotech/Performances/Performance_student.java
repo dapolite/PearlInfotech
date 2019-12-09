@@ -24,6 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import az.plainpie.PieView;
+import az.plainpie.animation.PieAngleAnimation;
+
 public class Performance_student extends AppCompatActivity {
 
 
@@ -44,6 +47,11 @@ public class Performance_student extends AppCompatActivity {
         Bundle bundle1 = getIntent().getExtras();
         stuname = bundle1.getString("sname");
         Log.d("TAG",stuname);
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.ftoolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("View Performance");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         mFirebaseInstance = FirebaseDatabase.getInstance();
        // mDatabase = mFirebaseInstance.getReference("Performance");
         //mDB=mDatabase.child(stuname);
@@ -100,9 +108,9 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
         Performance perf=mUserLsit.get(position);
         holder.sname.setText(perf.tname);
         holder.topic.setText(perf.topic);
-        holder.total.setText(String.valueOf(perf.total));
-        holder.corr.setText(String.valueOf(perf.correct));
-        holder.in.setText(String.valueOf(perf.incorrect));
+        holder.total.setInnerText(String.valueOf(perf.total));
+        holder.corr.setInnerText(String.valueOf(perf.correct));
+        holder.in.setInnerText(String.valueOf(perf.incorrect));
         //holder.per.setText(String.valueOf(perf.per));
     }
 
@@ -112,14 +120,25 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        TextView sname,topic,total,corr,in;
+        TextView sname,topic;
+        PieView total,corr,in;
+
         public ItemViewHolder(View itemView) {
             super(itemView);
             sname=itemView.findViewById(R.id.spname);
             topic=itemView.findViewById(R.id.topic);
-            total=itemView.findViewById(R.id.total);
-            corr=itemView.findViewById(R.id.correct);
-            in=itemView.findViewById(R.id.incorrect);
+            total = itemView.findViewById(R.id.pieViewTotal);
+            corr= itemView.findViewById(R.id.pieViewCorrect);
+            in= itemView.findViewById(R.id.pieViewIncoorect);
+            PieAngleAnimation animation1 = new PieAngleAnimation(total);
+            animation1.setDuration(5000);
+            total.startAnimation(animation1);
+            PieAngleAnimation animation2 = new PieAngleAnimation(corr);
+            animation2.setDuration(5000);
+            total.startAnimation(animation2);
+            PieAngleAnimation animation3 = new PieAngleAnimation(in);
+            animation3.setDuration(5000);
+            total.startAnimation(animation3);
         }
     }
 

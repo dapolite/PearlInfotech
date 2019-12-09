@@ -21,8 +21,10 @@
         android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/imageView"
@@ -45,13 +47,17 @@
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleLarge"
-            android:layout_width="65dp"
-            android:layout_height="64dp"
+            android:layout_width="148dp"
+            android:layout_height="220dp"
             android:layout_below="@id/imageView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="173dp"
-            android:layout_marginTop="179dp"
-            android:layout_marginEnd="172dp"
+            android:layout_marginStart="94dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="109dp"
+            android:layout_marginBottom="33dp"
             android:max="48"
             android:progress="1"
             android:progressDrawable="@drawable/circular_screen" />
