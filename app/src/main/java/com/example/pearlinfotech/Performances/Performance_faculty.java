@@ -41,19 +41,19 @@ public class Performance_faculty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_performance_faculty);
-
+        Bundle bundle1 = getIntent().getExtras();
+        Topic = bundle1.getString("class_selected");
         databasePerformance = FirebaseDatabase.getInstance().getReference("Performance");
         dbStudent = FirebaseDatabase.getInstance().getReference("Student");
-        tstname=findViewById(R.id.tstname);
         spname = findViewById(R.id.editText1);
-        tpic = findViewById(R.id.tpic);
+        tstname = findViewById(R.id.tstname);
         total = findViewById(R.id.editText3);
         correct = findViewById(R.id.editText4);
         incorrect = findViewById(R.id.editText5);
 
         mToolbar = findViewById(R.id.ftoolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Performance");
+        getSupportActionBar().setTitle("Add Performance");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
@@ -64,8 +64,7 @@ public class Performance_faculty extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 SPname = spname.getText().toString();
-                Topic = tpic.getText().toString();
-                 Tname=tstname.getText().toString();
+                Tname=tstname.getText().toString();
                 Total = Integer.parseInt(total.getText().toString());
                 Correct = Integer.parseInt(correct.getText().toString());
                 Incorrect = Integer.parseInt(incorrect.getText().toString());

@@ -6,21 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".Attendance.AttendanceFaculty">
 
-
+    <include
+        android:id="@+id/faclistbar"
+        layout="@layout/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="?actionBarSize"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include
-            android:id="@+id/faclistbar"
-            layout="@layout/appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="8dp" />
+
 
         <Button
             android:id="@+id/addstu"
@@ -42,10 +43,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/faclistbar"
             android:orientation="vertical">
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/stulistview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -62,7 +62,7 @@
                 tools:layout_constraintRight_creator="1">
 
 
-            </ListView>
+            </androidx.recyclerview.widget.RecyclerView>
 
 
         </LinearLayout>

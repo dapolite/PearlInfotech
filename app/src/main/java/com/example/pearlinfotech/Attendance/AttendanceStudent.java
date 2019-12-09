@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.pearlinfotech.R;
 import com.google.firebase.database.DataSnapshot;
@@ -18,21 +19,29 @@ import java.util.ArrayList;
 
 public class AttendanceStudent extends AppCompatActivity {
     private DatabaseReference mDatabase;
-    private TextView mTvEmpty;
     String sname;
     String num,num2;
     ArrayList<String> data=new ArrayList<>();
-    int count;
+    TextView abs,prs,tota;
+    int countp,tot;
     private FirebaseDatabase mFirebaseInstance;
     int counta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_student);
+        prs=findViewById(R.id.pres);
+        abs=findViewById(R.id.abs);
+        tota=findViewById(R.id.tot);
+        Toolbar toolbar = findViewById(R.id.ftoolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Attendance");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         String s="Shivangi";
         Bundle bundle1 = getIntent().getExtras();
         sname = bundle1.getString("sname");
-        mDatabase = FirebaseDatabase.getInstance().getReference("StudentAttendance"+"/"+s);
+        mDatabase = FirebaseDatabase.getInstance().getReference("StudentAttendance"+"/"+sname);
 
 
         Log.d("TAG",sname);
@@ -44,13 +53,14 @@ public class AttendanceStudent extends AppCompatActivity {
                  for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                       num=snapshot.getValue().toString();
                       if(num.equals("Present")){
-                          counta=counta+1;
+                          countp=countp+1;
                       }
-                     //if(num=="Present"){
-                     //    count=counta++;
-                     //}
+                      if(num=="Absent"){
+                         counta=counta++;
+                     }
 
                  }
+                 tot=counta+countp;
                  //Log.d("TAG",String.valueOf(count));
                  Log.d("TAG",num + " " + counta);
              }
@@ -60,6 +70,10 @@ public class AttendanceStudent extends AppCompatActivity {
 
              }
          });
+         prs.setText(String.valueOf(countp));
+         abs.setText(String.valueOf(counta));
+         tota.setText(String.valueOf(tot));
+
     }
 }
 

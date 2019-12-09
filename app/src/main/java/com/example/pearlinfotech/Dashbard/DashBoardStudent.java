@@ -2,6 +2,9 @@ package com.example.pearlinfotech.Dashbard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -10,6 +13,7 @@ import androidx.cardview.widget.CardView;
 
 import com.example.pearlinfotech.Attendance.AttendanceStudent;
 import com.example.pearlinfotech.Fees.student_fees;
+import com.example.pearlinfotech.HomeScreen.MainActivity;
 import com.example.pearlinfotech.Performances.Performance_student;
 import com.example.pearlinfotech.R;
 import com.google.firebase.database.DataSnapshot;
@@ -40,7 +44,7 @@ public class DashBoardStudent extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Bundle bundle = getIntent().getExtras();
         message = bundle.getString("message");
-        mActionBarToolbar.setTitle(message+"'s Dashboard"+"("+date+")");
+        //mActionBarToolbar.setTitle(message+"'s Dashboard"+"("+date+")");
 //      TextView txtView = (TextView) findViewById(R.id.textView1);
         db=FirebaseDatabase.getInstance();
         ref=db.getReference("Student").child(message);
@@ -91,5 +95,17 @@ public class DashBoardStudent extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+    public void logout(MenuItem item) {
+
+        Intent logout=new Intent(DashBoardStudent.this, MainActivity.class);
+        logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(logout);
+
     }
 }

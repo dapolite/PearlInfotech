@@ -11,34 +11,36 @@
     <include
         android:id="@+id/dashfactoolbar"
         layout="@layout/appbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/rectanglehomescreen"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="60dp"
+        android:padding="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dashbftoolbar"
-        app:layout_constraintVertical_bias="0.49">
+        app:layout_constraintTop_toBottomOf="@+id/dashfactoolbar">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:baselineAligned="false"
             android:gravity="center"
             android:text="Add Student"
             android:textColor="@color/colorAccent"
@@ -47,7 +49,7 @@
 
         <EditText
             android:id="@+id/editText1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
@@ -101,6 +103,39 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.601" />
+
+        <EditText
+            android:id="@+id/emailas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Email"
+            android:layout_margin="10dp"
+            android:background="@drawable/btnsstroke"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:hint="Phone"
+            android:id="@+id/phnoas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:background="@drawable/btnsstroke"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/dateas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:inputType="none"
+            android:hint="Join Date"
+            android:background="@drawable/btnsstroke" />
 
         <Spinner
             android:id="@+id/spinner3"

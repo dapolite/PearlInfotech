@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:plainpie="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rectanglehomescreen"
     android:gravity="center"
     android:layout_margin="15dp"
@@ -73,13 +74,14 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <az.plainpie.PieView
+            android:id="@+id/pieViewTotal"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            plainpie:inner_pie_padding="30"
+            plainpie:percentage="75"
+            plainpie:percentage_size="10"
+            plainpie:inner_text_visibility="true"/>
 
     </LinearLayout>
 
@@ -98,13 +100,14 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/correct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <az.plainpie.PieView
+            android:id="@+id/pieViewCorrect"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            plainpie:inner_pie_padding="30"
+            plainpie:percentage="75"
+            plainpie:percentage_size="10"
+            plainpie:inner_text_visibility="true"/>
 
     </LinearLayout>
 
@@ -123,13 +126,14 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/incorrect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <az.plainpie.PieView
+            android:id="@+id/pieViewIncoorect"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            plainpie:inner_pie_padding="30"
+            plainpie:percentage="75"
+            plainpie:percentage_size="10"
+            plainpie:inner_text_visibility="true"/>
 
     </LinearLayout>
 

@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pearlinfotech.R;
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 public class FacultyList extends AppCompatActivity {
     Button button;
     DatabaseReference mRef;
-    ListView listView;
+    RecyclerView expanderRecyclerView;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayAdapter<String> adapter;
     Faculty fac;
@@ -32,11 +33,15 @@ public class FacultyList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_list);
+        Toolbar toolbar = findViewById(R.id.ftoolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("View Faculties");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         button=findViewById(R.id.addfac);
+        expanderRecyclerView = findViewById(R.id.faclist);
         mRef = FirebaseDatabase.getInstance().getReference("Faculty");
-        listView = findViewById(R.id.faclistview);
-        adapter=new ArrayAdapter<>(FacultyList.this,android.R.layout.simple_list_item_1,arrayList);
-        listView.setAdapter(adapter);
+
 
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -61,5 +66,8 @@ public class FacultyList extends AppCompatActivity {
             }
         });
     }
+
+
 }
+
 

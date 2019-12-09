@@ -1,15 +1,24 @@
 package com.example.pearlinfotech.Admin;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.example.pearlinfotech.R;
 import com.google.firebase.database.DataSnapshot;
@@ -27,25 +36,39 @@ public class StudentList extends AppCompatActivity {
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayAdapter<String> adapter;
     Faculty fac;
+    private ArrayList<Student> mUserList = new ArrayList<>();
+
+    private RecyclerView mRvData;
+    private DisplayStuData allDataAdapter;
     String desc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faculty_list);
+        setContentView(R.layout.activity_student_list);
+        Toolbar toolbar = findViewById(R.id.ftoolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("View Students");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         button=findViewById(R.id.addstu);
+        mRvData = findViewById(R.id.stulistview);
+        ((SimpleItemAnimator) mRvData.getItemAnimator()).setSupportsChangeAnimations(false);
+        mRvData.setLayoutManager(new LinearLayoutManager(this));
         mRef = FirebaseDatabase.getInstance().getReference("Student");
-        listView = findViewById(R.id.stulistview);
-        adapter=new ArrayAdapter<>(StudentList.this,android.R.layout.simple_list_item_1,arrayList);
-        listView.setAdapter(adapter);
-        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    desc = ds.child("sname").getValue(String.class);
-                    arrayList.add(desc);
+                    String lol=ds.getValue().toString();
+                    Log.d("TAG",lol);
+                    Student sry = ds.getValue(Student.class);
+                    mUserList.add(sry);
                 }
-                adapter.notifyDataSetChanged();
+                allDataAdapter = new DisplayStuData(StudentList.this, mUserList);
+                mRvData.setAdapter(allDataAdapter);
+                Log.d("TAG","Adapter Set");
+                //allDataAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -56,10 +79,80 @@ public class StudentList extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(StudentList.this,AddFaculty.class);
+                Intent i=new Intent(StudentList.this,AddStudent.class);
                 startActivity(i);
             }
         });
     }
+}
+
+class DisplayStuData extends RecyclerView.Adapter<DisplayStuData.ItemViewHolder>{
+    private  ArrayList<Student> mUserLsit=new ArrayList<>();
+    private Context mContext;
+
+    @Override
+    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.studentlist,parent,false);
+        final ItemViewHolder holder = new ItemViewHolder(view);
+        return new ItemViewHolder(view);
+
+    }
+
+
+    public DisplayStuData(Context mContext,ArrayList<Student> mUserLsit) {
+        this.mContext=mContext;
+        this.mUserLsit = mUserLsit;
+    }
+
+    @Override
+    public void onBindViewHolder(ItemViewHolder holder,final int position) {
+        final Student stu=mUserLsit.get(position);
+        holder.bind(stu);
+        Log.d("TAG","Bind Views");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean expanded = stu.isExpanded();
+                stu.setExpanded(!expanded);
+                notifyItemChanged(position);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return mUserLsit.size();
+    }
+
+    class ItemViewHolder extends RecyclerView.ViewHolder {
+        TextView stuname,sid,classes,spass,sphno,semail,sdate;
+        View subItem;
+        public ItemViewHolder(View itemView) {
+            super(itemView);
+            stuname=itemView.findViewById(R.id.studname);
+            sid=itemView.findViewById(R.id.uname);
+            classes=itemView.findViewById(R.id.classe);
+            spass=itemView.findViewById(R.id.upass);
+            sphno=itemView.findViewById(R.id.phno);
+            semail=itemView.findViewById(R.id.email);
+            sdate=itemView.findViewById(R.id.date);
+            subItem = itemView.findViewById(R.id.subitem);
+            Log.d("TAG","Get Views");
+        }
+
+        private void bind(Student stu) {
+            boolean expanded = stu.isExpanded();
+            subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
+            stuname.setText(stu.sname);
+            sid.setText(stu.sid);
+            classes.setText(stu.classes);
+            spass.setText(stu.spass);
+            sphno.setText(stu.sphno);
+            semail.setText(stu.semail);
+            sdate.setText(stu.sdate);
+        }
+    }
+
+
 }
 

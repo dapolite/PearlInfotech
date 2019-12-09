@@ -3,16 +3,37 @@ package com.example.pearlinfotech.Admin;
 public class Faculty {
     String tname;
     String tid;
-    String subject;
+    String temail;
+    String tdate;
+    String tphno;
     String classes;
+
+    public String getTemail() {
+        return temail;
+    }
+
+    public String getTdate() {
+        return tdate;
+    }
+
+    public String getTphno() {
+        return tphno;
+    }
+
+    public String getTpass() {
+        return tpass;
+    }
+
     String tpass;
 
-    public Faculty(String tname, String tid, String subject, String classes, String tpass) {
+    public Faculty(String tname, String tid, String temail, String classes, String tpass,String tdate,String tphno) {
         this.tname = tname;
         this.tid = tid;
-        this.subject = subject;
         this.classes = classes;
         this.tpass = tpass;
+        this.temail=temail;
+        this.tdate=tdate;
+        this.tphno=tphno;
     }
 
     public String getTname() {
@@ -21,10 +42,6 @@ public class Faculty {
 
     public String getTid() {
         return tid;
-    }
-
-    public String getSubject() {
-        return subject;
     }
 
     public String getClasses() {

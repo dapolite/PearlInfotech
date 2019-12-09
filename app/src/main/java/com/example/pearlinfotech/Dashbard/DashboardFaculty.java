@@ -2,6 +2,9 @@ package com.example.pearlinfotech.Dashbard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.example.pearlinfotech.Attendance.AttendanceFaculty;
+import com.example.pearlinfotech.HomeScreen.MainActivity;
 import com.example.pearlinfotech.Performances.Performance_faculty;
 import com.example.pearlinfotech.R;
 
@@ -41,16 +45,18 @@ String message;
         message = bundle1.getString("message");
         setSupportActionBar(mActionBarToolbar);
         getSupportActionBar().setTitle(message + "'s Dashboard  - " + date);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         TextView txtView = findViewById(R.id.tvdashf);
         txtView.setText("Welcome : " + message);
         spinner2.setOnItemSelectedListener(this);
         List<String> categories = new ArrayList<String>();
-        categories.add("CSE");
-        categories.add("ME");
-        categories.add("CE");
-        categories.add("E");
-        categories.add("D");
+        categories.add("Android");
+        categories.add("Python");
+        categories.add("C++");
+        categories.add("Java");
+        categories.add("HTML");
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -72,6 +78,8 @@ String message;
         perf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle basket = new Bundle();
+                basket.putString("class_selected", item);
                 Intent intent = new Intent(DashboardFaculty.this, Performance_faculty.class);
                 startActivity(intent);
             }
@@ -85,6 +93,18 @@ String message;
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+    public void logout(MenuItem item) {
+
+        Intent logout=new Intent(DashboardFaculty.this, MainActivity.class);
+        logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(logout);
 
     }
 }

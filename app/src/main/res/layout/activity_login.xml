@@ -13,7 +13,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,18 +28,12 @@
             app:srcCompat="@drawable/areotri2" />
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="50dp"
+            android:layout_margin="40dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/rectanglehomescreen"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -49,89 +42,99 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-
-                android:adjustViewBounds="true"
-                android:maxWidth="150dp"
-                android:maxHeight="150dp"
-                android:src="@drawable/logo"
-                android:scaleType="fitCenter"
-
-                android:background="@drawable/circleagain" />
-
-            <TextView
-                android:id="@+id/textView"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:gravity="center"
-                android:text="Login"
-                android:textSize="35sp"
-                android:textColor="#000"
-                android:textStyle="bold" />
+                android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/uname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@drawable/btnsstroke"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="Username"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
 
-                android:padding="10dp" />
+                    <ImageView
+                        android:id="@+id/logo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
 
-            <EditText
-                android:id="@+id/pass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/btnsstroke"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="10dp" />
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/btnsstroke"
-                android:textColor="#2B2727"
-                android:textColorHint="#857E7E"
-                tools:layout_editor_absoluteX="8dp" />
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/circleagain"
+                        android:maxWidth="150dp"
+                        android:maxHeight="150dp"
+                        android:scaleType="fitCenter"
 
-            <Button
-                android:id="@+id/loginbtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:background="@drawable/btnbg"
-                android:onClick="onButtonClick"
-                android:text="@string/login"
-                android:textColor="#fff" />
+                        android:src="@drawable/logo" />
 
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:gravity="center"
+                        android:text="Login"
+                        android:textColor="#000"
+                        android:textSize="35sp"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/fp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/colorGrad21"
-                android:text="Forgot Password?Click Here"
-                android:textSize="15sp" />
+                    <EditText
+                        android:id="@+id/uname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/btnsstroke"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Username"
+
+                        android:padding="10dp" />
+
+                    <EditText
+                        android:id="@+id/pass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/btnsstroke"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:padding="10dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/btnsstroke"
+                        android:textColor="#2B2727"
+                        android:textColorHint="#857E7E"
+                        tools:layout_editor_absoluteX="8dp" />
+
+                    <Button
+                        android:id="@+id/loginbtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="30dp"
+                        android:background="@drawable/btnbg"
+                        android:onClick="onButtonClick"
+                        android:text="@string/login"
+                        android:textColor="#fff" />
+
+                    <TextView
+                        android:id="@+id/fp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Forgot Password?Click Here"
+                        android:textColor="@color/colorGrad21"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </ScrollView>
 
 
         </LinearLayout>
 
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
