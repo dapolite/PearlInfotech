@@ -4,17 +4,27 @@
     package="com.example.pearlinfotech">
 
     <application
+
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:hardwareAccelerated="false"
         android:icon="@drawable/icon"
+        android:screenOrientation="portrait"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="InnerclassSeparator">
-
-        <activity android:name=".Fees.student_fees"/>
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360"/>
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640"/>
+        <activity android:name=".TimeTable.UploadTT" />
+        <activity android:name=".Message.MessageRecieve" />
+        <activity android:name=".Message.MessageSend" />
+        <activity android:name=".Fees.student_fees" />
         <activity android:name=".Attendance.AttendanceExtra" />
         <activity android:name=".Attendance.AttendanceStudent" />
         <activity android:name=".Admin.FacultyList" />
@@ -23,15 +33,15 @@
         <activity android:name=".Admin.AddStudent" />
         <activity android:name=".Attendance.AttendanceFaculty" />
         <activity android:name=".SaveUser" />
-        <activity android:name=".Performances.Performance_faculty"/>
+        <activity android:name=".Performances.Performance_faculty" />
         <activity android:name=".Dashbard.DashboardFaculty" />
         <activity android:name=".Dashbard.DashboardAdmin" />
         <activity android:name=".Login.ForgotPasssword" />
         <activity android:name=".HomeScreen.MainActivity" />
         <activity android:name=".Dashbard.DashBoardStudent" />
         <activity android:name=".Login.Login" />
-        <activity android:name=".Fees.fees_admin"/>
-        <activity android:name=".Performances.Performance_student"/>
+        <activity android:name=".Fees.fees_admin" />
+        <activity android:name=".Performances.Performance_student" />
         <activity android:name=".HomeScreen.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
