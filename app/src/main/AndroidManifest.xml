@@ -14,11 +14,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="InnerclassSeparator">
 
-        tools:ignore="InnerclassSeparator" >
         <activity android:name=".Fees.student_fees"/>
         <activity android:name=".Attendance.AttendanceExtra" />
-        <activity android:name=".Attendance.AttendanceStudent" >
-        </activity>
+        <activity android:name=".Attendance.AttendanceStudent" />
         <activity android:name=".Admin.FacultyList" />
         <activity android:name=".Admin.StudentList" />
         <activity android:name=".Admin.AddFaculty" />
