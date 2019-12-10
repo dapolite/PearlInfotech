@@ -31,7 +31,7 @@ public class SplashScreen extends AppCompatActivity {
             ImageView img = findViewById(R.id.imageView);
             img.setAnimation(anim1);
 
-            mprogressBar = findViewById(R.id.progressBar);
+            //mprogressBar = findViewById(R.id.progressBar);
             ObjectAnimator anim = ObjectAnimator.ofInt(mprogressBar, "progress", 0, 100);
             anim.setDuration(4000);
             anim.setInterpolator(new DecelerateInterpolator());
