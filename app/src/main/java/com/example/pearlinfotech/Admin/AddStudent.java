@@ -9,12 +9,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.pearlinfotech.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
 
 import java.text.SimpleDateFormat;
@@ -31,6 +35,7 @@ public class AddStudent extends AppCompatActivity implements SlyCalendarDialog.C
     Spinner classes;
     DatabaseReference databaseStudent;
     Toolbar mToolbar;
+    boolean  failFlag = false;
     ValidateTor validateTor = new ValidateTor();
 
     @Override
@@ -75,7 +80,37 @@ public class AddStudent extends AppCompatActivity implements SlyCalendarDialog.C
         classname = classes.getSelectedItem().toString();
         spass = spassword.getText().toString();
 
-        boolean failFlag = false;
+
+        databaseStudent.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String fsid=dataSnapshot.child("sid").toString();
+                String fsemail=dataSnapshot.child("semail").toString();
+                String fspass=dataSnapshot.child("spass").toString();
+                String fsphno=dataSnapshot.child("sphno").toString();
+                if(fsid.equals(sid)){
+                    failFlag=true;
+                    Sid.setError("Username Taken");
+                }
+                if(fsemail.equals(semail)){
+                    failFlag=true;
+                    Semail.setError("Email Aleady Exists");
+                }
+                if(fspass.equals(spass)){
+                    failFlag=true;
+                    spassword.setError("Password Taken");
+                }
+                if(fsphno.equals(sphno)){
+                    failFlag=true;
+                    Sid.setError("Phone Number Aready Exists");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         if (validateTor.isEmpty(semail)) {
             failFlag = true;
             Semail.setError("Field is empty!");

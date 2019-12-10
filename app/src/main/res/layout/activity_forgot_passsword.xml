@@ -10,8 +10,8 @@
     tools:context=".Login.ForgotPasssword">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +30,8 @@
 
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,11 +55,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
+                android:background="@drawable/circlebg"
                 android:maxWidth="250dp"
                 android:maxHeight="250dp"
-                android:src="@drawable/logo"
                 android:scaleType="fitCenter"
-                android:background="@drawable/circlebg" />
+                android:src="@drawable/logo" />
 
             <TextView
                 android:id="@+id/textView"

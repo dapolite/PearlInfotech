@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:plainpie="http://schemas.android.com/apk/res-auto"
     tools:context=".Attendance.AttendanceStudent">
     <include
         android:id="@+id/attendancestudenttoolbar"
@@ -16,9 +17,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,39 +38,84 @@
 
             <TableRow
                 android:id="@+id/tbl"
-                android:background="@color/colorPrimary"
                 android:padding="15dp">
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="Subject"
-                    android:textColor="@color/colorAccent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Present"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="20sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Absent"
-                    android:textColor="@color/colorAccent" />
+                <az.plainpie.PieView
+                    android:id="@+id/pres"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    plainpie:inner_pie_padding="30"
+                    plainpie:inner_text_visibility="true"
+                    plainpie:percentage="75"
+                    plainpie:percentage_size="20" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Total"
-                    android:textColor="@color/colorAccent" />
 
             </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Absent"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="20sp" />
+
+                <az.plainpie.PieView
+                    android:id="@+id/abs"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    plainpie:inner_pie_padding="30"
+                    plainpie:inner_text_visibility="true"
+                    plainpie:percentage="75"
+                    plainpie:percentage_size="20" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Total"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="20sp" />
+
+                <az.plainpie.PieView
+                    android:id="@+id/tot"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    plainpie:inner_pie_padding="30"
+                    plainpie:inner_text_visibility="true"
+                    plainpie:percentage="75"
+                    plainpie:percentage_size="20" />
+            </TableRow>
+
+
         </TableLayout>
 
     </LinearLayout>

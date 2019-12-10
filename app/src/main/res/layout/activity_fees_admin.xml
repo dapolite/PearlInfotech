@@ -15,212 +15,217 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="8dp" />
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="false">
 
     <LinearLayout
         android:id="@+id/linearLayout7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="?actionBarSize"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/rectanglehomescreen"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="60dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_margin="40dp"
+        app:layout_constraintTop_toBottomOf="@id/adminfeestoolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
 
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/fee_admin_tv1"
-                android:textColor="@color/colorAccent"
-                android:textSize="40sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/editText1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/btnsstroke"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="@string/student_name_fee_admin"
-                android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:textColor="#2B2727"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.055"
-                tools:layout_editor_absoluteX="8dp" />
-
-            <EditText
-                android:id="@+id/editText3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/btnsstroke"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="@string/total_fees_fee_admin"
-                android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:textColor="#2B2727"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.221"
-                tools:layout_editor_absoluteX="8dp" />
-
-            <Spinner
-                android:id="@+id/editText4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/btnsstroke"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="@string/course_fee_admin"
-                android:entries="@array/classes"
-                android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:textColor="#2B2727"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.378"
-                tools:layout_editor_absoluteX="8dp" />
-
-
-            <EditText
-                android:id="@+id/editText5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/btnsstroke"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="@string/paid_fee_admin"
-                android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:textColor="#2B2727"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.701"
-                tools:layout_editor_absoluteX="8dp" />
-
-            <Spinner
-                android:id="@+id/feeadmininstallment"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/btnsstroke"
-                android:entries="@array/installment"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.549"
-                tools:layout_editor_absoluteX="8dp" />
-
-            <Spinner
-                android:id="@+id/feeadminmode"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/btnsstroke"
-                android:entries="@array/mode"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.549"
-                tools:layout_editor_absoluteX="8dp" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/button10"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/btnbg"
                     android:gravity="center"
-                    android:onClick="addFees"
-                    android:text="@string/submit_fee_admin"
-                    android:textAllCaps="false"
-                    android:textColor="#fff"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0.171"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.863" />
+                    android:text="@string/fee_admin_tv1"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/button9"
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/btnbg"
+                    android:background="@drawable/btnsstroke"
+                    android:ems="10"
                     android:gravity="center"
-                    android:onClick="updateFees"
-                    android:text="Update"
-                    android:textAllCaps="false"
-                    android:textColor="#fff"
+                    android:hint="@string/student_name_fee_admin"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:textColor="#2B2727"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0.171"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.863" />
+                    app:layout_constraintVertical_bias="0.055"
+                    tools:layout_editor_absoluteX="8dp" />
+
+                <EditText
+                    android:id="@+id/editText3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/btnsstroke"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="@string/total_fees_fee_admin"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:textColor="#2B2727"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.221"
+                    tools:layout_editor_absoluteX="8dp" />
+
+                <Spinner
+                    android:id="@+id/editText4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/btnsstroke"
+                    android:ems="10"
+                    android:entries="@array/classes"
+                    android:gravity="center"
+                    android:hint="@string/course_fee_admin"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:textColor="#2B2727"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.378"
+                    tools:layout_editor_absoluteX="8dp" />
+
+                <EditText
+                    android:id="@+id/editText5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/btnsstroke"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="@string/paid_fee_admin"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:textColor="#2B2727"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.701"
+                    tools:layout_editor_absoluteX="8dp" />
+
+                <Spinner
+                    android:id="@+id/feeadmininstallment"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/btnsstroke"
+                    android:entries="@array/installment"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.549"
+                    tools:layout_editor_absoluteX="8dp" />
+
+                <Spinner
+                    android:id="@+id/feeadminmode"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/btnsstroke"
+                    android:entries="@array/mode"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.549"
+                    tools:layout_editor_absoluteX="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <Button
+                        android:id="@+id/button10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btnbg"
+                        android:gravity="center"
+                        android:onClick="addFees"
+                        android:text="@string/submit_fee_admin"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="0.171"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.863" />
+
+                    <Button
+                        android:id="@+id/button9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btnbg"
+                        android:gravity="center"
+                        android:onClick="updateFees"
+                        android:text="Update"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="0.171"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.863" />
 
 
+                </LinearLayout>
             </LinearLayout>
+        </ScrollView>
+
+
     </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

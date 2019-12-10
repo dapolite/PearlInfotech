@@ -8,14 +8,19 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.pearlinfotech.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -32,6 +37,7 @@ public class AddFaculty extends AppCompatActivity implements SlyCalendarDialog.C
     Button addButton;
     DatabaseReference databaseTeacher;
     Toolbar mToolbar;
+    boolean failFlag = false;
     ValidateTor validateTor = new ValidateTor();
 
 
@@ -79,7 +85,36 @@ public class AddFaculty extends AppCompatActivity implements SlyCalendarDialog.C
         //sub = subject.getText().toString();
         classname = classes.getSelectedItem().toString();
         tpass = tpassword.getText().toString();
-        boolean failFlag = false;
+        databaseTeacher.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String fsid=dataSnapshot.child("tid").toString();
+                String fsemail=dataSnapshot.child("temail").toString();
+                String fspass=dataSnapshot.child("tpass").toString();
+                String fsphno=dataSnapshot.child("tphno").toString();
+                if(fsid.equals(tid)){
+                    failFlag=true;
+                    Tid.setError("Username Taken");
+                }
+                if(fsemail.equals(temail)){
+                    failFlag=true;
+                    Temail.setError("Email Aleady Exists");
+                }
+                if(fspass.equals(tpass)){
+                    failFlag=true;
+                    tpassword.setError("Password Taken");
+                }
+                if(fsphno.equals(tphno)){
+                    failFlag=true;
+                    Tid.setError("Phone Number Aready Exists");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         if (!validateTor.isEmpty(temail)) {
             failFlag = true;
             Temail.setError("Field is empty!");
@@ -139,13 +174,12 @@ public class AddFaculty extends AppCompatActivity implements SlyCalendarDialog.C
     public void onDataSelected(Calendar firstDate, Calendar secondDate, int hours, int minutes) {
         if (firstDate != null) {
             if (secondDate == null) {
-                Tdate.setText(new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime()));
+                Tdate.setText(new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(DateFormat.getDateInstance()));
                 tdate=new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime());
 
             } else {
                 Tdate.setText(new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime()));
                 tdate=new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime());
-
             }
         }
     }

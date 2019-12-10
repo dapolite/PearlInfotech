@@ -25,6 +25,7 @@ public class Faculty {
     }
 
     String tpass;
+    boolean expanded;
 
     public Faculty(String tname, String tid, String temail, String classes, String tpass,String tdate,String tphno) {
         this.tname = tname;
@@ -50,6 +51,12 @@ public class Faculty {
 
     public String gettpass() {
         return tpass;
+    }
+    public boolean isExpanded() {
+        return expanded;
+    }
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
     }
 
 }

@@ -32,7 +32,6 @@
         <activity android:name=".Admin.AddFaculty" />
         <activity android:name=".Admin.AddStudent" />
         <activity android:name=".Attendance.AttendanceFaculty" />
-        <activity android:name=".SaveUser" />
         <activity android:name=".Performances.Performance_faculty" />
         <activity android:name=".Dashbard.DashboardFaculty" />
         <activity android:name=".Dashbard.DashboardAdmin" />

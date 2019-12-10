@@ -33,6 +33,7 @@ public class fees_admin extends AppCompatActivity
     Toolbar mToolbar;
     DatabaseReference databaseFees;
     DatabaseReference dbStudent;
+    boolean failFlag=false;
     ValidateTor validateTor = new ValidateTor();
 
     @Override
@@ -77,10 +78,19 @@ public class fees_admin extends AppCompatActivity
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         snames.add(dataSnapshot1.child("sname").getValue().toString());
                     }
-                    if(validate()){
-
+                    if (!validateTor.isEmpty(sname)) {
+                        failFlag=true;
+                        e1.setError("Field is empty!");
                     }
-                    else{
+                    if (!validateTor.isEmpty(total1)) {
+                        failFlag=true;
+                        e3.setError("Field is empty!");
+                    }
+                    if (!validateTor.isInteger(paid1)) {
+                        failFlag=true;
+                        e5.setError("Field is empty!");
+                    }
+                    if(failFlag=false){
                         if (snames.contains(sname)) {
                                 String id = databaseFees.push().getKey();
                                 Fee fee = new Fee(sname, total, paid, course, type1, type2);
@@ -89,7 +99,7 @@ public class fees_admin extends AppCompatActivity
 
                             }
                          else {
-                            Toast.makeText(fees_admin.this, "Student Does Not Exist", Toast.LENGTH_SHORT).show();
+                            e1.setError("Sorry Student does not Exist");
                         }
                     }
 
@@ -115,18 +125,6 @@ public class fees_admin extends AppCompatActivity
                         paid = Integer.parseInt( e5.getText().toString());
                         type1=spin1.getSelectedItem().toString();
                         type2=spin2.getSelectedItem().toString();
-                        if (!validateTor.isEmpty(sname)) {
-                            e1.setError("Field is empty!");
-                        }
-                        if (!validateTor.isEmpty(total1)) {
-                            e3.setError("Field is empty!");
-                        }
-                        if (!validateTor.isInteger(paid1)) {
-                            e5.setError("Field is empty!");
-                        }
-                        if(validate()){
-
-                        }
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             snames.add(dataSnapshot1.child("sname").getValue().toString());
                         }
@@ -161,9 +159,5 @@ public class fees_admin extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
-    public boolean validate(){
-        boolean valid=true;
 
-        return valid;
-    }
 }

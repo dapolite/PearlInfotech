@@ -15,15 +15,14 @@
 
     <LinearLayout
         android:id="@+id/linearLayout9"
-        android:layout_width="match_parent"
-        android:layout_height="731dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dshstudentbar"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/dshstudentbar">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollViewdashs"
@@ -41,7 +40,7 @@
                 android:layout_margin="50dp"
                 android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
+                <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/ttdashscard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,7 +50,9 @@
                     android:innerRadius="0dp"
                     app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="30dp"
-                    app:cardElevation="3dp">
+                    app:button_duration="600"
+                    app:button_scale="0.7"
+                    app:cardElevation="6dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -84,7 +85,7 @@
                             android:textColor="#fff"
                             android:textSize="20sp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.animation.animpresseffect.PressEffectCardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/notifdashscard"

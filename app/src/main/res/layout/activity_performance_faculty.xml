@@ -18,22 +18,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="?android:attr/actionBarSize"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+android:layout_margin="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/performancefacultytoolbar">
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
 
 
             <LinearLayout
@@ -56,130 +49,139 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="UnknownId">
 
-                <TextView
-                    android:id="@+id/textView4"
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Performance"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="39sp"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent">
 
-                <EditText
-                    android:id="@+id/editText1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/btnsstroke"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="Student Name"
-                    android:importantForAutofill="no"
-                    android:inputType="textPersonName"
-                    android:textColor="#2B2727"
-                    tools:layout_editor_absoluteX="8dp" />
-
-                <EditText
-                    android:id="@+id/tstname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/btnsstroke"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="Test Name"
-                    android:importantForAutofill="no"
-                    android:inputType="textPersonName"
-                    android:textColor="#2B2727"
-                    tools:layout_editor_absoluteX="8dp" />
-
-                <EditText
-                    android:id="@+id/editText3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/btnsstroke"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="Total"
-                    android:importantForAutofill="no"
-                    android:inputType="textPersonName"
-                    android:textColor="#2B2727"
-                    tools:layout_editor_absoluteX="8dp" />
-
-
-                <EditText
-                    android:id="@+id/editText4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/btnsstroke"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="Correct"
-                    android:importantForAutofill="no"
-                    android:inputType="textPersonName"
-                    android:textColor="#2B2727"
-                    tools:layout_editor_absoluteX="8dp" />
-
-                <EditText
-                    android:id="@+id/editText5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/btnsstroke"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="Incorrect"
-                    android:importantForAutofill="no"
-                    android:inputType="textPersonName"
-                    android:textColor="#2B2727"
-                    tools:layout_editor_absoluteX="8dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <Button
-                        android:id="@+id/button9"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/btnbg"
-                        android:gravity="center"
-                        android:onClick="add_performance"
-                        android:text="SUBMIT"
-                        android:textAllCaps="false"
-                        android:textColor="#fff" />
+                        android:orientation="vertical" >
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="Performance"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="39sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/editText1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/btnsstroke"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="Student Name"
+                            android:importantForAutofill="no"
+                            android:inputType="textPersonName"
+                            android:textColor="#2B2727"
+                            tools:layout_editor_absoluteX="8dp" />
+
+                        <EditText
+                            android:id="@+id/tstname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/btnsstroke"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="Test Name"
+                            android:importantForAutofill="no"
+                            android:inputType="textPersonName"
+                            android:textColor="#2B2727"
+                            tools:layout_editor_absoluteX="8dp" />
+
+                        <EditText
+                            android:id="@+id/editText3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/btnsstroke"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="Total"
+                            android:importantForAutofill="no"
+                            android:inputType="textPersonName"
+                            android:textColor="#2B2727"
+                            tools:layout_editor_absoluteX="8dp" />
+
+                        <EditText
+                            android:id="@+id/editText4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/btnsstroke"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="Correct"
+                            android:importantForAutofill="no"
+                            android:inputType="textPersonName"
+                            android:textColor="#2B2727"
+                            tools:layout_editor_absoluteX="8dp" />
+
+                        <EditText
+                            android:id="@+id/editText5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/btnsstroke"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="Incorrect"
+                            android:importantForAutofill="no"
+                            android:inputType="textPersonName"
+                            android:textColor="#2B2727"
+                            tools:layout_editor_absoluteX="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <Button
+                                android:id="@+id/button9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/btnbg"
+                                android:gravity="center"
+                                android:onClick="add_performance"
+                                android:text="SUBMIT"
+                                android:textAllCaps="false"
+                                android:textColor="#fff" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
 
 
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

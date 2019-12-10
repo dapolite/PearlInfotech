@@ -79,11 +79,9 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
 
         userid = username.getText().toString();
         pass = password.getText().toString();
-        if (validateTor.isEmpty(userid)) {
-            username.setError("Field is empty!");
-        }
+
         if (validateTor.isEmpty(pass)) {
-            password.setError("Field is empty!");
+
         }
         mDialog = new ProgressDialog(this);
         mDialog.setMessage("Please Wait..." + userid);
@@ -133,9 +131,9 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
 
 
     public void verify(String dbpassword) {
-        if (userid.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Username cannot be empty", Toast.LENGTH_LONG).show();
-        } else if (item.equals("Faculty") && pass.equalsIgnoreCase(this.dbpassword)) {
+        if (validateTor.isEmpty(userid)) {
+            username.setError("Field is empty!");
+        }else if (item.equals("Faculty") && pass.equalsIgnoreCase(this.dbpassword)) {
 
             mDialog.dismiss();
             Intent intent = new Intent(this, DashboardFaculty.class);
@@ -153,7 +151,7 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
             intent.putExtras(basket);
             startActivity(intent);
         } else if (!pass.equalsIgnoreCase(this.dbpassword)) {
-            Toast.makeText(getApplicationContext(), "UserId or Password is Incorrect", Toast.LENGTH_LONG).show();
+            password.setError("Username and Password Incorrect");
 
         }
 

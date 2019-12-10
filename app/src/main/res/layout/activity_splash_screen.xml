@@ -8,17 +8,14 @@
     android:weightSum="1">
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="70dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -30,13 +27,10 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
 
 
             android:layout_marginStart="-1dp"
-            android:layout_marginTop="49dp"
+            android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
             android:adjustViewBounds="true"
             android:maxWidth="350dp"
@@ -44,23 +38,17 @@
             android:scaleType="fitCenter"
             android:src="@drawable/logo" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="148dp"
-            android:layout_height="220dp"
-            android:layout_below="@id/imageView"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="94dp"
-            android:layout_marginTop="55dp"
-            android:layout_marginEnd="109dp"
-            android:layout_marginBottom="33dp"
-            android:max="48"
-            android:progress="1"
-            android:progressDrawable="@drawable/circular_screen" />
-    </RelativeLayout>
+        <com.vlad1m1r.lemniscate.BernoullisProgressView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:duration="1000"
+            app:hasHole="false"
+            app:lineColor="@color/colorPrimary"
+            app:maxLineLength="0.8"
+            app:minLineLength="0.4"
+            app:sizeMultiplier="1"
+            app:strokeWidth="5dp"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

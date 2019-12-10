@@ -29,6 +29,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.VladimirWrites:Lemniscate:2.0.2'
+    implementation 'com.github.mmoamenn:ProgressWindow_Android:0.0.2'
     implementation 'com.github.saurabhdhillon:anim-press-view:0.0.1'
     implementation 'com.thoughtbot:expandablerecyclerview:1.3'
     implementation 'com.github.psinetron:slycalendarview:0.0.9'

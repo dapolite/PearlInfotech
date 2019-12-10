@@ -6,8 +6,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,13 +29,11 @@ import java.util.Date;
 public class AttendanceFaculty extends AppCompatActivity {
     String teacher_id;
     String class_selected;
-    Spinner period;
-    String periodno;
     ArrayList<String> selectedItems;
     ArrayList<String> nonselectedItems;
-    Toolbar mToolbar;
     ArrayAdapter<String> aa;
     ArrayList<String> ul;
+    EditText dateat;
     ListView listView;
     ArrayList Userlist = new ArrayList<>();
     ArrayList Usernames = new ArrayList<>();

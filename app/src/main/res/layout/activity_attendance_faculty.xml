@@ -48,6 +48,16 @@
             tools:layout_constraintRight_creator="1" />
 
 
+        <EditText
+            android:id="@+id/attdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:background="@drawable/btnsstroke"
+            android:layout_margin="10dp"
+            android:inputType="none"
+            android:hint="Date" />
+
         <ListView
             android:id="@+id/checkable_list"
 

@@ -2,7 +2,6 @@ package com.example.pearlinfotech.Attendance;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +16,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import az.plainpie.PieView;
+
 public class AttendanceStudent extends AppCompatActivity {
     private DatabaseReference mDatabase;
     String sname;
     String num,num2;
     ArrayList<String> data=new ArrayList<>();
-    TextView abs,prs,tota;
+    PieView abs,prs,tota;
     int countp,tot;
     private FirebaseDatabase mFirebaseInstance;
     int counta;
@@ -55,7 +56,7 @@ public class AttendanceStudent extends AppCompatActivity {
                       if(num.equals("Present")){
                           countp=countp+1;
                       }
-                      if(num=="Absent"){
+                      if(num.equals("Absent")){
                          counta=counta++;
                      }
 
@@ -70,9 +71,9 @@ public class AttendanceStudent extends AppCompatActivity {
 
              }
          });
-         prs.setText(String.valueOf(countp));
-         abs.setText(String.valueOf(counta));
-         tota.setText(String.valueOf(tot));
+         prs.setInnerText(String.valueOf(countp));
+         abs.setInnerText(String.valueOf(counta));
+         tota.setInnerText(String.valueOf(tot));
 
     }
 }
