@@ -6,7 +6,10 @@ public class Faculty {
     String temail;
     String tdate;
     String tphno;
+    String tpass;
+    boolean expanded;
     String classes;
+    String sub;
 
     public String getTemail() {
         return temail;
@@ -20,17 +23,12 @@ public class Faculty {
         return tphno;
     }
 
-    public String getTpass() {
-        return tpass;
-    }
+public Faculty(){}
 
-    String tpass;
-    boolean expanded;
-
-    public Faculty(String tname, String tid, String temail, String classes, String tpass,String tdate,String tphno) {
+    public Faculty(String tname, String tid , String sub, String tpass,String temail,String tdate,String tphno) {
         this.tname = tname;
         this.tid = tid;
-        this.classes = classes;
+        this.sub = sub;
         this.tpass = tpass;
         this.temail=temail;
         this.tdate=tdate;

@@ -26,10 +26,10 @@ public class Performance_faculty extends AppCompatActivity {
     EditText spname, total, correct, incorrect;
     EditText tstname,tpic;
     ValidateTor validateTor = new ValidateTor();
-
+    String class_selected;
     Button btn;
     String SPname,Tname;
-    String Topic;
+    String topic;
     int Total,Correct,Incorrect;
     DatabaseReference databasePerformance;
     DatabaseReference dbStudent;
@@ -43,7 +43,8 @@ public class Performance_faculty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_performance_faculty);
         Bundle bundle1 = getIntent().getExtras();
-        Topic = bundle1.getString("class_selected");
+        class_selected   = bundle1.getString("class");
+        Log.d("TAG",class_selected );
         databasePerformance = FirebaseDatabase.getInstance().getReference("Performance");
         dbStudent = FirebaseDatabase.getInstance().getReference("Student");
         spname = findViewById(R.id.editText1);
@@ -72,19 +73,19 @@ public class Performance_faculty extends AppCompatActivity {
                 Correct = Integer.parseInt(correct.getText().toString());
                 String incorr1=incorrect.getText().toString();
                 Incorrect = Integer.parseInt(incorrect.getText().toString());
-                if (!validateTor.isEmpty(SPname)) {
+                if (validateTor.isEmpty(SPname)) {
                     failFlag=true;
                     spname.setError("Field is empty!");
                 }
-                if (!validateTor.isEmpty(tot1)) {
+                if (validateTor.isEmpty(tot1)) {
                     failFlag=true;
                     total.setError("Field is empty!");
                 }
-                if (!validateTor.isEmpty(corr1)) {
+                if (validateTor.isEmpty(corr1)) {
                     failFlag=true;
                     correct.setError("Field is empty!");
                 }
-                if (!validateTor.isEmpty(incorr1)) {
+                if (validateTor.isEmpty(incorr1)) {
                     failFlag=true;
                     incorrect.setError("Field is empty!");
                 }
@@ -97,7 +98,7 @@ public class Performance_faculty extends AppCompatActivity {
                     if (snames.contains(SPname)) {
 
                         String id = databasePerformance.push().getKey();
-                        Performance performance = new Performance(SPname, Topic, Total, Correct, Incorrect, Tname);
+                        Performance performance = new Performance(SPname,class_selected, Total, Correct, Incorrect, Tname);
                         databasePerformance.child(SPname).push().setValue(performance);
                         Toast.makeText(getApplicationContext(), "Performance Updated Successfully", Toast.LENGTH_LONG).show();
 

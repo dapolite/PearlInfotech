@@ -1,9 +1,12 @@
 package com.example.pearlinfotech.Admin;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,21 +23,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import ru.slybeaver.slycalendarview.SlyCalendarDialog;
 
-
-public class AddFaculty extends AppCompatActivity implements SlyCalendarDialog.Callback {
+public class AddFaculty extends AppCompatActivity {
     EditText Tname;
+    DatePickerDialog.OnDateSetListener date;
     EditText Tid;
     EditText subject, tpassword,Tphno,Temail,Tdate;
     String tname, tid, sub, classname, tpass,tphno,temail,tdate;
     Spinner classes;
     Button addButton;
+    Calendar myCalendar = Calendar.getInstance();
     DatabaseReference databaseTeacher;
     Toolbar mToolbar;
     boolean failFlag = false;
@@ -60,19 +62,23 @@ public class AddFaculty extends AppCompatActivity implements SlyCalendarDialog.C
         classes = findViewById(R.id.spinner3);
         tpassword = findViewById(R.id.editText5);
         mToolbar = findViewById(R.id.ftoolbar);
+        date  = new DatePickerDialog.OnDateSetListener(){    @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }};
         Tdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new SlyCalendarDialog()
-                        .setSingle(true)
-                        .setFirstMonday(false)
-                        .setCallback(AddFaculty.this)
-                        .show(getSupportFragmentManager(), "TAG_SLYCALENDAR");
+                new DatePickerDialog(AddFaculty.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Add/Remove Teacher");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -85,28 +91,18 @@ public class AddFaculty extends AppCompatActivity implements SlyCalendarDialog.C
         //sub = subject.getText().toString();
         classname = classes.getSelectedItem().toString();
         tpass = tpassword.getText().toString();
-        databaseTeacher.addValueEventListener(new ValueEventListener() {
+        Log.d("TAG",tname);
+        Log.d("TAG",tid);
+        Log.d("TAG",classname);
+        Log.d("TAG",tpass);
+        Log.d("TAG",temail);
+        Log.d("TAG",tphno);
+        Log.d("TAG",tdate);
+        databaseTeacher.orderByChild("tid").equalTo(tid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String fsid=dataSnapshot.child("tid").toString();
-                String fsemail=dataSnapshot.child("temail").toString();
-                String fspass=dataSnapshot.child("tpass").toString();
-                String fsphno=dataSnapshot.child("tphno").toString();
-                if(fsid.equals(tid)){
-                    failFlag=true;
-                    Tid.setError("Username Taken");
-                }
-                if(fsemail.equals(temail)){
-                    failFlag=true;
-                    Temail.setError("Email Aleady Exists");
-                }
-                if(fspass.equals(tpass)){
-                    failFlag=true;
-                    tpassword.setError("Password Taken");
-                }
-                if(fsphno.equals(tphno)){
-                    failFlag=true;
-                    Tid.setError("Phone Number Aready Exists");
+                if(dataSnapshot.exists()){
+                    Tid.setError("User Exists");
                 }
             }
 
@@ -115,7 +111,21 @@ public class AddFaculty extends AppCompatActivity implements SlyCalendarDialog.C
 
             }
         });
-        if (!validateTor.isEmpty(temail)) {
+        databaseTeacher.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String fsid=dataSnapshot.child("tid").toString();
+                String fsemail=dataSnapshot.child("temail").toString();
+                String fspass=dataSnapshot.child("tpass").toString();
+                String fsphno=dataSnapshot.child("tphno").toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        if (validateTor.isEmpty(temail)) {
             failFlag = true;
             Temail.setError("Field is empty!");
         }
@@ -123,7 +133,7 @@ public class AddFaculty extends AppCompatActivity implements SlyCalendarDialog.C
             failFlag = true;
             Temail.setError("Not Valid Email!");
         }
-        if (!validateTor.isPhoneNumber(tphno)) {
+        if (!android.util.Patterns.PHONE.matcher(tphno).matches()) {
             failFlag = true;
             Tphno.setError("Not Valid Number!");
         }
@@ -139,18 +149,18 @@ public class AddFaculty extends AppCompatActivity implements SlyCalendarDialog.C
             failFlag = true;
             Tid.setError("Field is empty!");
         }
-        if (validateTor.isAtleastLength(tpass, 8)
-                && validateTor.hasAtleastOneDigit(tpass)
-                && validateTor.hasAtleastOneUppercaseCharacter(tpass)
-                && validateTor.hasAtleastOneSpecialCharacter(tpass)) {
+        if (!validateTor.isAtleastLength(tpass, 8)
+                && !validateTor.hasAtleastOneDigit(tpass)
+                && !validateTor.hasAtleastOneUppercaseCharacter(tpass)
+                && !validateTor.hasAtleastOneSpecialCharacter(tpass)) {
             failFlag = true;
             tpassword.setError("Password needs to be of minimum length of 8 characters and should have " +
                     "atleast 1 digit, 1 upppercase letter and 1 special character ");
 
         }
-        if(failFlag == false){
-            Faculty teacher = new Faculty(tname, tid, classname, tpass,temail,tphno,tdate);
-            databaseTeacher.child(tid).setValue(teacher);
+        if(failFlag == false) {
+            Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
+            databaseTeacher.child(tid).setValue(faculty);
             Toast.makeText(getApplicationContext(), "Teacher added successfully", Toast.LENGTH_LONG).show();
             finish();
         }
@@ -164,23 +174,10 @@ public class AddFaculty extends AppCompatActivity implements SlyCalendarDialog.C
         }
         return super.onOptionsItemSelected(item);
     }
+    private void updateLabel() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-    @Override
-    public void onCancelled() {
-
-    }
-
-    @Override
-    public void onDataSelected(Calendar firstDate, Calendar secondDate, int hours, int minutes) {
-        if (firstDate != null) {
-            if (secondDate == null) {
-                Tdate.setText(new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(DateFormat.getDateInstance()));
-                tdate=new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime());
-
-            } else {
-                Tdate.setText(new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime()));
-                tdate=new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime());
-            }
-        }
+        Tdate.setText(sdf.format(myCalendar.getTime()));
     }
 }

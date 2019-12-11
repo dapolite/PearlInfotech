@@ -71,6 +71,18 @@ public class fees_admin extends AppCompatActivity
             paid = Integer.parseInt(paid1);
             type1 = spin1.getSelectedItem().toString();
             type2 = spin2.getSelectedItem().toString();
+            if (validateTor.isEmpty(sname)) {
+                failFlag=true;
+                e1.setError("Field is empty!");
+            }
+            if (validateTor.isEmpty(total1)) {
+                failFlag=true;
+                e3.setError("Field is empty!");
+            }
+            if (validateTor.isEmpty(paid1)) {
+                failFlag=true;
+                e5.setError("Field is empty!");
+            }
             dbStudent.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -78,18 +90,7 @@ public class fees_admin extends AppCompatActivity
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         snames.add(dataSnapshot1.child("sname").getValue().toString());
                     }
-                    if (!validateTor.isEmpty(sname)) {
-                        failFlag=true;
-                        e1.setError("Field is empty!");
-                    }
-                    if (!validateTor.isEmpty(total1)) {
-                        failFlag=true;
-                        e3.setError("Field is empty!");
-                    }
-                    if (!validateTor.isInteger(paid1)) {
-                        failFlag=true;
-                        e5.setError("Field is empty!");
-                    }
+
                     if(failFlag=false){
                         if (snames.contains(sname)) {
                                 String id = databaseFees.push().getKey();

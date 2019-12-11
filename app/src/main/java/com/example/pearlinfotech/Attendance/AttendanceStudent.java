@@ -53,17 +53,21 @@ public class AttendanceStudent extends AppCompatActivity {
              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                  for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                       num=snapshot.getValue().toString();
+                      Log.d("TAG",num);
                       if(num.equals("Present")){
                           countp=countp+1;
                       }
                       if(num.equals("Absent")){
-                         counta=counta++;
+                         counta=counta+1;
                      }
 
                  }
                  tot=counta+countp;
                  //Log.d("TAG",String.valueOf(count));
-                 Log.d("TAG",num + " " + counta);
+                 Log.d("TAG",num + " " + countp);
+                 prs.setInnerText(String.valueOf(countp));
+                 abs.setInnerText(String.valueOf(counta));
+                 tota.setInnerText(String.valueOf(tot));
              }
 
              @Override
@@ -71,9 +75,7 @@ public class AttendanceStudent extends AppCompatActivity {
 
              }
          });
-         prs.setInnerText(String.valueOf(countp));
-         abs.setInnerText(String.valueOf(counta));
-         tota.setInnerText(String.valueOf(tot));
+
 
     }
 }

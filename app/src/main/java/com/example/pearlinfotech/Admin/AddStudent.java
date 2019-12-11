@@ -1,10 +1,13 @@
 package com.example.pearlinfotech.Admin;
 
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,15 +25,20 @@ import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import ru.slybeaver.slycalendarview.SlyCalendarDialog;
 
-
-public class AddStudent extends AppCompatActivity implements SlyCalendarDialog.Callback {
+public class AddStudent extends AppCompatActivity {
+    DatePickerDialog.OnDateSetListener date;
+    Calendar myCalendar = Calendar.getInstance();
     EditText Sname, Sphno, Semail, Sdate;
     EditText Sid, spassword;
+    ArrayList<String> fsid=new ArrayList<>();
+    ArrayList<String> fspass=new ArrayList<>();
+    ArrayList<String> fsemail=new ArrayList<>();
+    ArrayList<String> fsphno=new ArrayList<>();
     String sname, sid, classname, spass, sphno, semail, sdate;
     Spinner classes;
     DatabaseReference databaseStudent;
@@ -56,19 +64,25 @@ public class AddStudent extends AppCompatActivity implements SlyCalendarDialog.C
         classes = findViewById(R.id.spinner3);
         spassword = findViewById(R.id.editText4);
         mToolbar = findViewById(R.id.ftoolbar);
-        Sdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SlyCalendarDialog()
-                        .setSingle(true)
-                        .setFirstMonday(false)
-                        .setCallback(AddStudent.this)
-                        .show(getSupportFragmentManager(), "TAG_SLYCALENDAR");
-            }
-        });
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Add/Remove Student");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        date = new DatePickerDialog.OnDateSetListener(){    @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }};
+        Sdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(AddStudent.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
     }
 
     public void addStudent(View v) {
@@ -79,30 +93,14 @@ public class AddStudent extends AppCompatActivity implements SlyCalendarDialog.C
         sid = Sid.getText().toString();
         classname = classes.getSelectedItem().toString();
         spass = spassword.getText().toString();
+        Log.d("TAG",sdate);
 
 
-        databaseStudent.addValueEventListener(new ValueEventListener() {
+        databaseStudent.orderByChild("sid").equalTo(sid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String fsid=dataSnapshot.child("sid").toString();
-                String fsemail=dataSnapshot.child("semail").toString();
-                String fspass=dataSnapshot.child("spass").toString();
-                String fsphno=dataSnapshot.child("sphno").toString();
-                if(fsid.equals(sid)){
-                    failFlag=true;
+                if(dataSnapshot.exists()){
                     Sid.setError("Username Taken");
-                }
-                if(fsemail.equals(semail)){
-                    failFlag=true;
-                    Semail.setError("Email Aleady Exists");
-                }
-                if(fspass.equals(spass)){
-                    failFlag=true;
-                    spassword.setError("Password Taken");
-                }
-                if(fsphno.equals(sphno)){
-                    failFlag=true;
-                    Sid.setError("Phone Number Aready Exists");
                 }
             }
 
@@ -111,6 +109,39 @@ public class AddStudent extends AppCompatActivity implements SlyCalendarDialog.C
 
             }
         });
+
+        databaseStudent.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    fsid.add(ds.child("sid").toString());
+                    fsemail.add(ds.child("semail").toString());
+                    fspass.add( ds.child("spass").toString());
+                    fsphno.add(ds.child("sphno").toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        if(fsid.contains(sid)){
+            failFlag=true;
+            Sid.setError("Username Taken");
+        }
+        if(fsemail.contains(semail)){
+            failFlag=true;
+            Semail.setError("Email Aleady Exists");
+        }
+        if(fspass.contains(spass)){
+            failFlag=true;
+            spassword.setError("Password Taken");
+        }
+        if(fsphno.contains(sphno)){
+            failFlag=true;
+            Sid.setError("Phone Number Aready Exists");
+        }
         if (validateTor.isEmpty(semail)) {
             failFlag = true;
             Semail.setError("Field is empty!");
@@ -138,11 +169,6 @@ public class AddStudent extends AppCompatActivity implements SlyCalendarDialog.C
         }
         if (validateTor.isEmpty(sid)) {
             Sid.setError("Field is empty!");
-
-        }
-        if (validateTor.isEmpty(sdate)) {
-            failFlag = true;
-            Sdate.setError("Field is empty!");
 
         }
         if (!validateTor.isAtleastLength(spass, 8)
@@ -180,23 +206,11 @@ public class AddStudent extends AppCompatActivity implements SlyCalendarDialog.C
         return super.onOptionsItemSelected(item);
     }
 
+    private void updateLabel() {
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-    @Override
-    public void onCancelled() {
-
+        Sdate.setText(sdf.format(myCalendar.getTime()));
     }
 
-    @Override
-    public void onDataSelected(Calendar firstDate, Calendar secondDate, int hours, int minutes) {
-        if (firstDate != null) {
-            if (secondDate == null) {
-                Sdate.setText(new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime()));
-                sdate=new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime());
-
-            } else {
-                Sdate.setText(new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime()));
-                sdate=new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime());
-            }
-        }
-    }
 }

@@ -17,6 +17,7 @@ import androidx.cardview.widget.CardView;
 
 import com.example.pearlinfotech.Attendance.AttendanceFaculty;
 import com.example.pearlinfotech.HomeScreen.MainActivity;
+import com.example.pearlinfotech.Message.MessageSend;
 import com.example.pearlinfotech.Performances.Performance_faculty;
 import com.example.pearlinfotech.R;
 
@@ -34,6 +35,7 @@ String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Bundle basket = new Bundle();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_faculty);
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
@@ -66,7 +68,7 @@ String message;
         atten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle basket = new Bundle();
+
                 basket.putString("class_selected", item);
                 basket.putString("tid", message);
                 Intent intent = new Intent(DashboardFaculty.this, AttendanceFaculty.class);
@@ -78,9 +80,24 @@ String message;
         perf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle basket = new Bundle();
-                basket.putString("class_selected", item);
+                basket.putString("class", item);
+                basket.putString("tid", message);
+
                 Intent intent = new Intent(DashboardFaculty.this, Performance_faculty.class);
+                intent.putExtras(basket);
+                startActivity(intent);
+            }
+        });
+
+        notif=findViewById(R.id.notifdashfcard);
+        notif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                basket.putString("class", item);
+                basket.putString("tid", message);
+
+                Intent intent = new Intent(DashboardFaculty.this, MessageSend.class);
+                intent.putExtras(basket);
                 startActivity(intent);
             }
         });

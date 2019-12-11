@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -29,6 +33,11 @@ android {
 }
 
 dependencies {
+    implementation 'me.himanshusoni.chatmessageview:chat-message-view:1.0.7'
+
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
+    implementation 'com.github.mahimrocky:EventCalender:v1.0.0'
+    implementation 'com.github.NaimishTrivedi:FBToast:1.0'
     implementation 'com.github.VladimirWrites:Lemniscate:2.0.2'
     implementation 'com.github.mmoamenn:ProgressWindow_Android:0.0.2'
     implementation 'com.github.saurabhdhillon:anim-press-view:0.0.1'
