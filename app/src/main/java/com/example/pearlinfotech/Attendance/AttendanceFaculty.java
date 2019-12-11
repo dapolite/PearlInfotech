@@ -1,5 +1,4 @@
 package com.example.pearlinfotech.Attendance;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,8 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-
 public class AttendanceFaculty extends AppCompatActivity {
     String teacher_id;
     String class_selected;
@@ -79,10 +76,7 @@ public class AttendanceFaculty extends AppCompatActivity {
 
                 }
                 OnStart(Userlist);
-
             }
-
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG).show();
@@ -147,8 +141,6 @@ public class AttendanceFaculty extends AppCompatActivity {
 
             }
         }
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

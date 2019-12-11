@@ -63,14 +63,21 @@ public class AddStudent extends AppCompatActivity {
     }
 
     public void removeStudent(View v) {
-        if (!TextUtils.isEmpty(Sid.getText().toString())) {
-            sid = Sid.getText().toString();
-            databaseStudent.child(sid).setValue(null);
-            Toast.makeText(getApplicationContext(), "teacher removed successfully", Toast.LENGTH_LONG).show();
+        if (!TextUtils.isEmpty(Sid.getText().toString()))
+        {
+            //sid = Sid.getText().toString();
+            //databaseStudent.child(sid).setValue(null);
+            //Toast.makeText(getApplicationContext(), "teacher removed successfully", Toast.LENGTH_LONG).show();
+            //final View view =
+            
 
-        } else {
-            Toast.makeText(getApplicationContext(), "id cannot be empty", Toast.LENGTH_LONG).show();
+
+           
         }
+        else
+            {
+                Toast.makeText(getApplicationContext(), "id cannot be empty", Toast.LENGTH_LONG).show();
+            }
     }
 
     @Override

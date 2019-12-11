@@ -173,6 +173,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/btnbg"
                 android:gravity="center"
+                android:onClick="addFees"
                 android:text="@string/submit_fee_admin"
                 android:textAllCaps="false"
                 android:textColor="#fff"

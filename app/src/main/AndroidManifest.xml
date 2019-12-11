@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.pearlinfotech" >
+    package="com.example.pearlinfotech">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,14 +11,18 @@
         android:hardwareAccelerated="false"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="InnerclassSeparator" >
+        tools:ignore="InnerclassSeparator">
+        <activity android:name=".List_aboutus"></activity>
+        <activity android:name=".About.AboutUs" />
+        <activity android:name=".About.AboutUs_entrance"></activity>
         <activity android:name=".Fees.student_fees" />
+        <activity android:name=".Fees.fees_admin" />
         <activity android:name=".Attendance.AttendanceExtra" />
-        <activity android:name=".Attendance.AttendanceStudent" >
-        </activity>
+        <activity android:name=".Attendance.AttendanceStudent" />
         <activity android:name=".Admin.FacultyList" />
         <activity android:name=".Admin.StudentList" />
         <activity android:name=".Admin.AddFaculty" />
@@ -31,7 +35,7 @@
         <activity android:name=".HomeScreen.MainActivity" />
         <activity android:name=".Dashbard.DashBoardStudent" />
         <activity android:name=".Login.Login" />
-        <activity android:name=".HomeScreen.SplashScreen" >
+        <activity android:name=".HomeScreen.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
