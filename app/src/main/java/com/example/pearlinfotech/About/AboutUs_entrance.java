@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pearlinfotech.R;
-public class AboutUs_entrance extends AppCompatActivity
+public class          AboutUs_entrance extends AppCompatActivity
 {
     Toolbar toolbar2;
     private RecyclerView recyclerView2;

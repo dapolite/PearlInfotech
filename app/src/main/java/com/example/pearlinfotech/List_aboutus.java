@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pearlinfotech.About.AboutUs;
+import com.example.pearlinfotech.About.AboutUs_Coaching;
 import com.example.pearlinfotech.About.AboutUs_entrance;
 
 public class List_aboutus extends AppCompatActivity {
@@ -36,7 +37,7 @@ public class List_aboutus extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Intent intent=new Intent(List_aboutus.this, AboutUs.class);
+                Intent intent=new Intent(List_aboutus.this, AboutUs_Coaching.class);
                 startActivity(intent);
             }
         });

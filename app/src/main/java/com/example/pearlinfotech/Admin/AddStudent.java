@@ -1,14 +1,18 @@
 package com.example.pearlinfotech.Admin;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -22,6 +26,7 @@ public class AddStudent extends AppCompatActivity {
     EditText Sid, spassword;
     String sname, sid, classname, spass;
     Spinner classes;
+    String edts;
     DatabaseReference databaseStudent;
     Toolbar mToolbar;
 
@@ -68,11 +73,31 @@ public class AddStudent extends AppCompatActivity {
             //sid = Sid.getText().toString();
             //databaseStudent.child(sid).setValue(null);
             //Toast.makeText(getApplicationContext(), "teacher removed successfully", Toast.LENGTH_LONG).show();
-            //final View view =
-            
 
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = this.getLayoutInflater();
+            final View dialogView = inflater.inflate(R.layout.edit_text_dialog, null);
+            dialogBuilder.setView(dialogView);
 
-           
+            final EditText edt =  dialogView.findViewById(R.id.edittdialog);
+            edts=edt.getText().toString();
+            dialogBuilder.setTitle("Remove Student");
+            //dialogBuilder.setMessage("Enter Student ID :- ");
+            dialogBuilder.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    //databaseStudent.child("Student").child(edts).removeValue();
+                    Log.d("TAG",edts);
+                }
+            });
+            dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+                    //pass
+                }
+            });
+            AlertDialog b = dialogBuilder.create();
+            b.show();
         }
         else
             {
