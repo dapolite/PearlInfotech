@@ -5,21 +5,26 @@
     xmlns:plainpie="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rectanglehomescreen"
     android:gravity="center"
-    android:layout_margin="15dp"
     android:orientation="vertical"
     android:padding="10dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:padding="20dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:orientation="horizontal">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:layout_weight="1"
             android:text="Name"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -29,16 +34,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name"
+            android:layout_weight="1"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-    </LinearLayout>
+    </TableRow>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        <TableRow android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <TextView
             android:id="@+id/textView4"
@@ -46,6 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:text="Topic"
+            android:layout_weight="1"
+
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -55,41 +60,43 @@
             android:layout_height="wrap_content"
             android:text="Topic"
             android:textSize="20sp"
+            android:layout_weight="1"
+
             android:textStyle="bold" />
+    </TableRow>
 
-    </LinearLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:layout_weight="1"
+            android:padding="0dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:text="Total"
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="Total"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <az.plainpie.PieView
-            android:id="@+id/pieViewTotal"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            plainpie:inner_pie_padding="30"
-            plainpie:percentage="75"
-            plainpie:percentage_size="10"
-            plainpie:inner_text_visibility="true"/>
+            <az.plainpie.PieView
+                android:id="@+id/pieViewTotal"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                plainpie:inner_pie_padding="30"
+                plainpie:inner_text_visibility="true"
+                plainpie:percentage="75"
+                plainpie:percentage_size="10" />
+        </TableRow>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        <TableRow android:layout_height="match_parent"
+            android:layout_width="match_parent">
 
         <TextView
             android:id="@+id/textView8"
@@ -97,6 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:text="Correct"
+            android:layout_weight="1"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -108,14 +116,12 @@
             plainpie:percentage="75"
             plainpie:percentage_size="10"
             plainpie:inner_text_visibility="true"/>
+        </TableRow>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv5"
@@ -123,11 +129,36 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:text="Incorrect"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+            <az.plainpie.PieView
+                android:id="@+id/pieViewIncoorect"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                plainpie:inner_pie_padding="30"
+                plainpie:percentage="75"
+                plainpie:percentage_size="10"
+                plainpie:inner_text_visibility="true"/>
+
+        </TableRow>
+
+    <TableRow android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="Attempted"
+            android:layout_weight="1"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <az.plainpie.PieView
-            android:id="@+id/pieViewIncoorect"
+            android:id="@+id/pieViewAttempt"
             android:layout_width="50dp"
             android:layout_height="50dp"
             plainpie:inner_pie_padding="30"
@@ -135,7 +166,17 @@
             plainpie:percentage_size="10"
             plainpie:inner_text_visibility="true"/>
 
+
+
+    </TableRow>
+</TableLayout>
+    <TextView
+        android:id="@+id/cmmt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="Attempted"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textStyle="bold" />
     </LinearLayout>
-
-
-</LinearLayout>

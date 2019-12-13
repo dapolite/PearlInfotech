@@ -24,13 +24,13 @@ import java.util.ArrayList;
 public class Performance_faculty extends AppCompatActivity {
 
     EditText spname, total, correct, incorrect;
-    EditText tstname,tpic;
+    EditText tstname,tpic,attmpt,comm;
     ValidateTor validateTor = new ValidateTor();
     String class_selected;
     Button btn;
-    String SPname,Tname;
+    String SPname,Tname,attpt,cmmt;
     String topic;
-    int Total,Correct,Incorrect;
+    int Total,Correct,Incorrect,Attempted;
     DatabaseReference databasePerformance;
     DatabaseReference dbStudent;
     ArrayList<String> snames=new ArrayList<>();
@@ -52,7 +52,8 @@ public class Performance_faculty extends AppCompatActivity {
         total = findViewById(R.id.editText3);
         correct = findViewById(R.id.editText4);
         incorrect = findViewById(R.id.editText5);
-
+        comm=findViewById(R.id.comment);
+        attmpt=findViewById(R.id.attempted);
         mToolbar = findViewById(R.id.ftoolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Add Performance");
@@ -67,12 +68,19 @@ public class Performance_faculty extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 SPname = spname.getText().toString();
                 Tname=tstname.getText().toString();
+                cmmt=comm.getText().toString();
                 String tot1=total.getText().toString();
-                Total = Integer.parseInt(total.getText().toString());
+                attpt=attmpt.getText().toString();
                 String corr1=correct.getText().toString();
-                Correct = Integer.parseInt(correct.getText().toString());
                 String incorr1=incorrect.getText().toString();
-                Incorrect = Integer.parseInt(incorrect.getText().toString());
+                if (validateTor.isEmpty(cmmt)) {
+                    failFlag=true;
+                    spname.setError("Field is empty!");
+                }
+                if (validateTor.isEmpty(attpt)) {
+                    failFlag=true;
+                    spname.setError("Field is empty!");
+                }
                 if (validateTor.isEmpty(SPname)) {
                     failFlag=true;
                     spname.setError("Field is empty!");
@@ -85,11 +93,23 @@ public class Performance_faculty extends AppCompatActivity {
                     failFlag=true;
                     correct.setError("Field is empty!");
                 }
+                if (validateTor.isEmpty(attpt)) {
+                    failFlag=true;
+                    attmpt.setError("Field is empty!");
+                }
+                if (validateTor.isEmpty(cmmt)) {
+                    failFlag=true;
+                    comm.setError("Field is empty!");
+                }
                 if (validateTor.isEmpty(incorr1)) {
                     failFlag=true;
                     incorrect.setError("Field is empty!");
                 }
                 if(failFlag=false) {
+                    Attempted= Integer.parseInt(attpt);
+                    Total = Integer.parseInt(tot1);
+                    Correct = Integer.parseInt(corr1);
+                    Incorrect = Integer.parseInt(incorr1);
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         String name = dataSnapshot1.child("sname").getValue().toString();
                         snames.add(dataSnapshot1.child("sname").getValue().toString());
@@ -98,7 +118,7 @@ public class Performance_faculty extends AppCompatActivity {
                     if (snames.contains(SPname)) {
 
                         String id = databasePerformance.push().getKey();
-                        Performance performance = new Performance(SPname,class_selected, Total, Correct, Incorrect, Tname);
+                        Performance performance = new Performance(SPname,class_selected, Total, Correct, Incorrect,Attempted,Tname,cmmt);
                         databasePerformance.child(SPname).push().setValue(performance);
                         Toast.makeText(getApplicationContext(), "Performance Updated Successfully", Toast.LENGTH_LONG).show();
 

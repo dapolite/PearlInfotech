@@ -1,11 +1,13 @@
 package com.example.pearlinfotech.Attendance;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,12 +25,16 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class AttendanceFaculty extends AppCompatActivity {
+    DatePickerDialog.OnDateSetListener date1;
     String teacher_id;
     String class_selected;
+    EditText adate;
     ArrayList<String> selectedItems;
     ArrayList<String> nonselectedItems;
     ArrayAdapter<String> aa;
@@ -41,6 +47,8 @@ public class AttendanceFaculty extends AppCompatActivity {
     DatabaseReference dbAttendance;
     DatabaseReference stuAttendance;
     DatabaseReference dbStudent;
+    String dates;
+    Calendar myCalendar= Calendar.getInstance();
     String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     private ArrayAdapter adapter;
 
@@ -50,6 +58,7 @@ public class AttendanceFaculty extends AppCompatActivity {
         setContentView(R.layout.activity_attendance_faculty);
         Toolbar toolbar = findViewById(R.id.ftoolbar);
         setSupportActionBar(toolbar);
+        adate=findViewById(R.id.attdate);
         toolbar.setTitle("Take Attendance");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -57,13 +66,29 @@ public class AttendanceFaculty extends AppCompatActivity {
         dbStudent = ref.child("Student");
         dbAttendance = ref.child("attendance");
         selectedItems = new ArrayList<String>();
-
+        dates=adate.getText().toString();
         TextView classname = findViewById(R.id.textView);
         classname.setText("CSE");
         Bundle bundle1 = getIntent().getExtras();
         class_selected = bundle1.getString("class_selected");
         teacher_id = bundle1.getString("tid");
-
+        date1  = new DatePickerDialog.OnDateSetListener(){    @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }};
+        adate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(AttendanceFaculty.this, date1, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
         classname.setText(class_selected);
 
 
@@ -132,7 +157,7 @@ public class AttendanceFaculty extends AppCompatActivity {
                 nonselectedItems.remove(item);
                 dbAttendance.child(item).setValue("Present");
                 stuAttendance=ref.child("StudentAttendance").child(item);
-                stuAttendance.child(date).setValue("Present");
+                stuAttendance.child(dates).setValue("Present");
                 aa.notifyDataSetChanged();
                 if (selItems == "")
                     selItems = item;
@@ -156,6 +181,12 @@ public class AttendanceFaculty extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+    private void updateLabel() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        adate.setText(sdf.format(myCalendar.getTime()));
     }
 }
 

@@ -56,9 +56,11 @@ public class StudentList extends AppCompatActivity {
         ((SimpleItemAnimator) mRvData.getItemAnimator()).setSupportsChangeAnimations(false);
         mRvData.setLayoutManager(new LinearLayoutManager(this));
         mRef = FirebaseDatabase.getInstance().getReference("Student");
+
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mUserList.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     String lol=ds.getValue().toString();
                     Log.d("TAG",lol);

@@ -111,6 +111,8 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
         holder.total.setInnerText(String.valueOf(perf.total));
         holder.corr.setInnerText(String.valueOf(perf.correct));
         holder.in.setInnerText(String.valueOf(perf.incorrect));
+        holder.attmpt.setInnerText(String.valueOf(perf.attempt));
+        holder.cmmt.setText(perf.comment);
         //holder.per.setText(String.valueOf(perf.per));
     }
 
@@ -120,8 +122,8 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        TextView sname,topic;
-        PieView total,corr,in;
+        TextView sname,topic,cmmt;
+        PieView total,corr,in,attmpt;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -129,16 +131,21 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
             topic=itemView.findViewById(R.id.topic);
             total = itemView.findViewById(R.id.pieViewTotal);
             corr= itemView.findViewById(R.id.pieViewCorrect);
+            attmpt= itemView.findViewById(R.id.pieViewAttempt);
+            cmmt=itemView.findViewById(R.id.cmmt);
             in= itemView.findViewById(R.id.pieViewIncoorect);
             PieAngleAnimation animation1 = new PieAngleAnimation(total);
             animation1.setDuration(5000);
             total.startAnimation(animation1);
             PieAngleAnimation animation2 = new PieAngleAnimation(corr);
             animation2.setDuration(5000);
-            total.startAnimation(animation2);
+            corr.startAnimation(animation2);
             PieAngleAnimation animation3 = new PieAngleAnimation(in);
             animation3.setDuration(5000);
-            total.startAnimation(animation3);
+            in.startAnimation(animation3);
+            PieAngleAnimation animation4 = new PieAngleAnimation(attmpt);
+            animation3.setDuration(5000);
+            attmpt.startAnimation(animation4);
         }
     }
 

@@ -58,6 +58,7 @@ public class FacultyList extends AppCompatActivity {
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mUserList.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     String lol=ds.getValue().toString();
                     Log.d("TAG",lol);

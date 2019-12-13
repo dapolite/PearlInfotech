@@ -73,6 +73,18 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/userid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/btnsstroke"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Enter User ID"
+                android:padding="10dp" />
+
+            <EditText
                 android:id="@+id/pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,7 +93,7 @@
                 android:background="@drawable/btnsstroke"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="Enter Mobile Number"
+                android:hint="Enter New Password"
                 android:padding="10dp" />
 
             <Button

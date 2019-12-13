@@ -65,10 +65,10 @@ public class fees_admin extends AppCompatActivity
         public void addFees(View v) {
             sname = e1.getText().toString();
             total1=e3.getText().toString();
-            total = Integer.parseInt(total1);
+
             course = e4.getSelectedItem().toString();
             paid1=e5.getText().toString();
-            paid = Integer.parseInt(paid1);
+
             type1 = spin1.getSelectedItem().toString();
             type2 = spin2.getSelectedItem().toString();
             if (validateTor.isEmpty(sname)) {
@@ -79,39 +79,40 @@ public class fees_admin extends AppCompatActivity
                 failFlag=true;
                 e3.setError("Field is empty!");
             }
+
             if (validateTor.isEmpty(paid1)) {
                 failFlag=true;
                 e5.setError("Field is empty!");
             }
-            dbStudent.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            if(failFlag=false) {
+                dbStudent.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        total = Integer.parseInt(total1);
+                        paid = Integer.parseInt(paid1);
+                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                            snames.add(dataSnapshot1.child("sname").getValue().toString());
+                        }
 
-                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                        snames.add(dataSnapshot1.child("sname").getValue().toString());
-                    }
 
-                    if(failFlag=false){
                         if (snames.contains(sname)) {
-                                String id = databaseFees.push().getKey();
-                                Fee fee = new Fee(sname, total, paid, course, type1, type2);
-                                databaseFees.child(sname).push().setValue(fee);
-                                Toast.makeText(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG).show();
+                            String id = databaseFees.push().getKey();
+                            Fee fee = new Fee(sname, total, paid, course, type1, type2);
+                            databaseFees.child(sname).push().setValue(fee);
+                            Toast.makeText(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG).show();
 
-                            }
-                         else {
+                        } else {
                             e1.setError("Sorry Student does not Exist");
                         }
+
+
                     }
 
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+            }
         }
 
             public void updateFees(View v) {

@@ -20,6 +20,7 @@ import com.example.pearlinfotech.HomeScreen.MainActivity;
 import com.example.pearlinfotech.Message.MessageSend;
 import com.example.pearlinfotech.Performances.Performance_faculty;
 import com.example.pearlinfotech.R;
+import com.example.pearlinfotech.TimeTable.UploadTT;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -101,6 +102,20 @@ String message;
                 startActivity(intent);
             }
         });
+
+        timetable=findViewById(R.id.ttdashfcard);
+        timetable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                basket.putString("class", item);
+                basket.putString("tid", message);
+
+                Intent intent = new Intent(DashboardFaculty.this, UploadTT.class);
+                intent.putExtras(basket);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

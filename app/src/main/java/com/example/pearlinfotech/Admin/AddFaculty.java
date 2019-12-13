@@ -103,6 +103,93 @@ public class AddFaculty extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     Tid.setError("User Exists");
+                    failFlag=true;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        if (validateTor.isEmpty(temail)) {
+            failFlag = true;
+            Temail.setError("Field is empty!");
+        }
+        if (!validateTor.isEmail(temail)) {
+            failFlag = true;
+            Temail.setError("Not Valid Email!");
+        }
+        if (!android.util.Patterns.PHONE.matcher(tphno).matches()) {
+            failFlag = true;
+            Tphno.setError("Not Valid Number!");
+        }
+        if (validateTor.isEmpty(tphno)) {
+            failFlag = true;
+            Tphno.setError("Field is empty!");
+        }
+        if (validateTor.isEmpty(tname)) {
+            failFlag = true;
+            Tname.setError("Field is empty!");
+        }
+        if (validateTor.isEmpty(tid)) {
+            failFlag = true;
+            Tid.setError("Field is empty!");
+        }
+        if (!validateTor.isAtleastLength(tpass, 8)
+                && !validateTor.hasAtleastOneDigit(tpass)
+                && !validateTor.hasAtleastOneUppercaseCharacter(tpass)
+                && !validateTor.hasAtleastOneSpecialCharacter(tpass)) {
+            failFlag = true;
+            tpassword.setError("Password needs to be of minimum length of 8 characters and should have " +
+                    "atleast 1 digit, 1 upppercase letter and 1 special character ");
+
+        }
+        databaseTeacher.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String fsid=dataSnapshot.child("tid").toString();
+                String fsemail=dataSnapshot.child("temail").toString();
+                String fspass=dataSnapshot.child("tpass").toString();
+                String fsphno=dataSnapshot.child("tphno").toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        if(failFlag == false) {
+            Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
+            databaseTeacher.child(tid).setValue(faculty);
+            Toast.makeText(getApplicationContext(), "Teacher added successfully", Toast.LENGTH_LONG).show();
+            finish();
+        }
+    }
+
+    public void updateTeacher(View v) {
+        tdate=Tdate.getText().toString();
+        temail=Temail.getText().toString();
+        tphno=Tphno.getText().toString();
+        tname = Tname.getText().toString();
+        tid = Tid.getText().toString();
+        //sub = subject.getText().toString();
+        classname = classes.getSelectedItem().toString();
+        tpass = tpassword.getText().toString();
+        Log.d("TAG",tname);
+        Log.d("TAG",tid);
+        Log.d("TAG",classname);
+        Log.d("TAG",tpass);
+        Log.d("TAG",temail);
+        Log.d("TAG",tphno);
+        Log.d("TAG",tdate);
+        databaseTeacher.orderByChild("tid").equalTo(tid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()){
+                    failFlag=true;
+                    Tid.setError("User  Does Not Exist");
                 }
             }
 
@@ -161,7 +248,7 @@ public class AddFaculty extends AppCompatActivity {
         if(failFlag == false) {
             Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
             databaseTeacher.child(tid).setValue(faculty);
-            Toast.makeText(getApplicationContext(), "Teacher added successfully", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Teacher updated successfully", Toast.LENGTH_LONG).show();
             finish();
         }
     }

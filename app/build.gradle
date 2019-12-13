@@ -33,8 +33,9 @@ android {
 }
 
 dependencies {
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'me.himanshusoni.chatmessageview:chat-message-view:1.0.7'
-
+    implementation 'com.applandeo:material-calendar-view:1.0.1'
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
     implementation 'com.github.mahimrocky:EventCalender:v1.0.0'
     implementation 'com.github.NaimishTrivedi:FBToast:1.0'
@@ -62,6 +63,8 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:6.0.2'
     implementation 'com.google.firebase:firebase-database:19.2.0'
     implementation 'com.google.firebase:firebase-firestore:21.3.0'
+    implementation 'com.google.firebase:firebase-storage:19.1.0'
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.firebase:firebase-analytics:17.2.1'
     androidTestImplementation 'androidx.test:runner:1.2.0'

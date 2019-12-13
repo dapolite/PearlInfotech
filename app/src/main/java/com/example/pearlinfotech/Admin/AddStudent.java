@@ -96,19 +96,7 @@ public class AddStudent extends AppCompatActivity {
         Log.d("TAG",sdate);
 
 
-        databaseStudent.orderByChild("sid").equalTo(sid).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    Sid.setError("Username Taken");
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         databaseStudent.addValueEventListener(new ValueEventListener() {
             @Override
@@ -180,10 +168,27 @@ public class AddStudent extends AppCompatActivity {
                     "atleast 1 digit, 1 upppercase letter and 1 special character ");
 
         }
+        databaseStudent.orderByChild("sid").equalTo(sid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    Sid.setError("Username Taken");
+                    failFlag=true;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         if(failFlag == false){
             Student student = new Student(sname, sid, classname, spass, semail, sphno, sdate);
             databaseStudent.child(sid).setValue(student);
             Toast.makeText(getApplicationContext(), "student added successfully", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(this, "Cant Add User", Toast.LENGTH_SHORT).show();
         }
     }
 
