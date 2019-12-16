@@ -1,7 +1,7 @@
 package com.example.pearlinfotech.Fees;
 
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class fees_admin extends AppCompatActivity
 {
-    String sname,course,type1,type2,paid1,total1;
+    String sname,course,type1,type2,paid1,total1,sid;
     int total,paid;
     ArrayList<String> snames=new ArrayList<>();
     EditText e1,e2,e3,e5;
@@ -45,7 +45,7 @@ public class fees_admin extends AppCompatActivity
 
         spin1=findViewById(R.id.feeadmininstallment);
         spin2=findViewById(R.id.feeadminmode);
-
+        e2=findViewById(R.id.editTextsid);
         e1=findViewById(R.id.editText1);
         e3=findViewById(R.id.editText3);
         e4=findViewById(R.id.editText4);
@@ -63,14 +63,26 @@ public class fees_admin extends AppCompatActivity
 
 
         public void addFees(View v) {
+            Log.d("Working?","Working");
             sname = e1.getText().toString();
             total1=e3.getText().toString();
-
+            sid=e2.getText().toString();
             course = e4.getSelectedItem().toString();
             paid1=e5.getText().toString();
 
             type1 = spin1.getSelectedItem().toString();
             type2 = spin2.getSelectedItem().toString();
+            Log.d("Working?",sname);
+            Log.d("Working?",sid);
+            Log.d("Working?",total1);
+            Log.d("Working?",course);
+            Log.d("Working?",type2);
+            Log.d("Working?",type1);
+            Log.d("Working?",paid1);
+            if (validateTor.isEmpty(sid)) {
+                failFlag=true;
+                e2.setError("Field is empty!");
+            }
             if (validateTor.isEmpty(sname)) {
                 failFlag=true;
                 e1.setError("Field is empty!");
@@ -84,28 +96,27 @@ public class fees_admin extends AppCompatActivity
                 failFlag=true;
                 e5.setError("Field is empty!");
             }
-            if(failFlag=false) {
+            if(!failFlag) {
+                Log.d("Working","Fail");
                 dbStudent.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         total = Integer.parseInt(total1);
                         paid = Integer.parseInt(paid1);
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                            snames.add(dataSnapshot1.child("sname").getValue().toString());
+                            String id=dataSnapshot1.child("sid").getValue().toString();
+                            Log.d("WORK",id);
+                            snames.add(dataSnapshot1.child("sid").getValue().toString());
                         }
-
-
                         if (snames.contains(sname)) {
-                            String id = databaseFees.push().getKey();
-                            Fee fee = new Fee(sname, total, paid, course, type1, type2);
-                            databaseFees.child(sname).push().setValue(fee);
+                            Log.d("Working","Fail2");
+                            Fee fee = new Fee(sid, total, paid, course, type1, type2);
+                            databaseFees.child(sname).setValue(fee);
                             Toast.makeText(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG).show();
 
                         } else {
-                            e1.setError("Sorry Student does not Exist");
+                            e2.setError("Sorry Student does not Exist");
                         }
-
-
                     }
 
                     @Override
@@ -115,45 +126,6 @@ public class fees_admin extends AppCompatActivity
             }
         }
 
-            public void updateFees(View v) {
-
-                dbStudent.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        sname = e1.getText().toString();
-                        total =Integer.parseInt( e3.getText().toString());
-                        //course = e4.getText().toString();
-                        paid1=e5.getText().toString();
-                        paid = Integer.parseInt( e5.getText().toString());
-                        type1=spin1.getSelectedItem().toString();
-                        type2=spin2.getSelectedItem().toString();
-                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                            snames.add(dataSnapshot1.child("sname").getValue().toString());
-                        }
-                        if(snames.contains(sname)){
-                            if (!(TextUtils.isEmpty(e1.getText().toString()))) {
-                                String id = databaseFees.push().getKey();
-                                Fee fee = new Fee(sname, total, paid,course,type1,type2);
-                                databaseFees.child(sname).setValue(fee);
-                                Toast.makeText(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG).show();
-
-                            } else {
-                                Toast.makeText(getApplicationContext(), "fields cannot be empty", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                        else{
-                            Toast.makeText(fees_admin.this, "Student Does Not Exist", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

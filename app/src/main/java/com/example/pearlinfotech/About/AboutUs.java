@@ -29,8 +29,9 @@ public class AboutUs extends AppCompatActivity
         recyclerView.setLayoutManager(layoutManager);
 
         toolbar1=findViewById(R.id.ftoolbar);
-        toolbar1.setTitle("IT Subject");
-        //t
+        toolbar1.setTitle("IT Subjects");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+
 
         recyclerViewAdapter = new RecyclerViewAdapter(arr,arry);
         recyclerView.setAdapter(recyclerViewAdapter);

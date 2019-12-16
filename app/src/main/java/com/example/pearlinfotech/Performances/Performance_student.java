@@ -47,6 +47,7 @@ public class Performance_student extends AppCompatActivity {
         Bundle bundle1 = getIntent().getExtras();
         stuname = bundle1.getString("sname");
         Log.d("TAG",stuname);
+        Log.d("TAG",stuname);
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.ftoolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("View Performance");
@@ -57,14 +58,16 @@ public class Performance_student extends AppCompatActivity {
         //mDB=mDatabase.child(stuname);
         mRvData = findViewById(R.id.rcvperf);
         mRvData.setLayoutManager(new LinearLayoutManager(this));
-        Query query=FirebaseDatabase.getInstance().getReference("Performance/"+stuname).orderByChild("sname").equalTo(stuname);
+        Query query=FirebaseDatabase.getInstance().getReference("Performance/"+stuname);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUserList.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    String lol=dataSnapshot1.getValue().toString();
+                    Log.d("TAG",lol);
                     Performance perf = dataSnapshot1.getValue(Performance.class);
-                        mUserList.add(perf);
+                    mUserList.add(perf);
                     allDataAdapter = new DisplayData(Performance_student.this, mUserList);
                     mRvData.setAdapter(allDataAdapter);
                     allDataAdapter.notifyDataSetChanged();
@@ -113,7 +116,6 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
         holder.in.setInnerText(String.valueOf(perf.incorrect));
         holder.attmpt.setInnerText(String.valueOf(perf.attempt));
         holder.cmmt.setText(perf.comment);
-        //holder.per.setText(String.valueOf(perf.per));
     }
 
     @Override
@@ -123,7 +125,7 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView sname,topic,cmmt;
-        PieView total,corr,in,attmpt;
+        PieView total,corr,in,attmpt,per;
 
         public ItemViewHolder(View itemView) {
             super(itemView);

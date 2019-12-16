@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.example.pearlinfotech.List_aboutus;
+import com.example.pearlinfotech.About.List_aboutus;
 import com.example.pearlinfotech.Login.Login;
 import com.example.pearlinfotech.R;
 

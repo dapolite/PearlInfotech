@@ -25,10 +25,10 @@ public class Faculty {
 
 public Faculty(){}
 
-    public Faculty(String tname, String tid , String sub, String tpass,String temail,String tdate,String tphno) {
+    public Faculty(String tname, String tid , String classes, String tpass,String temail,String tdate,String tphno) {
         this.tname = tname;
         this.tid = tid;
-        this.sub = sub;
+        this.classes = classes;
         this.tpass = tpass;
         this.temail=temail;
         this.tdate=tdate;

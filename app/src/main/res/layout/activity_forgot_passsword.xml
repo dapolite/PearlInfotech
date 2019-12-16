@@ -103,6 +103,7 @@
                 android:layout_margin="30dp"
                 android:background="@drawable/btnbg"
                 android:text="Reset Password"
+                android:onClick="changepassword"
                 android:textColor="#fff" />
 
 

@@ -49,14 +49,12 @@ public class student_fees extends AppCompatActivity {
         mDB=mDatabase.child(stuname);
         mRvData = findViewById(R.id.feercv);
         mRvData.setLayoutManager(new LinearLayoutManager(this));
-        Query query=FirebaseDatabase.getInstance().getReference("Fees/"+stuname).orderByChild("sname").equalTo(stuname);
+        Query query=FirebaseDatabase.getInstance().getReference("Fees").orderByChild("sname").equalTo(stuname);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUserList.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    String key=dataSnapshot1.getKey();
-                    getkey.add(key);
                     Fee fee = dataSnapshot1.getValue(Fee.class);
                     if (fee.sname.equals(stuname)) {
                         mUserList.add(fee);

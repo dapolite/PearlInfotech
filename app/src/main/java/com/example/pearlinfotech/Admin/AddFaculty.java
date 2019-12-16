@@ -61,7 +61,6 @@ public class AddFaculty extends AppCompatActivity {
         //subject = findViewById(R.id.editText4);
         classes = findViewById(R.id.spinner3);
         tpassword = findViewById(R.id.editText5);
-        mToolbar = findViewById(R.id.ftoolbar);
         date  = new DatePickerDialog.OnDateSetListener(){    @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {

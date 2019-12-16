@@ -143,6 +143,7 @@
                     android:background="@drawable/btnsstroke"
                     android:ems="10"
                     android:gravity="center"
+                    android:focusable="false"
                     android:hint="Join Date"
                     android:inputType="none" />
 

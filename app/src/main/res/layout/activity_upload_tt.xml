@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TimeTable.UploadTT">
     <include
-        android:id="@+id/TTfacToolbar"
+        android:id="@+id/timefacToolbar"
         layout="@layout/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TTfacToolbar"
+        app:layout_constraintTop_toBottomOf="@id/timefacToolbar"
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText

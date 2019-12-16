@@ -28,6 +28,7 @@ public class          AboutUs_entrance extends AppCompatActivity
 
         toolbar2=findViewById(R.id.ftoolbar);
         toolbar2.setTitle("Entrance Exams");
+        toolbar2.setTitleTextColor(getResources().getColor(R.color.colorAccent));
 
         recyclerViewAdapter1 = new RecyclerViewAdapter(arr2,arr3);
         recyclerView2.setAdapter(recyclerViewAdapter1);

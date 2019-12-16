@@ -9,7 +9,6 @@
     android:padding="10dp">
 
     <TableLayout
-        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -66,10 +65,9 @@
     </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:layout_weight="1"
-            android:padding="0dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
 
             <TextView
                 android:id="@+id/textView6"
@@ -85,10 +83,10 @@
             <az.plainpie.PieView
                 android:id="@+id/pieViewTotal"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:layout_gravity="center"
                 android:padding="15dp"
-                plainpie:inner_pie_padding="30"
+                plainpie:inner_pie_padding="15"
                 plainpie:inner_text_visibility="true"
                 plainpie:percentage="75"
                 plainpie:percentage_size="10" />
@@ -96,6 +94,7 @@
 
 
         <TableRow android:layout_height="match_parent"
+            android:padding="10dp"
             android:layout_width="match_parent">
 
         <TextView
@@ -108,19 +107,20 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <az.plainpie.PieView
-            android:id="@+id/pieViewCorrect"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            plainpie:inner_pie_padding="30"
-            plainpie:percentage="75"
-            plainpie:percentage_size="10"
-            plainpie:inner_text_visibility="true"/>
+            <az.plainpie.PieView
+                android:id="@+id/pieViewCorrect"
+                android:layout_width="50dp"
+                android:layout_height="54dp"
+                plainpie:inner_pie_padding="15"
+                plainpie:inner_text_visibility="true"
+                plainpie:percentage="75"
+                plainpie:percentage_size="10" />
         </TableRow>
 
 
 
         <TableRow android:layout_width="match_parent"
+            android:padding="10dp"
             android:layout_height="match_parent">
 
         <TextView
@@ -136,39 +136,40 @@
             <az.plainpie.PieView
                 android:id="@+id/pieViewIncoorect"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
-                plainpie:inner_pie_padding="30"
+                android:layout_height="55dp"
+                plainpie:inner_pie_padding="15"
                 plainpie:percentage="75"
                 plainpie:percentage_size="10"
                 plainpie:inner_text_visibility="true"/>
 
         </TableRow>
 
-    <TableRow android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/tv6"
+        <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="Attempted"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:padding="10dp"
+            android:layout_height="wrap_content">
 
-        <az.plainpie.PieView
-            android:id="@+id/pieViewAttempt"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            plainpie:inner_pie_padding="30"
-            plainpie:percentage="75"
-            plainpie:percentage_size="10"
-            plainpie:inner_text_visibility="true"/>
+            <TextView
+                android:id="@+id/tv6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:text="Attempted"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <az.plainpie.PieView
+                android:id="@+id/pieViewAttempt"
+                android:layout_width="50dp"
+                android:layout_height="55dp"
+                plainpie:inner_pie_padding="15"
+                plainpie:inner_text_visibility="true"
+                plainpie:percentage="75"
+                plainpie:percentage_size="10" />
 
 
-
-    </TableRow>
+        </TableRow>
 </TableLayout>
     <TextView
         android:id="@+id/cmmt"

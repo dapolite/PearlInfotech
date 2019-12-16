@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
     ValidateTor validateTor = new ValidateTor();
 
     private static long back_pressed;
+    TextView fg;
     EditText username, password;
     String item;
     String userid, pass;
@@ -45,7 +47,7 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        fg=findViewById(R.id.fp);
         username = findViewById(R.id.uname);
         password = findViewById(R.id.pass);
 
@@ -60,6 +62,14 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
+
+        fg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Login.this,ForgotPasssword.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -81,7 +91,10 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
         pass = password.getText().toString();
 
         if (validateTor.isEmpty(pass)) {
-
+            password.setError("field Empty");
+        }
+        if (validateTor.isEmpty(userid)) {
+            username.setError("field Empty");
         }
         mDialog = new ProgressDialog(this);
         mDialog.setMessage("Please Wait..." + userid);

@@ -20,7 +20,7 @@ import az.plainpie.PieView;
 
 public class AttendanceStudent extends AppCompatActivity {
     private DatabaseReference mDatabase;
-    String sname;
+    String sid;
     String num,num2;
     ArrayList<String> data=new ArrayList<>();
     PieView abs,prs,tota;
@@ -41,11 +41,9 @@ public class AttendanceStudent extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         String s="Shivangi";
         Bundle bundle1 = getIntent().getExtras();
-        sname = bundle1.getString("sname");
-        mDatabase = FirebaseDatabase.getInstance().getReference("StudentAttendance"+"/"+sname);
+        sid = bundle1.getString("sname");
+        mDatabase = FirebaseDatabase.getInstance().getReference("StudentAttendance"+"/"+sid);
 
-
-        Log.d("TAG",sname);
 
        // Log.d("TAG",String.valueOf(count));
          mDatabase.addValueEventListener(new ValueEventListener() {

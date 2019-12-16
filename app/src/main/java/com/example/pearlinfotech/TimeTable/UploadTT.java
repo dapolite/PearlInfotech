@@ -17,11 +17,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.pearlinfotech.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -39,6 +42,7 @@ public class UploadTT extends AppCompatActivity {
     private ImageView mImageView;
     private ProgressBar mProgressBar;
     private Uri mImageUri;
+    Toolbar mToolbar;
     ValidateTor validateTor=new ValidateTor();
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
@@ -49,6 +53,8 @@ public class UploadTT extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_tt);
+        mStorageRef= FirebaseStorage.getInstance().getReference("Uploads");
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("Uploads");
         mButtonChooseImage = findViewById(R.id.choose);
         mEditTextFileName = findViewById(R.id.edit_text_file_name);
         mButtonUpload = findViewById(R.id.upload);
@@ -153,36 +159,3 @@ public class UploadTT extends AppCompatActivity {
     }
 }
 
-class Upload {
-    private String mName;
-    private String mImageUrl;
-
-    public Upload() {
-        //empty constructor needed
-    }
-
-    public Upload(String name, String imageUrl) {
-        if (name.trim().equals("")) {
-            name = "No Name";
-        }
-
-        mName = name;
-        mImageUrl = imageUrl;
-    }
-
-    public String getName() {
-        return mName;
-    }
-
-    public void setName(String name) {
-        mName = name;
-    }
-
-    public String getImageUrl() {
-        return mImageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        mImageUrl = imageUrl;
-    }
-}

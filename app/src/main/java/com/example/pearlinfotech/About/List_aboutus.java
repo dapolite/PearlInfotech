@@ -1,4 +1,4 @@
-package com.example.pearlinfotech;
+package com.example.pearlinfotech.About;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.pearlinfotech.About.AboutUs;
-import com.example.pearlinfotech.About.AboutUs_Coaching;
-import com.example.pearlinfotech.About.AboutUs_entrance;
+import com.example.pearlinfotech.R;
 
 public class List_aboutus extends AppCompatActivity {
     Button but1,but2,but3;

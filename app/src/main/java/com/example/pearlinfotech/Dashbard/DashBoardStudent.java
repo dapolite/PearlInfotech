@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.pearlinfotech.Attendance.AttendanceStudent;
+import com.example.pearlinfotech.ExamDetail.ExamStudent;
 import com.example.pearlinfotech.Fees.student_fees;
 import com.example.pearlinfotech.HomeScreen.MainActivity;
 import com.example.pearlinfotech.Performances.Performance_student;
@@ -44,8 +45,7 @@ public class DashBoardStudent extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Bundle bundle = getIntent().getExtras();
         message = bundle.getString("message");
-        //mActionBarToolbar.setTitle(message+"'s Dashboard"+"("+date+")");
-//      TextView txtView = (TextView) findViewById(R.id.textView1);
+        mActionBarToolbar.setTitle(message+"'s Dashboard"+"("+date+")");
         db=FirebaseDatabase.getInstance();
         ref=db.getReference("Student").child(message);
 //        txtView.setText("Welcome :"+message);
@@ -66,7 +66,7 @@ public class DashBoardStudent extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i=new Intent(DashBoardStudent.this, AttendanceStudent.class);
                 Bundle basket= new Bundle();
-                basket.putString("sname",sname);
+                basket.putString("sname",message);
                 i.putExtras(basket);
                 startActivity(i);
             }
@@ -89,6 +89,17 @@ public class DashBoardStudent extends AppCompatActivity {
             public void onClick(View view)
             {
                 Intent i=new Intent(DashBoardStudent.this, Performance_student.class);
+                Bundle basket= new Bundle();
+                basket.putString("sname",message);
+                i.putExtras(basket);
+                startActivity(i);
+            }
+        });
+        cv4=findViewById(R.id.examsdashscard);
+        cv4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DashBoardStudent.this, ExamStudent.class);
                 Bundle basket= new Bundle();
                 basket.putString("sname",sname);
                 i.putExtras(basket);

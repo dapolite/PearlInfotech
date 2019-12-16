@@ -25,10 +25,12 @@
         <meta-data
             android:name="design_height_in_dp"
             android:value="640" />
+        <activity android:name=".ExamDetail.ExamStudent"/>
+        <activity android:name=".ExamDetail.ExamFaculty"/>
         <activity android:name=".TimeTable.GetTT"/>
         <activity android:name=".Schedule.Schedule" />
         <activity android:name=".About.AboutUs_Coaching"/>
-        <activity android:name=".List_aboutus" />
+        <activity android:name=".About.List_aboutus" />
         <activity android:name=".About.AboutUs" />
         <activity android:name=".About.AboutUs_entrance" />
         <activity android:name=".TimeTable.UploadTT" />

@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fees.student_fees">
+    tools:context=".ExamDetail.ExamStudent">
 
     <include
-        android:id="@+id/studentToolbar"
+        android:id="@+id/examstudentToolbar"
         layout="@layout/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/studentToolbar">
+        app:layout_constraintTop_toBottomOf="@id/examstudentToolbar">
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -41,56 +41,40 @@
                 android:background="@color/colorPrimary"
                 android:padding="15dp">
 
-                <!--            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Sr No" />-->
-
                 <TextView
+                    android:id="@+id/tvename"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Subject"
+                    android:text="Exam Name"
                     android:textColor="@color/colorAccent" />
 
                 <TextView
+                    android:id="@+id/tvedate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Total"
+                    android:text="Exam Date"
                     android:textColor="@color/colorAccent" />
 
                 <TextView
+                    android:id="@+id/tvetime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Paid"
-                    android:textColor="@color/colorAccent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Status"
-                    android:textColor="@color/colorAccent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Type"
+                    android:text="Exam Time"
                     android:textColor="@color/colorAccent" />
             </TableRow>
         </TableLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/feercv"
+            android:id="@+id/examrcv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

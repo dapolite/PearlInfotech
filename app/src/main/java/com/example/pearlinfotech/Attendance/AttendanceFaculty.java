@@ -59,12 +59,13 @@ public class AttendanceFaculty extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.ftoolbar);
         setSupportActionBar(toolbar);
         adate=findViewById(R.id.attdate);
+        adate.setEnabled(false);
         toolbar.setTitle("Take Attendance");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         ref = FirebaseDatabase.getInstance().getReference();
         dbStudent = ref.child("Student");
-        dbAttendance = ref.child("attendance");
+        dbAttendance = ref.child("Attendance");
         selectedItems = new ArrayList<String>();
         dates=adate.getText().toString();
         TextView classname = findViewById(R.id.textView);
@@ -99,8 +100,8 @@ public class AttendanceFaculty extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                    Userlist.add(dsp.child("sname").getValue().toString());
-                    Usernames.add(dsp.child("sname").getValue().toString());
+                    Userlist.add(dsp.child("sid").getValue().toString());
+                    Usernames.add(dsp.child("sid").getValue().toString());
 
 
                 }

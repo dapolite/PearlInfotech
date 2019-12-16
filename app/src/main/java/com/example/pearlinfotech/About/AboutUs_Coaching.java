@@ -30,7 +30,8 @@ public class AboutUs_Coaching extends AppCompatActivity
 
         toolbar3=findViewById(R.id.ftoolbar);
         toolbar3.setTitle("Coaching ");
-
+ //       toolbar3.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
         recyclerViewAdapter2 = new RecyclerViewAdapter(arr4,arr5);
         recyclerView3.setAdapter(recyclerViewAdapter2);
         recyclerView3.setHasFixedSize(true);

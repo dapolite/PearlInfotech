@@ -41,7 +41,7 @@ public class AttendanceExtra extends AppCompatActivity {
         setContentView(R.layout.activity_attendance_extra);
 
         listView =findViewById(R.id.list);
-        date = findViewById(R.id.date);
+        //date = findViewById(R.id.date);
         mToolbar=findViewById(R.id.ftoolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Previous Record");
@@ -78,8 +78,7 @@ public class AttendanceExtra extends AppCompatActivity {
 
         Studentlist.clear();
         required_date = date.getText().toString();
-        dbAttendance = ref.child("attendance");
-        Studentlist.add("      SID       "+"Status" + "   period");
+        dbAttendance = ref.child("Attendance");
         for (Object sid : userlist) {
             dbAttendance.child(required_date).child(sid.toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override

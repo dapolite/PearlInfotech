@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.example.pearlinfotech.Attendance.AttendanceFaculty;
+import com.example.pearlinfotech.ExamDetail.ExamFaculty;
 import com.example.pearlinfotech.HomeScreen.MainActivity;
 import com.example.pearlinfotech.Message.MessageSend;
 import com.example.pearlinfotech.Performances.Performance_faculty;
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class DashboardFaculty extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 Toolbar mActionBarToolbar;
-CardView atten,timetable,perf,notif;
+CardView atten,timetable,perf,notif,exam;
 String message;
 
     String item;
@@ -64,6 +65,18 @@ String message;
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(dataAdapter);
+        exam=findViewById(R.id.examsdashfcard);
+        exam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                basket.putString("class_selected", item);
+                basket.putString("tid", message);
+                Intent intent = new Intent(DashboardFaculty.this, ExamFaculty.class);
+                intent.putExtras(basket);
+                startActivity(intent);
+            }
+        });
 
         atten = findViewById(R.id.attendancefcard);
         atten.setOnClickListener(new View.OnClickListener() {

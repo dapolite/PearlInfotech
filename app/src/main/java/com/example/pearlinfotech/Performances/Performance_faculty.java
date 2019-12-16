@@ -23,10 +23,10 @@ import java.util.ArrayList;
 
 public class Performance_faculty extends AppCompatActivity {
 
-    EditText spname, total, correct, incorrect;
+    EditText spname, total, correct, incorrect,sid;
     EditText tstname,tpic,attmpt,comm;
     ValidateTor validateTor = new ValidateTor();
-    String class_selected;
+    String class_selected,suname;
     Button btn;
     String SPname,Tname,attpt,cmmt;
     String topic;
@@ -47,6 +47,7 @@ public class Performance_faculty extends AppCompatActivity {
         Log.d("TAG",class_selected );
         databasePerformance = FirebaseDatabase.getInstance().getReference("Performance");
         dbStudent = FirebaseDatabase.getInstance().getReference("Student");
+        sid=findViewById(R.id.editTextstid);
         spname = findViewById(R.id.editText1);
         tstname = findViewById(R.id.tstname);
         total = findViewById(R.id.editText3);
@@ -54,11 +55,6 @@ public class Performance_faculty extends AppCompatActivity {
         incorrect = findViewById(R.id.editText5);
         comm=findViewById(R.id.comment);
         attmpt=findViewById(R.id.attempted);
-        mToolbar = findViewById(R.id.ftoolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Add Performance");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     public void add_performance(View v)
@@ -66,6 +62,7 @@ public class Performance_faculty extends AppCompatActivity {
         dbStudent.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                suname=sid.getText().toString();
                 SPname = spname.getText().toString();
                 Tname=tstname.getText().toString();
                 cmmt=comm.getText().toString();
@@ -73,6 +70,18 @@ public class Performance_faculty extends AppCompatActivity {
                 attpt=attmpt.getText().toString();
                 String corr1=correct.getText().toString();
                 String incorr1=incorrect.getText().toString();
+                Log.d("WORK",suname);
+                Log.d("WORK",SPname);
+                Log.d("WORK",Tname);
+                Log.d("WORK",cmmt);
+                Log.d("WORK",tot1);
+                Log.d("WORK",corr1);
+                Log.d("WORK",incorr1);
+                Log.d("WORK",attpt);
+                if (validateTor.isEmpty(suname)) {
+                    failFlag=true;
+                    sid.setError("Field is empty!");
+                }
                 if (validateTor.isEmpty(cmmt)) {
                     failFlag=true;
                     spname.setError("Field is empty!");
@@ -105,22 +114,22 @@ public class Performance_faculty extends AppCompatActivity {
                     failFlag=true;
                     incorrect.setError("Field is empty!");
                 }
-                if(failFlag=false) {
+                if(!failFlag) {
+                    Log.d("WORK","FAIL");
                     Attempted= Integer.parseInt(attpt);
                     Total = Integer.parseInt(tot1);
                     Correct = Integer.parseInt(corr1);
                     Incorrect = Integer.parseInt(incorr1);
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                        String name = dataSnapshot1.child("sname").getValue().toString();
-                        snames.add(dataSnapshot1.child("sname").getValue().toString());
+                        String name = dataSnapshot1.child("sid").getValue().toString();
+                        snames.add(dataSnapshot1.child("sid").getValue().toString());
                         Log.d("TAG", name);
                     }
-                    if (snames.contains(SPname)) {
+                    if (snames.contains(suname)) {
 
-                        String id = databasePerformance.push().getKey();
-                        Performance performance = new Performance(SPname,class_selected, Total, Correct, Incorrect,Attempted,Tname,cmmt);
-                        databasePerformance.child(SPname).push().setValue(performance);
-                        Toast.makeText(getApplicationContext(), "Performance Updated Successfully", Toast.LENGTH_LONG).show();
+                        Performance performance = new Performance(SPname,class_selected, Correct, Total, Incorrect,Attempted,Tname,cmmt);
+                        databasePerformance.child(suname).push().setValue(performance);
+                        Toast.makeText(getApplicationContext(), "Performance Added Successfully", Toast.LENGTH_LONG).show();
 
                     } else {
                         spname.setError("Student does not exist");
