@@ -170,7 +170,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
 
-                            <Button
+                            <com.animation.animpresseffect.PressEffectButton
                                 android:id="@+id/button9"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -195,7 +195,7 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_bias="0.863" />
 
-                            <Button
+                            <com.animation.animpresseffect.PressEffectButton
                                 android:id="@+id/button10"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
