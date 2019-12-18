@@ -128,7 +128,7 @@ android:layout_margin="10dp"
                         android:gravity="center"
                         android:hint="Attempted"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:textColor="#2B2727"
                         tools:layout_editor_absoluteX="8dp" />
 
@@ -144,7 +144,7 @@ android:layout_margin="10dp"
                         android:gravity="center"
                         android:hint="Total"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:textColor="#2B2727"
                         tools:layout_editor_absoluteX="8dp" />
 
@@ -160,7 +160,7 @@ android:layout_margin="10dp"
                         android:gravity="center"
                         android:hint="Correct"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:textColor="#2B2727"
                         tools:layout_editor_absoluteX="8dp" />
 
@@ -176,7 +176,7 @@ android:layout_margin="10dp"
                         android:gravity="center"
                         android:hint="Incorrect"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:textColor="#2B2727"
                         tools:layout_editor_absoluteX="8dp" />
 

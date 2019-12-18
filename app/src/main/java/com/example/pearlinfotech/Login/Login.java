@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,16 +131,16 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
                         verify(dbpassword);
                     }
                 } catch (Exception e) {
-                    Toast.makeText(Login.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    FBToast.errorToast(Login.this, "Something went wrong", Toast.LENGTH_SHORT);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG).show();
+                FBToast.errorToast(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG);
             }
         });
-        Toast.makeText(getApplicationContext(), dbpassword, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), dbpassword, Toast.LENGTH_LONG).show();
     }
 
 
@@ -178,7 +179,7 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
             ActivityCompat.finishAffinity(this);
             System.exit(0);
         } else {
-            Toast.makeText(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT).show();
+            FBToast.infoToast(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT);
             back_pressed = System.currentTimeMillis();
         }
     }
