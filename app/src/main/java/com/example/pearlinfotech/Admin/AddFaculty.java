@@ -47,11 +47,19 @@ public class AddFaculty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_faculty);
-        Toolbar toolbar = findViewById(R.id.ftoolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("Add Faculty");
+
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("Add Faculty");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         databaseTeacher = FirebaseDatabase.getInstance().getReference("Faculty");
         Temail=findViewById(R.id.emailaf);
         Tphno=findViewById(R.id.phnoaf);

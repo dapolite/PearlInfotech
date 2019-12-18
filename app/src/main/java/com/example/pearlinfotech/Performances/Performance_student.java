@@ -48,11 +48,18 @@ public class Performance_student extends AppCompatActivity {
         stuname = bundle1.getString("sname");
         Log.d("TAG",stuname);
         Log.d("TAG",stuname);
-        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.ftoolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("View Performance");
+        androidx.appcompat.widget.Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("Performance Details");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mFirebaseInstance = FirebaseDatabase.getInstance();
        // mDatabase = mFirebaseInstance.getReference("Performance");
         //mDB=mDatabase.child(stuname);

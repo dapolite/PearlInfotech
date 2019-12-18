@@ -46,11 +46,18 @@ public class StudentList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
-        Toolbar toolbar = findViewById(R.id.ftoolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("View Students");
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("Student List");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         button=findViewById(R.id.addstu);
         mRvData = findViewById(R.id.stulistview);
         ((SimpleItemAnimator) mRvData.getItemAnimator()).setSupportsChangeAnimations(false);
@@ -70,7 +77,7 @@ public class StudentList extends AppCompatActivity {
                 allDataAdapter = new DisplayStuData(StudentList.this, mUserList);
                 mRvData.setAdapter(allDataAdapter);
                 Log.d("TAG","Adapter Set");
-                //allDataAdapter.notifyDataSetChanged();
+                allDataAdapter.notifyDataSetChanged();
             }
 
             @Override

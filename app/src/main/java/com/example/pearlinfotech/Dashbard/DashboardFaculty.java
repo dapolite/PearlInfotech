@@ -2,6 +2,7 @@ package com.example.pearlinfotech.Dashbard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -22,17 +24,23 @@ import com.example.pearlinfotech.Message.MessageSend;
 import com.example.pearlinfotech.Performances.Performance_faculty;
 import com.example.pearlinfotech.R;
 import com.example.pearlinfotech.TimeTable.UploadTT;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class DashboardFaculty extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
+public class DashboardFaculty extends AppCompatActivity {
 Toolbar mActionBarToolbar;
 CardView atten,timetable,perf,notif,exam;
-String message;
-
+String message,class_selected;
+    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference dbTeacher;
     String item;
 
     @Override
@@ -41,37 +49,44 @@ String message;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_faculty);
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        mActionBarToolbar = findViewById(R.id.ftoolbar);
-        Spinner spinner2 = findViewById(R.id.spinner2);
-
-
         Bundle bundle1 = getIntent().getExtras();
         message = bundle1.getString("message");
-        setSupportActionBar(mActionBarToolbar);
-        getSupportActionBar().setTitle(message + "'s Dashboard  - " + date);
+        dbTeacher=ref.child("Faculty");
+        dbTeacher.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                class_selected=dataSnapshot.child(message).child("classes").getValue().toString();
+                Log.d("TAG",class_selected);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle(message + "'s Dashboard  - " + date);
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         TextView txtView = findViewById(R.id.tvdashf);
         txtView.setText("Welcome : " + message);
-        spinner2.setOnItemSelectedListener(this);
-        List<String> categories = new ArrayList<String>();
-        categories.add("Android");
-        categories.add("Python");
-        categories.add("C++");
-        categories.add("Java");
-        categories.add("HTML");
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(dataAdapter);
         exam=findViewById(R.id.examsdashfcard);
         exam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                basket.putString("class_selected", item);
+                //basket.putString("class_selected", item);
                 basket.putString("tid", message);
+                basket.putString("class_selected", class_selected);
                 Intent intent = new Intent(DashboardFaculty.this, ExamFaculty.class);
                 intent.putExtras(basket);
                 startActivity(intent);
@@ -83,7 +98,7 @@ String message;
             @Override
             public void onClick(View view) {
 
-                basket.putString("class_selected", item);
+                basket.putString("class_selected", class_selected);
                 basket.putString("tid", message);
                 Intent intent = new Intent(DashboardFaculty.this, AttendanceFaculty.class);
                 intent.putExtras(basket);
@@ -94,7 +109,7 @@ String message;
         perf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                basket.putString("class", item);
+                basket.putString("class_selected", class_selected);
                 basket.putString("tid", message);
 
                 Intent intent = new Intent(DashboardFaculty.this, Performance_faculty.class);
@@ -107,7 +122,7 @@ String message;
         notif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                basket.putString("class", item);
+                basket.putString("class_selected", class_selected);
                 basket.putString("tid", message);
 
                 Intent intent = new Intent(DashboardFaculty.this, MessageSend.class);
@@ -120,7 +135,7 @@ String message;
         timetable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                basket.putString("class", item);
+                //basket.putString("class", item);
                 basket.putString("tid", message);
 
                 Intent intent = new Intent(DashboardFaculty.this, UploadTT.class);
@@ -129,17 +144,21 @@ String message;
             }
         });
 
+        notif=findViewById(R.id.notifdashfcard);
+        notif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                basket.putString("class_selected", class_selected);
+                basket.putString("tid", message);
+
+                Intent intent = new Intent(DashboardFaculty.this, MessageSend.class);
+                intent.putExtras(basket);
+                startActivity(intent);
+            }
+        });
+
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        item = parent.getItemAtPosition(position).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);

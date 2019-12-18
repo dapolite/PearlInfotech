@@ -2,6 +2,7 @@ package com.example.pearlinfotech.Attendance;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -45,6 +47,7 @@ public class AttendanceFaculty extends AppCompatActivity {
     ArrayList Usernames = new ArrayList<>();
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference dbAttendance;
+    DatabaseReference dbTeacher;
     DatabaseReference stuAttendance;
     DatabaseReference dbStudent;
     String dates;
@@ -56,23 +59,41 @@ public class AttendanceFaculty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_faculty);
-        Toolbar toolbar = findViewById(R.id.ftoolbar);
-        setSupportActionBar(toolbar);
         adate=findViewById(R.id.attdate);
-        adate.setEnabled(false);
-        toolbar.setTitle("Take Attendance");
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("Mark Attendance");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         ref = FirebaseDatabase.getInstance().getReference();
         dbStudent = ref.child("Student");
+        Bundle bundle1 = getIntent().getExtras();
+        teacher_id = bundle1.getString("tid");
         dbAttendance = ref.child("Attendance");
+        dbTeacher=ref.child("Faculty");
+        dbTeacher.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                class_selected=dataSnapshot.child(teacher_id).child("classes").getValue().toString();
+                Log.d("TAG",class_selected);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         selectedItems = new ArrayList<String>();
         dates=adate.getText().toString();
         TextView classname = findViewById(R.id.textView);
-        classname.setText("CSE");
-        Bundle bundle1 = getIntent().getExtras();
-        class_selected = bundle1.getString("class_selected");
-        teacher_id = bundle1.getString("tid");
+
         date1  = new DatePickerDialog.OnDateSetListener(){    @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {

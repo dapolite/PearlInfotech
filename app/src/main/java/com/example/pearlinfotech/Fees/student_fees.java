@@ -39,11 +39,18 @@ public class student_fees extends AppCompatActivity {
         setContentView(R.layout.activity_student_fees);
         Bundle bundle1 = getIntent().getExtras();
         stuname = bundle1.getString("sname");
-        Toolbar toolbar = findViewById(R.id.ftoolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("Take Attendance");
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("Fee Details");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mFirebaseInstance = FirebaseDatabase.getInstance();
         mDatabase = mFirebaseInstance.getReference("Fees");
         mDB=mDatabase.child(stuname);

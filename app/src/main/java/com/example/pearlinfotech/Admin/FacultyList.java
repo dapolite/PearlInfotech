@@ -44,11 +44,18 @@ public class FacultyList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_list);
-        Toolbar toolbar = findViewById(R.id.ftoolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("View Faculties");
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("Faculty List");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         button=findViewById(R.id.addfac);
         mRef = FirebaseDatabase.getInstance().getReference("Faculty");
         mRvData = findViewById(R.id.faclist);

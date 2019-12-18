@@ -1,6 +1,7 @@
 package com.example.pearlinfotech.About;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pearlinfotech.R;
-public class          AboutUs_entrance extends AppCompatActivity
+public class  AboutUs_entrance extends AppCompatActivity
 {
     Toolbar toolbar2;
     private RecyclerView recyclerView2;
@@ -29,6 +30,15 @@ public class          AboutUs_entrance extends AppCompatActivity
         toolbar2=findViewById(R.id.ftoolbar);
         toolbar2.setTitle("Entrance Exams");
         toolbar2.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar2);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar2.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         recyclerViewAdapter1 = new RecyclerViewAdapter(arr2,arr3);
         recyclerView2.setAdapter(recyclerViewAdapter1);

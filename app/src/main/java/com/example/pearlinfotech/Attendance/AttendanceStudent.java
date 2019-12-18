@@ -2,6 +2,7 @@ package com.example.pearlinfotech.Attendance;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,11 +35,18 @@ public class AttendanceStudent extends AppCompatActivity {
         prs=findViewById(R.id.pres);
         abs=findViewById(R.id.abs);
         tota=findViewById(R.id.tot);
-        Toolbar toolbar = findViewById(R.id.ftoolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("Attendance");
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("View Attendance");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         String s="Shivangi";
         Bundle bundle1 = getIntent().getExtras();
         sid = bundle1.getString("sname");

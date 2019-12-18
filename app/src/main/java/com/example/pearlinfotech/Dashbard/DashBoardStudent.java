@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.example.pearlinfotech.Attendance.AttendanceStudent;
@@ -17,6 +18,7 @@ import com.example.pearlinfotech.Fees.student_fees;
 import com.example.pearlinfotech.HomeScreen.MainActivity;
 import com.example.pearlinfotech.Performances.Performance_student;
 import com.example.pearlinfotech.R;
+import com.example.pearlinfotech.TimeTable.GetTT;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,15 +39,21 @@ public class DashBoardStudent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board_student);
-        mActionBarToolbar = findViewById(R.id.ftoolbar);
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        setSupportActionBar(mActionBarToolbar);
-        getSupportActionBar().setTitle("Dashboard");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
         Bundle bundle = getIntent().getExtras();
         message = bundle.getString("message");
-        mActionBarToolbar.setTitle(message+"'s Dashboard"+"("+date+")");
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle(message + "'s Dashboard  - " + date);
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         db=FirebaseDatabase.getInstance();
         ref=db.getReference("Student").child(message);
 //        txtView.setText("Welcome :"+message);
@@ -100,6 +108,17 @@ public class DashBoardStudent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(DashBoardStudent.this, ExamStudent.class);
+                Bundle basket= new Bundle();
+                basket.putString("sname",sname);
+                i.putExtras(basket);
+                startActivity(i);
+            }
+        });
+        cv5=findViewById(R.id.ttdashscard);
+        cv5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DashBoardStudent.this, GetTT.class);
                 Bundle basket= new Bundle();
                 basket.putString("sname",sname);
                 i.putExtras(basket);

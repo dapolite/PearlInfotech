@@ -1,6 +1,7 @@
 package com.example.pearlinfotech.About;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,8 +31,17 @@ public class AboutUs_Coaching extends AppCompatActivity
 
         toolbar3=findViewById(R.id.ftoolbar);
         toolbar3.setTitle("Coaching ");
- //       toolbar3.setTitleTextColor(getResources().getColor(R.color.colorAccent));
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        setSupportActionBar(toolbar3);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar3.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        toolbar3.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         recyclerViewAdapter2 = new RecyclerViewAdapter(arr4,arr5);
         recyclerView3.setAdapter(recyclerViewAdapter2);
         recyclerView3.setHasFixedSize(true);

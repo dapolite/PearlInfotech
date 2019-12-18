@@ -45,6 +45,18 @@ public class Performance_faculty extends AppCompatActivity {
         Bundle bundle1 = getIntent().getExtras();
         class_selected   = bundle1.getString("class");
         Log.d("TAG",class_selected );
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("Performance Details");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         databasePerformance = FirebaseDatabase.getInstance().getReference("Performance");
         dbStudent = FirebaseDatabase.getInstance().getReference("Student");
         sid=findViewById(R.id.editTextstid);

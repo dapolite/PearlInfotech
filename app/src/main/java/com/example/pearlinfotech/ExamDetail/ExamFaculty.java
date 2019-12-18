@@ -50,7 +50,18 @@ public class ExamFaculty extends AppCompatActivity
         e2=findViewById(R.id.dateexam);
         e3=findViewById(R.id.timeexam);
 
-
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("Exam Details");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         databaseExam = FirebaseDatabase.getInstance().getReference("Exam");
         dbStudent = FirebaseDatabase.getInstance().getReference("Student");
         exdate  = new DatePickerDialog.OnDateSetListener(){    @Override
