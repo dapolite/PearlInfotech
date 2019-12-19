@@ -1,12 +1,15 @@
 package com.example.pearlinfotech.Admin;
 
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -35,22 +38,22 @@ public class AddStudent extends AppCompatActivity {
     Calendar myCalendar = Calendar.getInstance();
     EditText Sname, Sphno, Semail, Sdate;
     EditText Sid, spassword;
-    ArrayList<String> fsid=new ArrayList<>();
-    ArrayList<String> fspass=new ArrayList<>();
-    ArrayList<String> fsemail=new ArrayList<>();
-    ArrayList<String> fsphno=new ArrayList<>();
+    ArrayList<String> fsid = new ArrayList<>();
+    ArrayList<String> fspass = new ArrayList<>();
+    ArrayList<String> fsemail = new ArrayList<>();
+    ArrayList<String> fsphno = new ArrayList<>();
     String sname, sid, classname, spass, sphno, semail, sdate;
     Spinner classes;
     DatabaseReference databaseStudent;
     Toolbar mToolbar;
-    boolean  failFlag = false;
+    boolean failFlag = false;
     ValidateTor validateTor = new ValidateTor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
-        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        Toolbar toolbar1 = findViewById(R.id.ftoolbar);
         toolbar1.setTitle("Add Students");
         toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
         setSupportActionBar(toolbar1);
@@ -74,14 +77,16 @@ public class AddStudent extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Add/Remove Student");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        date = new DatePickerDialog.OnDateSetListener(){    @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel();
-        }};
+        date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+        };
         Sdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,18 +105,16 @@ public class AddStudent extends AppCompatActivity {
         sid = Sid.getText().toString();
         classname = classes.getSelectedItem().toString();
         spass = spassword.getText().toString();
-        Log.d("TAG",sdate);
-
-
+        Log.d("TAG", sdate);
 
 
         databaseStudent.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     fsid.add(ds.child("sid").toString());
                     fsemail.add(ds.child("semail").toString());
-                    fspass.add( ds.child("spass").toString());
+                    fspass.add(ds.child("spass").toString());
                     fsphno.add(ds.child("sphno").toString());
                 }
             }
@@ -121,20 +124,20 @@ public class AddStudent extends AppCompatActivity {
 
             }
         });
-        if(fsid.contains(sid)){
-            failFlag=true;
+        if (fsid.contains(sid)) {
+            failFlag = true;
             Sid.setError("Username Taken");
         }
-        if(fsemail.contains(semail)){
-            failFlag=true;
+        if (fsemail.contains(semail)) {
+            failFlag = true;
             Semail.setError("Email Aleady Exists");
         }
-        if(fspass.contains(spass)){
-            failFlag=true;
+        if (fspass.contains(spass)) {
+            failFlag = true;
             spassword.setError("Password Taken");
         }
-        if(fsphno.contains(sphno)){
-            failFlag=true;
+        if (fsphno.contains(sphno)) {
+            failFlag = true;
             Sid.setError("Phone Number Aready Exists");
         }
         if (validateTor.isEmpty(semail)) {
@@ -147,7 +150,7 @@ public class AddStudent extends AppCompatActivity {
             Semail.setError("Not Valid Email!");
 
         }
-        if(!android.util.Patterns.PHONE.matcher(sphno).matches()) {
+        if (!android.util.Patterns.PHONE.matcher(sphno).matches()) {
             failFlag = true;
             Sphno.setError("Invalid phoone number");
 
@@ -178,9 +181,9 @@ public class AddStudent extends AppCompatActivity {
         databaseStudent.orderByChild("sid").equalTo(sid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     Sid.setError("Username Taken");
-                    failFlag=true;
+                    failFlag = true;
                 }
             }
 
@@ -189,25 +192,43 @@ public class AddStudent extends AppCompatActivity {
 
             }
         });
-        if(failFlag == false){
+        if (failFlag == false) {
             Student student = new Student(sname, sid, classname, spass, semail, sphno, sdate);
             databaseStudent.child(sid).setValue(student);
             Toast.makeText(getApplicationContext(), "student added successfully", Toast.LENGTH_LONG).show();
-        }
-        else{
+        } else {
             Toast.makeText(this, "Cant Add User", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void removeStudent(View v) {
         if (!TextUtils.isEmpty(Sid.getText().toString())) {
-            sid = Sid.getText().toString();
-            databaseStudent.child(sid).setValue(null);
-            Toast.makeText(getApplicationContext(), "teacher removed successfully", Toast.LENGTH_LONG).show();
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+            View mview = getLayoutInflater().inflate(R.layout.dialog_spinner_addcourse, null);
+            mBuilder.setTitle("Add Course");
+            Spinner mspinner = mview.findViewById(R.id.spinner4);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddStudent.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.courselist));
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            mspinner.setAdapter(adapter);
+            mBuilder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+            mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
 
+                }
+            });
+            mBuilder.setView(mview);
+            AlertDialog dialog = mBuilder.create();
+            dialog.show();
         } else {
             Toast.makeText(getApplicationContext(), "id cannot be empty", Toast.LENGTH_LONG).show();
         }
+
     }
 
     @Override
