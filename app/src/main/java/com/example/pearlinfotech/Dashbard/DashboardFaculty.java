@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import com.example.pearlinfotech.Admin.ProfileFaculty;
 import com.example.pearlinfotech.Attendance.AttendanceFaculty;
 import com.example.pearlinfotech.ExamDetail.ExamFaculty;
 import com.example.pearlinfotech.HomeScreen.MainActivity;
@@ -37,7 +38,7 @@ import java.util.List;
 
 public class DashboardFaculty extends AppCompatActivity {
 Toolbar mActionBarToolbar;
-CardView atten,timetable,perf,notif,exam;
+CardView atten,timetable,perf,notif,exam,prof;
 String message,class_selected;
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference dbTeacher;
@@ -92,7 +93,19 @@ String message,class_selected;
                 startActivity(intent);
             }
         });
+        prof=findViewById(R.id.profdashfcard);
+        prof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                //basket.putString("class_selected", item);
+                basket.putString("tid", message);
+                basket.putString("class_selected", class_selected);
+                Intent intent = new Intent(DashboardFaculty.this, ProfileFaculty.class);
+                intent.putExtras(basket);
+                startActivity(intent);
+            }
+        });
         atten = findViewById(R.id.attendancefcard);
         atten.setOnClickListener(new View.OnClickListener() {
             @Override

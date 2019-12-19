@@ -23,7 +23,7 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="2"
             app:srcCompat="@drawable/areotri2" />
     </LinearLayout>
@@ -93,6 +93,7 @@
                 android:background="@drawable/btnsstroke"
                 android:ems="10"
                 android:gravity="center"
+                android:inputType="textPassword"
                 android:hint="Enter New Password"
                 android:padding="10dp" />
 

@@ -22,10 +22,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MessageSend extends AppCompatActivity {
 DatabaseReference dbMessage;
@@ -39,6 +42,7 @@ EditText msg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        java.util.Date currentTime = Calendar.getInstance().getTime();
         setContentView(R.layout.activity_message_send);
         msg=findViewById(R.id.messagesend);
         Bundle bundle1 = getIntent().getExtras();
@@ -47,7 +51,7 @@ EditText msg;
         mRvData = findViewById(R.id.messageRecyclerView);
         mRvData.setLayoutManager(new LinearLayoutManager(this));
         dbMessage=FirebaseDatabase.getInstance().getReference("Message");
-        dbMessage.addValueEventListener(new ValueEventListener() {
+        dbMessage.orderByChild("time").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUserList.clear();
@@ -73,7 +77,7 @@ EditText msg;
             public void onClick(View v) {
                 text=msg.getText().toString();
                 if(!validateTor.isEmpty(text)) {
-                    Message message = new Message(tid, text);
+                    Message message = new Message(tid, text,currentTime);
                     dbMessage.child(tid).push().setValue(message);
                 }
             }
