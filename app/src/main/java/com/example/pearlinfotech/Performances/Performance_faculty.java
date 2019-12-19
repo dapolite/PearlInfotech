@@ -142,6 +142,7 @@ public class Performance_faculty extends AppCompatActivity {
                         Performance performance = new Performance(SPname,class_selected, Correct, Total, Incorrect,Attempted,Tname,cmmt);
                         databasePerformance.child(suname).push().setValue(performance);
                         Toast.makeText(getApplicationContext(), "Performance Added Successfully", Toast.LENGTH_LONG).show();
+                        finish();
 
                     } else {
                         spname.setError("Student does not exist");

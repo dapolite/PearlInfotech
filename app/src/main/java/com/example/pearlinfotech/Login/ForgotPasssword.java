@@ -22,6 +22,7 @@ import com.raywenderlich.android.validatetor.ValidateTor;
 public class ForgotPasssword extends AppCompatActivity {
 EditText uid,pas;
 String un,up;
+boolean failFlag = false;
 ValidateTor validateTor=new ValidateTor();
 DatabaseReference dbfac,dbstud;
     @Override
@@ -39,45 +40,53 @@ DatabaseReference dbfac,dbstud;
     public void changepassword(View view) {
         un=uid.getText().toString();
         up=pas.getText().toString();
-        dbfac.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(un).exists()){
-                    dbfac.child(un).child("tpass").setValue(up);
-                    Toast.makeText(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    uid.setError("Invalid userid");
-                }
+        if(validateTor.isEmpty(un)){
+            failFlag=true;
+            uid.setError("Field Cannot be Empty");
+        }
+        if(validateTor.isEmpty(up)){
+            failFlag=true;
+            pas.setError("Field Cannot be Empty");
+        }
+        if(!failFlag) {
+            dbfac.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(un).exists()) {
+                        dbfac.child(un).child("tpass").setValue(up);
+                        Toast.makeText(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT).show();
+                    } else {
+                        uid.setError("Invalid userid");
+                    }
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        dbstud.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(un).exists()){
-                    Log.d("TAG",un);
-                    Log.d("TAG",up);
-                    dbstud.child(un).child("spass").setValue(up);
-                    Toast.makeText(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    uid.setError("Invalid userid");
                 }
 
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
 
-            }
-        });
+            dbstud.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(un).exists()) {
+                        Log.d("TAG", un);
+                        Log.d("TAG", up);
+                        dbstud.child(un).child("spass").setValue(up);
+                        Toast.makeText(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT).show();
+                    } else {
+                        uid.setError("Invalid userid");
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
 
     }
     }

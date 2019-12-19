@@ -88,7 +88,7 @@
                     </LinearLayout>
                 </com.animation.animpresseffect.PressEffectCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/notifdashscard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -132,9 +132,9 @@
                             android:textColor="#fff"
                             android:textSize="20sp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.animation.animpresseffect.PressEffectCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/attendancescard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -176,9 +176,9 @@
                             android:textColor="#fff"
                             android:textSize="20sp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.animation.animpresseffect.PressEffectCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/perfdashscard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -220,9 +220,9 @@
                             android:textColor="#fff"
                             android:textSize="15sp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.animation.animpresseffect.PressEffectCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/feesdashscard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -264,9 +264,9 @@
                             android:textColor="#fff"
                             android:textSize="20sp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.animation.animpresseffect.PressEffectCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/examsdashscard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -308,7 +308,7 @@
                             android:textColor="#fff"
                             android:textSize="20sp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.animation.animpresseffect.PressEffectCardView>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

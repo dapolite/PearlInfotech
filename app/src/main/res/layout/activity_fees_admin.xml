@@ -105,7 +105,7 @@
                     android:gravity="center"
                     android:hint="@string/total_fees_fee_admin"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:textColor="#2B2727"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -145,6 +145,7 @@
                     android:hint="@string/paid_fee_admin"
                     android:importantForAutofill="no"
                     android:textColor="#2B2727"
+                    android:inputType="number"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.701"
@@ -188,7 +189,7 @@
                     android:orientation="horizontal"
                     android:weightSum="3">
 
-                    <Button
+                    <com.animation.animpresseffect.PressEffectButton
                         android:id="@+id/button10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

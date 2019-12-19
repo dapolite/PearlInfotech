@@ -40,7 +40,7 @@
                 android:layout_margin="50dp"
                 android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
+                <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/studdashacard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -83,9 +83,9 @@
                             android:textColor="#fff"
                             android:textSize="20sp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.animation.animpresseffect.PressEffectCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/notifdashacard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -129,10 +129,10 @@
                             android:textColor="#fff"
                             android:textSize="20sp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.animation.animpresseffect.PressEffectCardView>
 
 
-                <androidx.cardview.widget.CardView
+                <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/facultyacard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -175,9 +175,9 @@
                             android:textColor="#fff"
                             android:textSize="20sp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.animation.animpresseffect.PressEffectCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/feesdashacard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -219,7 +219,7 @@
                             android:textColor="#fff"
                             android:textSize="20sp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </com.animation.animpresseffect.PressEffectCardView>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
