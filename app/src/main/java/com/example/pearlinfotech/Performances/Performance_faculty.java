@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 
@@ -141,17 +142,18 @@ public class Performance_faculty extends AppCompatActivity {
 
                         Performance performance = new Performance(SPname,class_selected, Correct, Total, Incorrect,Attempted,Tname,cmmt);
                         databasePerformance.child(suname).push().setValue(performance);
-                        Toast.makeText(getApplicationContext(), "Performance Added Successfully", Toast.LENGTH_LONG).show();
+                        FBToast.successToast(getApplicationContext(), "Performance Added Successfully", Toast.LENGTH_LONG);
                         finish();
 
                     } else {
                         spname.setError("Student does not exist");
+                        FBToast.warningToast(getApplicationContext(), "Pls Check student ID", Toast.LENGTH_LONG);
                     }
                 }
                 }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
 

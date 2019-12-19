@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 
@@ -119,15 +120,17 @@ public class fees_admin extends AppCompatActivity
                             Log.d("Working","Fail2");
                             Fee fee = new Fee(sid, total, paid, course, type1, type2);
                             databaseFees.child(sname).setValue(fee);
-                            Toast.makeText(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG).show();
+                            FBToast.successToast(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG);
 
                         } else {
                             e2.setError("Sorry Student does not Exist");
+                            FBToast.warningToast(getApplicationContext(), "Pls Check student ID", Toast.LENGTH_LONG);
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
+                        FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
                     }
                 });
             }

@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
 public class ForgotPasssword extends AppCompatActivity {
 EditText uid,pas;
@@ -54,7 +55,7 @@ DatabaseReference dbfac,dbstud;
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.child(un).exists()) {
                         dbfac.child(un).child("tpass").setValue(up);
-                        Toast.makeText(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT).show();
+                        FBToast.successToast(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT);
                     } else {
                         uid.setError("Invalid userid");
                     }
@@ -63,7 +64,7 @@ DatabaseReference dbfac,dbstud;
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                    FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
                 }
             });
 
@@ -74,7 +75,7 @@ DatabaseReference dbfac,dbstud;
                         Log.d("TAG", un);
                         Log.d("TAG", up);
                         dbstud.child(un).child("spass").setValue(up);
-                        Toast.makeText(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT).show();
+                        FBToast.successToast(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT);
                     } else {
                         uid.setError("Invalid userid");
                     }
@@ -83,11 +84,10 @@ DatabaseReference dbfac,dbstud;
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                    FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
                 }
             });
         }
-
     }
     }
 

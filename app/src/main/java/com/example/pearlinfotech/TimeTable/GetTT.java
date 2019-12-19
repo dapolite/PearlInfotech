@@ -23,8 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
+import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +81,7 @@ public class GetTT extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(GetTT.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                FBToast.errorToast(GetTT.this, databaseError.getMessage(), Toast.LENGTH_SHORT);
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });

@@ -205,7 +205,7 @@
                                 android:layout_marginBottom="8dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/btnbg"
-                                android:text="Remove"
+                                android:text="Update"
                                 android:textAllCaps="false"
                                 android:textColor="#fff"
                                 app:layout_constraintBottom_toBottomOf="parent"

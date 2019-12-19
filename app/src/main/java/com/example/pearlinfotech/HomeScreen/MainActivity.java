@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat;
 import com.example.pearlinfotech.About.List_aboutus;
 import com.example.pearlinfotech.Login.Login;
 import com.example.pearlinfotech.R;
+import com.tfb.fbtoast.FBToast;
 
 public class MainActivity extends AppCompatActivity {
 Button loginh;
@@ -51,7 +52,7 @@ Button abouth;
             System.exit(0);
         }
         else {
-            Toast.makeText(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT).show();
+            FBToast.infoToast(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT);
             back_pressed = System.currentTimeMillis();
         }
     }

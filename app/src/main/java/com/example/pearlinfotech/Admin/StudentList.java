@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 
@@ -82,7 +83,7 @@ public class StudentList extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {

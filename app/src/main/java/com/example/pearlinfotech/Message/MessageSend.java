@@ -2,21 +2,18 @@ package com.example.pearlinfotech.Message;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pearlinfotech.Fees.Fee;
 import com.example.pearlinfotech.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 
@@ -64,7 +62,7 @@ EditText msg;
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
 
@@ -119,7 +117,4 @@ class DisplayTextData extends RecyclerView.Adapter<DisplayTextData.ItemViewHolde
             mssg=itemView.findViewById(R.id.messengerTextView);
         }
     }
-
-
 }
-

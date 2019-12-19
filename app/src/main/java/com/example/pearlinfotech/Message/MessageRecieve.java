@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 
@@ -30,8 +31,8 @@ public class MessageRecieve extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_recieve);
-        mRvData = findViewById(R.id.messageRecyclerView);
-        mRvData.setLayoutManager(new LinearLayoutManager(this));
+        mRvData = findViewById(R.id.messageSendRecyclerView);
+        mRvData.setLayoutManager(new LinearLayoutManager(MessageRecieve.this));
         dbMessage= FirebaseDatabase.getInstance().getReference("Message");
         dbMessage.addValueEventListener(new ValueEventListener() {
             @Override
@@ -50,7 +51,7 @@ public class MessageRecieve extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
     }
@@ -92,6 +93,4 @@ class DisplayMsgData extends RecyclerView.Adapter<DisplayMsgData.ItemViewHolder>
             mssg=itemView.findViewById(R.id.messengerTextView);
         }
     }
-
-
 }

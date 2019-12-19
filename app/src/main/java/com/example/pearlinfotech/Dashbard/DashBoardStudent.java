@@ -16,6 +16,7 @@ import com.example.pearlinfotech.Attendance.AttendanceStudent;
 import com.example.pearlinfotech.ExamDetail.ExamStudent;
 import com.example.pearlinfotech.Fees.student_fees;
 import com.example.pearlinfotech.HomeScreen.MainActivity;
+import com.example.pearlinfotech.Message.MessageRecieve;
 import com.example.pearlinfotech.Performances.Performance_student;
 import com.example.pearlinfotech.R;
 import com.example.pearlinfotech.TimeTable.GetTT;
@@ -24,13 +25,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DashBoardStudent extends AppCompatActivity {
     androidx.appcompat.widget.Toolbar mActionBarToolbar;
-    CardView cv1,cv2,cv3,cv4,cv5;
+    CardView cv1,cv2,cv3,cv4,cv5,cv6;
     FirebaseDatabase db;
     String sname;
     String message;
@@ -65,7 +67,7 @@ public class DashBoardStudent extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
         cv1=findViewById(R.id.attendancescard);
@@ -125,6 +127,15 @@ public class DashBoardStudent extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        cv6=findViewById(R.id.notifdashscard);
+        cv6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DashBoardStudent.this, MessageRecieve.class);
+                startActivity(i);
+            }
+        });
+
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

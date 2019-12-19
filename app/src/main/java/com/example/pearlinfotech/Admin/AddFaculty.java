@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -116,6 +117,7 @@ public class AddFaculty extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
 
             }
         });
@@ -164,13 +166,14 @@ public class AddFaculty extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
 
             }
         });
         if(failFlag == false) {
             Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
             databaseTeacher.child(tid).setValue(faculty);
-            Toast.makeText(getApplicationContext(), "Teacher added successfully", Toast.LENGTH_LONG).show();
+            FBToast.successToast(getApplicationContext(), "Teacher added successfully", Toast.LENGTH_LONG);
             finish();
         }
     }
@@ -202,6 +205,7 @@ public class AddFaculty extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
 
             }
         });
@@ -216,6 +220,7 @@ public class AddFaculty extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
 
             }
         });
@@ -255,7 +260,7 @@ public class AddFaculty extends AppCompatActivity {
         if(failFlag == false) {
             Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
             databaseTeacher.child(tid).setValue(faculty);
-            Toast.makeText(getApplicationContext(), "Teacher updated successfully", Toast.LENGTH_LONG).show();
+            FBToast.successToast(getApplicationContext(), "Teacher updated successfully", Toast.LENGTH_LONG);
             finish();
         }
     }

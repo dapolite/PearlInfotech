@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -121,7 +122,7 @@ public class AddStudent extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
         if (fsid.contains(sid)) {
@@ -152,7 +153,7 @@ public class AddStudent extends AppCompatActivity {
         }
         if (!android.util.Patterns.PHONE.matcher(sphno).matches()) {
             failFlag = true;
-            Sphno.setError("Invalid phoone number");
+            Sphno.setError("Invalid phone number");
 
         }
         if (validateTor.isEmpty(sphno)) {
@@ -189,15 +190,18 @@ public class AddStudent extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
 
             }
         });
-        if (failFlag == false) {
+        if (!failFlag) {
             Student student = new Student(sname, sid, classname, spass, semail, sphno, sdate);
             databaseStudent.child(sid).setValue(student);
-            Toast.makeText(getApplicationContext(), "student added successfully", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "Cant Add User", Toast.LENGTH_SHORT).show();
+            FBToast.successToast(getApplicationContext(), "student added successfully", Toast.LENGTH_LONG);
+            finish();
+        }
+        else {
+            FBToast.errorToast(this, "Cant Add User", Toast.LENGTH_SHORT);
         }
     }
 
@@ -226,7 +230,7 @@ public class AddStudent extends AppCompatActivity {
             AlertDialog dialog = mBuilder.create();
             dialog.show();
         } else {
-            Toast.makeText(getApplicationContext(), "id cannot be empty", Toast.LENGTH_LONG).show();
+            FBToast.errorToast(getApplicationContext(), "id cannot be empty", Toast.LENGTH_LONG);
         }
 
     }
