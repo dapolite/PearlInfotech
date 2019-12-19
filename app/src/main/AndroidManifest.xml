@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="InnerclassSeparator">
-        <activity android:name=".About.AboutUs_Coaching"></activity>
+        <activity android:name=".About.AboutUs_Coaching" />
         <activity android:name=".List_aboutus" />
         <activity android:name=".About.AboutUs" />
         <activity android:name=".About.AboutUs_entrance" />

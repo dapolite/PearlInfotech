@@ -154,7 +154,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/btnbg"
                 android:onClick="removeStudent"
-                android:text="Remove"
+                android:text="Add Course"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 app:layout_constraintBottom_toBottomOf="parent"

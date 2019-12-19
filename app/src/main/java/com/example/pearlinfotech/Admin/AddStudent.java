@@ -1,13 +1,11 @@
 package com.example.pearlinfotech.Admin;
 
-
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -29,9 +27,9 @@ public class AddStudent extends AppCompatActivity {
     String edts;
     DatabaseReference databaseStudent;
     Toolbar mToolbar;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
 
@@ -70,34 +68,29 @@ public class AddStudent extends AppCompatActivity {
     public void removeStudent(View v) {
         if (!TextUtils.isEmpty(Sid.getText().toString()))
         {
-            //sid = Sid.getText().toString();
-            //databaseStudent.child(sid).setValue(null);
-            //Toast.makeText(getApplicationContext(), "teacher removed successfully", Toast.LENGTH_LONG).show();
-
-            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-            LayoutInflater inflater = this.getLayoutInflater();
-            final View dialogView = inflater.inflate(R.layout.edit_text_dialog, null);
-            dialogBuilder.setView(dialogView);
-
-            final EditText edt =  dialogView.findViewById(R.id.edittdialog);
-            edts=edt.getText().toString();
-            dialogBuilder.setTitle("Remove Student");
-            //dialogBuilder.setMessage("Enter Student ID :- ");
-            dialogBuilder.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    //databaseStudent.child("Student").child(edts).removeValue();
-                    Log.d("TAG",edts);
-                }
-            });
-            dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton)
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+            View mview= getLayoutInflater().inflate(R.layout.dialog_spinner_addcourse,null);
+            mBuilder.setTitle("Add Course");
+            Spinner mspinner= mview.findViewById(R.id.spinner4);
+            ArrayAdapter<String> adapter= new ArrayAdapter<String>(AddStudent.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.courselist));
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            mspinner.setAdapter(adapter);
+            mBuilder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i)
                 {
-                    //pass
                 }
             });
-            AlertDialog b = dialogBuilder.create();
-            b.show();
+            mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+
+                }
+            });
+            mBuilder.setView(mview);
+            AlertDialog dialog=mBuilder.create();
+            dialog.show();
         }
         else
             {

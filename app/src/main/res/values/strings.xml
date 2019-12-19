@@ -69,4 +69,44 @@
         <item>Cheque</item>
         <item>Cash</item>
     </string-array>
+
+    <string-array name="courselist">
+        <item>Select Course</item>
+        <item>Java</item>
+        <item>Python</item>
+        <item>C</item>
+        <item>C++</item>
+        <item>SQL</item>
+        <item>MySQL</item>
+        <item>Oracle</item>
+        <item>PHP</item>
+        <item>Javascript</item>
+        <item>JQuery</item>
+        <item>Android</item>
+        <item>Visual Basics</item>
+        <item>Bootstrap</item>
+        <item>Django</item>
+        <item>HTML</item>
+        <item>CSS</item>
+        <item>VB.net</item>
+        <item>Tally</item>
+        <item>MS Excel</item>
+        <item>CAT</item>
+        <item>CMAT</item>
+        <item>GMAT</item>
+        <item>GRE</item>
+        <item>BCA</item>
+        <item>MCA</item>
+        <item>SNAP</item>
+        <item>NIMCET</item>
+        <item>IBPS</item>
+        <item>SBI SO</item>
+        <item>IELTS</item>
+        <item>5-12 GSEB</item>
+        <item>5-12 CBSE</item>
+
+
+
+
+    </string-array>
 </resources>
