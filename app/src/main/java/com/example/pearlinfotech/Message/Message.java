@@ -6,17 +6,17 @@ public class Message {
 
    public String id;
    public String text;
-   public Date time;
+   public String time;
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public Message(String id, String text, Date time) {
+    public Message(String id, String text, String time) {
         this.id = id;
         this.text = text;
         this.time=time;

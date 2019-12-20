@@ -1,6 +1,8 @@
 package com.example.pearlinfotech.Admin;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -22,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -98,27 +101,6 @@ public class AddFaculty extends AppCompatActivity {
         //sub = subject.getText().toString();
         classname = classes.getSelectedItem().toString();
         tpass = tpassword.getText().toString();
-        Log.d("TAG",tname);
-        Log.d("TAG",tid);
-        Log.d("TAG",classname);
-        Log.d("TAG",tpass);
-        Log.d("TAG",temail);
-        Log.d("TAG",tphno);
-        Log.d("TAG",tdate);
-        databaseTeacher.orderByChild("tid").equalTo(tid).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    Tid.setError("User Exists");
-                    failFlag=true;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         if (validateTor.isEmpty(temail)) {
             failFlag = true;
@@ -164,14 +146,52 @@ public class AddFaculty extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
 
             }
         });
-        if(failFlag == false) {
-            Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
-            databaseTeacher.child(tid).setValue(faculty);
-            Toast.makeText(getApplicationContext(), "Teacher added successfully", Toast.LENGTH_LONG).show();
-            finish();
+        if(!failFlag) {
+            databaseTeacher.orderByChild("tid").equalTo(tid).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()){
+                        AlertDialog.Builder builder=new AlertDialog.Builder(AddFaculty.this);
+                        builder.setMessage("User Exists Do You Want to Update Details?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
+                                        databaseTeacher.child(tid).setValue(faculty);
+                                        FBToast.successToast(getApplicationContext(), "Teacher Updated successfully", Toast.LENGTH_LONG);
+                                        finish();
+
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //  Action for 'NO' Button
+                                        dialog.cancel();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.setTitle("Woops!");
+                        alert.show();
+                    }
+                    else{
+                        Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
+                        databaseTeacher.child(tid).setValue(faculty);
+                        FBToast.successToast(getApplicationContext(), "Teacher added successfully", Toast.LENGTH_LONG);
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
+
+                }
+            });
+
         }
     }
 
@@ -202,6 +222,7 @@ public class AddFaculty extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
 
             }
         });
@@ -216,6 +237,7 @@ public class AddFaculty extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
 
             }
         });
@@ -255,7 +277,7 @@ public class AddFaculty extends AppCompatActivity {
         if(failFlag == false) {
             Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
             databaseTeacher.child(tid).setValue(faculty);
-            Toast.makeText(getApplicationContext(), "Teacher updated successfully", Toast.LENGTH_LONG).show();
+            FBToast.successToast(getApplicationContext(), "Teacher updated successfully", Toast.LENGTH_LONG);
             finish();
         }
     }

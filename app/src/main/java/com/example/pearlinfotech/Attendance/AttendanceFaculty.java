@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,6 +77,7 @@ public class AttendanceFaculty extends AppCompatActivity {
         dbStudent = ref.child("Student");
         Bundle bundle1 = getIntent().getExtras();
         teacher_id = bundle1.getString("tid");
+        class_selected=bundle1.getString("class_selected");
         dbAttendance = ref.child("Attendance");
         dbTeacher=ref.child("Faculty");
         dbTeacher.addValueEventListener(new ValueEventListener() {
@@ -87,7 +89,7 @@ public class AttendanceFaculty extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
         selectedItems = new ArrayList<String>();
@@ -133,7 +135,7 @@ public class AttendanceFaculty extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG).show();
+                FBToast.warningToast(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG);
             }
 
         });
@@ -175,7 +177,7 @@ public class AttendanceFaculty extends AppCompatActivity {
             dbAttendance = ref.child("Attendance").child(date).child(class_selected).child(teacher_id);
 
             for (String item : selectedItems) {
-                Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
+                FBToast.successToast(this, "Attendance created Successfully", Toast.LENGTH_SHORT);
                 nonselectedItems.remove(item);
                 dbAttendance.child(item).setValue("Present");
                 stuAttendance=ref.child("StudentAttendance").child(item);

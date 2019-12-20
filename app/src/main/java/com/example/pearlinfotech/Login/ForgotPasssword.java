@@ -31,7 +31,7 @@ DatabaseReference dbfac,dbstud;
         setContentView(R.layout.activity_forgot_passsword);
         uid=findViewById(R.id.userid);
         pas=findViewById(R.id.pass);
-        dbfac= FirebaseDatabase.getInstance().getReference();
+        dbfac= FirebaseDatabase.getInstance().getReference("Faculty");
         dbstud= FirebaseDatabase.getInstance().getReference("Student");
 
     }
@@ -52,15 +52,13 @@ DatabaseReference dbfac,dbstud;
             dbfac.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for(DataSnapshot ds:dataSnapshot.getChildren()){
-
-                        if (ds.child(un).exists()) {
-                            dbfac.child(un).child("tpass").setValue(up);
-                            Toast.makeText(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT).show();
-                        } else {
-                            uid.setError("Invalid userid");
-                        }
+                    if (dataSnapshot.child(un).exists()) {
+                        dbfac.child(un).child("tpass").setValue(up);
+                        Toast.makeText(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT).show();
+                    } else {
+                        uid.setError("Invalid userid");
                     }
+
                 }
 
                 @Override
@@ -69,9 +67,25 @@ DatabaseReference dbfac,dbstud;
                 }
             });
 
-        }
-        else{
-            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+            dbstud.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(un).exists()) {
+                        Log.d("TAG", un);
+                        Log.d("TAG", up);
+                        dbstud.child(un).child("spass").setValue(up);
+                        Toast.makeText(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT).show();
+                    } else {
+                        uid.setError("Invalid userid");
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
 
     }

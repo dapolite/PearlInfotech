@@ -2,33 +2,35 @@ package com.example.pearlinfotech.Message;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pearlinfotech.Fees.Fee;
 import com.example.pearlinfotech.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class MessageSend extends AppCompatActivity {
 DatabaseReference dbMessage;
@@ -42,7 +44,6 @@ EditText msg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        java.util.Date currentTime = Calendar.getInstance().getTime();
         setContentView(R.layout.activity_message_send);
         msg=findViewById(R.id.messagesend);
         Bundle bundle1 = getIntent().getExtras();
@@ -50,8 +51,15 @@ EditText msg;
         send=findViewById(R.id.sendButton);
         mRvData = findViewById(R.id.messageRecyclerView);
         mRvData.setLayoutManager(new LinearLayoutManager(this));
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+5:30"));
+        Date currentLocalTime = cal.getTime();
+        DateFormat date = new SimpleDateFormat("HH:mm a");
+        date.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
+
+        String localTime = date.format(currentLocalTime);
         dbMessage=FirebaseDatabase.getInstance().getReference("Message");
-        dbMessage.orderByChild("time").addValueEventListener(new ValueEventListener() {
+        Query query=FirebaseDatabase.getInstance().getReference("Message");
+        dbMessage.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUserList.clear();
@@ -68,7 +76,7 @@ EditText msg;
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
 
@@ -77,8 +85,8 @@ EditText msg;
             public void onClick(View v) {
                 text=msg.getText().toString();
                 if(!validateTor.isEmpty(text)) {
-                    Message message = new Message(tid, text,currentTime);
-                    dbMessage.child(tid).push().setValue(message);
+                    Message message = new Message(tid, text,localTime);
+                    dbMessage.child(localTime).push().setValue(message);
                 }
             }
         });
@@ -108,6 +116,7 @@ class DisplayTextData extends RecyclerView.Adapter<DisplayTextData.ItemViewHolde
         Message message=mUserLsit.get(position);
         holder.sid.setText(message.id);
         holder.mssg.setText(message.text);
+        holder.time.setText(message.time);
     }
 
     @Override
@@ -116,14 +125,12 @@ class DisplayTextData extends RecyclerView.Adapter<DisplayTextData.ItemViewHolde
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        TextView sid,mssg;
+        TextView sid,mssg,time;
         public ItemViewHolder(View itemView) {
             super(itemView);
             sid=itemView.findViewById(R.id.messageTextView);
             mssg=itemView.findViewById(R.id.messengerTextView);
+            time=itemView.findViewById(R.id.timeText);
         }
     }
-
-
 }
-

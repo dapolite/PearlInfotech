@@ -67,9 +67,10 @@
 
             </TableRow>
 
-            <TableRow
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_weight="1">
 
                 <TextView
@@ -81,15 +82,14 @@
                     android:gravity="center"
                     android:text="Subject:" />
 
-                <TextView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/suclasse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="TextView" />
-            </TableRow>
+                    android:gravity="center" />
+            </LinearLayout>
 
             <TableRow
                 android:layout_width="match_parent"
