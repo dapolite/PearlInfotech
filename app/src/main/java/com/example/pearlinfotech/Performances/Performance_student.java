@@ -123,6 +123,7 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
         holder.corr.setInnerText(String.valueOf(perf.correct));
         holder.in.setInnerText(String.valueOf(perf.incorrect));
         holder.attmpt.setInnerText(String.valueOf(perf.attempt));
+        holder.tm.setInnerText(String.valueOf(perf.totalm));
         holder.cmmt.setText(perf.comment);
     }
 
@@ -133,7 +134,7 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView sname,topic,cmmt;
-        PieView total,corr,in,attmpt,per;
+        PieView total,corr,in,attmpt,per,tm;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -142,8 +143,10 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
             total = itemView.findViewById(R.id.pieViewTotal);
             corr= itemView.findViewById(R.id.pieViewCorrect);
             attmpt= itemView.findViewById(R.id.pieViewAttempt);
+            tm=itemView.findViewById(R.id.pieViewTotalmarks);
             cmmt=itemView.findViewById(R.id.cmmt);
             in= itemView.findViewById(R.id.pieViewIncoorect);
+
             PieAngleAnimation animation1 = new PieAngleAnimation(total);
             animation1.setDuration(5000);
             total.startAnimation(animation1);
@@ -156,6 +159,9 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
             PieAngleAnimation animation4 = new PieAngleAnimation(attmpt);
             animation3.setDuration(5000);
             attmpt.startAnimation(animation4);
+            PieAngleAnimation animation5 = new PieAngleAnimation(tm);
+            animation3.setDuration(5000);
+            tm.startAnimation(animation5);
         }
     }
 }

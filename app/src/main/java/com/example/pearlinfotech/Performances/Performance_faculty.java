@@ -24,14 +24,14 @@ import java.util.ArrayList;
 
 public class Performance_faculty extends AppCompatActivity {
 
-    EditText spname, total, correct, incorrect,sid;
+    EditText spname, total, correct, incorrect,sid,totalmarks;
     EditText tstname,tpic,attmpt,comm;
     ValidateTor validateTor = new ValidateTor();
     String class_selected,suname;
     Button btn;
     String SPname,Tname,attpt,cmmt;
     String topic;
-    int Total,Correct,Incorrect,Attempted;
+    int Total,Correct,Incorrect,Attempted,Totalmarks;
     DatabaseReference databasePerformance;
     DatabaseReference dbStudent;
     ArrayList<String> snames=new ArrayList<>();
@@ -65,6 +65,7 @@ public class Performance_faculty extends AppCompatActivity {
         total = findViewById(R.id.editText3);
         correct = findViewById(R.id.editText4);
         incorrect = findViewById(R.id.editText5);
+        totalmarks = findViewById(R.id.editText6);
         comm=findViewById(R.id.comment);
         attmpt=findViewById(R.id.attempted);
     }
@@ -82,6 +83,7 @@ public class Performance_faculty extends AppCompatActivity {
                 attpt=attmpt.getText().toString();
                 String corr1=correct.getText().toString();
                 String incorr1=incorrect.getText().toString();
+                String tot2=totalmarks.getText().toString();
                 Log.d("WORK",suname);
                 Log.d("WORK",SPname);
                 Log.d("WORK",Tname);
@@ -89,6 +91,7 @@ public class Performance_faculty extends AppCompatActivity {
                 Log.d("WORK",tot1);
                 Log.d("WORK",corr1);
                 Log.d("WORK",incorr1);
+                Log.d("WORK", tot2);
                 Log.d("WORK",attpt);
                 if (validateTor.isEmpty(suname)) {
                     failFlag=true;
@@ -126,12 +129,17 @@ public class Performance_faculty extends AppCompatActivity {
                     failFlag=true;
                     incorrect.setError("Field is empty!");
                 }
+                if (validateTor.isEmpty(tot2)) {
+                    failFlag=true;
+                    incorrect.setError("Field is empty!");
+                }
                 if(!failFlag) {
                     Log.d("WORK","FAIL");
                     Attempted= Integer.parseInt(attpt);
                     Total = Integer.parseInt(tot1);
                     Correct = Integer.parseInt(corr1);
                     Incorrect = Integer.parseInt(incorr1);
+                    Totalmarks = Integer.parseInt(tot2);
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         String name = dataSnapshot1.child("sid").getValue().toString();
                         snames.add(dataSnapshot1.child("sid").getValue().toString());
@@ -139,7 +147,7 @@ public class Performance_faculty extends AppCompatActivity {
                     }
                     if (snames.contains(suname)) {
 
-                        Performance performance = new Performance(SPname,class_selected, Correct, Total, Incorrect,Attempted,Tname,cmmt);
+                        Performance performance = new Performance(SPname,class_selected, Correct, Total, Incorrect,Attempted,Totalmarks,Tname,cmmt);
                         databasePerformance.child(suname).push().setValue(performance);
                         FBToast.successToast(getApplicationContext(), "Performance Added Successfully", Toast.LENGTH_LONG);
                         finish();
