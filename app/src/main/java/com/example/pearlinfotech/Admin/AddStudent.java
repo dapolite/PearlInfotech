@@ -39,13 +39,14 @@ public class AddStudent extends AppCompatActivity {
     Calendar myCalendar = Calendar.getInstance();
     EditText Sname, Sphno, Semail, Sdate;
     EditText Sid, spassword;
+    boolean ff=false;
     ArrayList<String> fsid = new ArrayList<>();
     ArrayList<String> fspass = new ArrayList<>();
     ArrayList<String> fsemail = new ArrayList<>();
     ArrayList<String> fsphno = new ArrayList<>();
     String sname, sid, classname, spass, sphno, semail, sdate;
     Spinner classes;
-    DatabaseReference databaseStudent;
+    DatabaseReference databaseStudent,databaseCourse;
     Toolbar mToolbar;
     boolean failFlag = false;
     ValidateTor validateTor = new ValidateTor();
@@ -67,6 +68,7 @@ public class AddStudent extends AppCompatActivity {
             }
         });
         databaseStudent = FirebaseDatabase.getInstance().getReference("Student");
+        databaseCourse=FirebaseDatabase.getInstance().getReference("Course");
         Semail = findViewById(R.id.emailas);
         Sphno = findViewById(R.id.phnoas);
         Sdate = findViewById(R.id.dateas);
@@ -109,26 +111,6 @@ public class AddStudent extends AppCompatActivity {
         Log.d("TAG", sdate);
 
 
-        databaseStudent.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    fsid.add(ds.child("sid").toString());
-                    fsemail.add(ds.child("semail").toString());
-                    fspass.add(ds.child("spass").toString());
-                    fsphno.add(ds.child("sphno").toString());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
-            }
-        });
-        if (fsid.contains(sid)) {
-            failFlag = true;
-            Sid.setError("Username Taken");
-        }
         if (fsemail.contains(semail)) {
             failFlag = true;
             Semail.setError("Email Aleady Exists");
@@ -179,26 +161,49 @@ public class AddStudent extends AppCompatActivity {
                     "atleast 1 digit, 1 upppercase letter and 1 special character ");
 
         }
-        databaseStudent.orderByChild("sid").equalTo(sid).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    Sid.setError("Username Taken");
-                    failFlag = true;
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
-
-            }
-        });
         if (!failFlag) {
-            Student student = new Student(sname, sid, classname, spass, semail, sphno, sdate);
-            databaseStudent.child(sid).setValue(student);
-            FBToast.successToast(getApplicationContext(), "student added successfully", Toast.LENGTH_LONG);
-            finish();
+            databaseStudent.orderByChild("sid").equalTo(sid).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        AlertDialog.Builder builder=new AlertDialog.Builder(AddStudent.this);
+                        builder.setMessage("User Exists Do You Want to Update Details?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Student student = new Student(sname, sid, classname, spass, semail, sphno, sdate);
+                                        databaseStudent.child(sid).setValue(student);
+
+                                        FBToast.successToast(getApplicationContext(), "student Updated successfully", Toast.LENGTH_LONG);
+                                        finish();
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.setTitle("Woops!");
+                        alert.show();
+                    }
+                    else{
+                        Student student = new Student(sname, sid, classname, spass, semail, sphno, sdate);
+                        databaseStudent.child(sid).setValue(student);
+                        databaseCourse.child(sid).push().setValue(classname);
+                        FBToast.successToast(getApplicationContext(), "student added successfully", Toast.LENGTH_LONG);
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
+
+                }
+            });
+
         }
         else {
             FBToast.errorToast(this, "Cant Add User", Toast.LENGTH_SHORT);
@@ -207,31 +212,75 @@ public class AddStudent extends AppCompatActivity {
 
     public void removeStudent(View v) {
         if (!TextUtils.isEmpty(Sid.getText().toString())) {
-            AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
-            View mview = getLayoutInflater().inflate(R.layout.dialog_spinner_addcourse, null);
-            mBuilder.setTitle("Add Course");
-            Spinner mspinner = mview.findViewById(R.id.spinner4);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddStudent.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.courselist));
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            mspinner.setAdapter(adapter);
-            mBuilder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                }
-            });
-            mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
+            sid = Sid.getText().toString();
 
+            databaseStudent.orderByChild("sid").equalTo(sid).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        AlertDialog.Builder mBuilder = new AlertDialog.Builder(AddStudent.this);
+                        View mview = getLayoutInflater().inflate(R.layout.dialog_spinner_addcourse, null);
+                        mBuilder.setTitle("Add Course");
+                        Spinner mspinner = mview.findViewById(R.id.spinner4);
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddStudent.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.courselist));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        mspinner.setAdapter(adapter);
+                        String classes = mspinner.getSelectedItem().toString();
+                        mBuilder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                String classe = mspinner.getSelectedItem().toString();
+                                databaseCourse.child(sid).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for(DataSnapshot ds:dataSnapshot.getChildren()){
+                                            String c=ds.getValue().toString();
+                                            if(c.equals(classe)){
+                                                ff=true;
+                                            }
+                                            else{
+                                                FBToast.errorToast(AddStudent.this,"Course Taken By User",FBToast.LENGTH_SHORT);
+                                            }
+                                        }
+                                        if(!ff) {
+                                            databaseCourse.child(sid).push().setValue(classe);
+                                            FBToast.successToast(AddStudent.this, "Course Added", FBToast.LENGTH_SHORT);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+                            }
+                        });
+                        mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+
+                            }
+                        });
+                        mBuilder.setView(mview);
+                        AlertDialog dialog = mBuilder.create();
+                        dialog.show();
+                    }
+                    else{
+                        Sid.setError("User Does Not Exist");
+                    }
                 }
-            });
-            mBuilder.setView(mview);
-            AlertDialog dialog = mBuilder.create();
-            dialog.show();
-        } else {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
+
+                    }
+                });
+            }
+            else {
             FBToast.errorToast(getApplicationContext(), "id cannot be empty", Toast.LENGTH_LONG);
         }
+
 
     }
 

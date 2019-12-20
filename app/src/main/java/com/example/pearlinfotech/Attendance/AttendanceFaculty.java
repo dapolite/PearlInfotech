@@ -77,6 +77,7 @@ public class AttendanceFaculty extends AppCompatActivity {
         dbStudent = ref.child("Student");
         Bundle bundle1 = getIntent().getExtras();
         teacher_id = bundle1.getString("tid");
+        class_selected=bundle1.getString("class_selected");
         dbAttendance = ref.child("Attendance");
         dbTeacher=ref.child("Faculty");
         dbTeacher.addValueEventListener(new ValueEventListener() {

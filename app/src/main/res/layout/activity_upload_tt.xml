@@ -24,6 +24,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
+            android:inputType="text"
             android:id="@+id/edit_text_file_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -30,9 +30,11 @@ public class fees_admin extends AppCompatActivity
     ArrayList<String> snames=new ArrayList<>();
     EditText e1,e2,e3,e5;
     Spinner e4;
+    ArrayList<String> courses=new ArrayList<>();
+    boolean ff=false;
     Spinner spin1,spin2;
     Toolbar mToolbar;
-    DatabaseReference databaseFees;
+    DatabaseReference databaseFees,dbCourse;
     DatabaseReference dbStudent;
     boolean failFlag=false;
     ValidateTor validateTor = new ValidateTor();
@@ -53,6 +55,7 @@ public class fees_admin extends AppCompatActivity
         e5=findViewById(R.id.editText5);
 
         databaseFees = FirebaseDatabase.getInstance().getReference("Fees");
+        dbCourse=FirebaseDatabase.getInstance().getReference("Course");
         dbStudent = FirebaseDatabase.getInstance().getReference("Student");
         Toolbar toolbar1=findViewById(R.id.ftoolbar);
         toolbar1.setTitle("Fee Details");
@@ -75,18 +78,36 @@ public class fees_admin extends AppCompatActivity
             sname = e1.getText().toString();
             total1=e3.getText().toString();
             sid=e2.getText().toString();
-            course = e4.getSelectedItem().toString();
             paid1=e5.getText().toString();
-
+            course = e4.getSelectedItem().toString();
             type1 = spin1.getSelectedItem().toString();
             type2 = spin2.getSelectedItem().toString();
             Log.d("Working?",sname);
             Log.d("Working?",sid);
             Log.d("Working?",total1);
-            Log.d("Working?",course);
+//            Log.d("Working?",course);
             Log.d("Working?",type2);
             Log.d("Working?",type1);
             Log.d("Working?",paid1);
+            dbCourse.child(sid).addValueEventListener(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    courses.clear();
+                    for(DataSnapshot ds1:dataSnapshot.getChildren()) {
+                            String lol = ds1.getValue().toString();
+                            Log.d("TAGS", lol);
+                            courses.add(lol);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    FBToast.errorToast(fees_admin.this,"Database Error",FBToast.LENGTH_LONG);
+
+                }
+            });
+
             if (validateTor.isEmpty(sid)) {
                 failFlag=true;
                 e2.setError("Field is empty!");
@@ -104,6 +125,12 @@ public class fees_admin extends AppCompatActivity
                 failFlag=true;
                 e5.setError("Field is empty!");
             }
+            if(!courses.contains(course)){
+                Log.d("TAG",course);
+                Log.d("TAG","SUREEE");
+                failFlag=true;
+                e2.setError("Course Not Taken");
+            }
             if(!failFlag) {
                 Log.d("Working","Fail");
                 dbStudent.addValueEventListener(new ValueEventListener() {
@@ -114,23 +141,22 @@ public class fees_admin extends AppCompatActivity
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             String id=dataSnapshot1.child("sid").getValue().toString();
                             Log.d("WORK",id);
-                            snames.add(dataSnapshot1.child("sid").getValue().toString());
+                            snames.add(id);
                         }
-                        if (snames.contains(sname)) {
+                        if (snames.contains(sid)) {
                             Log.d("Working","Fail2");
-                            Fee fee = new Fee(sid, total, paid, course, type1, type2);
-                            databaseFees.child(sname).setValue(fee);
-                            FBToast.successToast(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG);
+                            Fee fee = new Fee(sname, total, paid, course, type1, type2);
+                            databaseFees.child(sid).push().setValue(fee);
+                            Toast.makeText(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG).show();
+                            finish();
 
                         } else {
                             e2.setError("Sorry Student does not Exist");
-                            FBToast.warningToast(getApplicationContext(), "Pls Check student ID", Toast.LENGTH_LONG);
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
                     }
                 });
             }

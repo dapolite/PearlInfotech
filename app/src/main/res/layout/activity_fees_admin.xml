@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.andro0id.com/tools"
+    xmlns:tools1="http://schemas.android.com/tools"
     android:id="@+id/linearLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -36,12 +37,14 @@
 
 
         <ScrollView
+            android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -65,7 +68,7 @@
                     android:background="@drawable/btnsstroke"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Name"
+                    android:hint="UserName"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
                     android:textColor="#2B2727"
@@ -84,7 +87,7 @@
                     android:background="@drawable/btnsstroke"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Username"
+                    android:hint="Name"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
                     android:textColor="#2B2727"
@@ -115,17 +118,18 @@
                 <Spinner
                     android:id="@+id/editText4"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/btnsstroke"
                     android:ems="10"
-                    android:entries="@array/classes"
+                    android:entries="@array/courselist"
                     android:gravity="center"
                     android:hint="@string/course_fee_admin"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
+                    android:padding="10dp"
                     android:textColor="#2B2727"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -144,8 +148,8 @@
                     android:gravity="center"
                     android:hint="@string/paid_fee_admin"
                     android:importantForAutofill="no"
-                    android:textColor="#2B2727"
                     android:inputType="number"
+                    android:textColor="#2B2727"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.701"
@@ -161,6 +165,7 @@
                     android:background="@drawable/btnsstroke"
                     android:entries="@array/installment"
                     android:gravity="center"
+                    android:padding="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.549"
@@ -191,7 +196,7 @@
 
                     <com.animation.animpresseffect.PressEffectButton
                         android:id="@+id/button10"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="8dp"

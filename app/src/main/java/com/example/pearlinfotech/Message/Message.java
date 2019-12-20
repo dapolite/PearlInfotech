@@ -1,13 +1,25 @@
 package com.example.pearlinfotech.Message;
 
+import java.util.Date;
+
 public class Message {
 
    public String id;
    public String text;
+   public String time;
 
-    public Message(String id, String text) {
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Message(String id, String text, String time) {
         this.id = id;
         this.text = text;
+        this.time=time;
     }
 
     public String getId() {

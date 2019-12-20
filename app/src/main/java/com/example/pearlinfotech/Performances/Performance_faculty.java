@@ -44,8 +44,7 @@ public class Performance_faculty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_performance_faculty);
         Bundle bundle1 = getIntent().getExtras();
-        class_selected   = bundle1.getString("class");
-        Log.d("TAG",class_selected );
+        class_selected=bundle1.getString("class_selected");
         Toolbar toolbar1=findViewById(R.id.ftoolbar);
         toolbar1.setTitle("Performance Details");
         toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));

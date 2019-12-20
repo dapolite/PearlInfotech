@@ -8,13 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
+        android:padding="15dp"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/messengerImageView"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/usercircle"/>
+            android:src="@drawable/userpic"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,13 +24,30 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/messageTextView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:text="ID"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/messageTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ID"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/timeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Time"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/messageImageView"
@@ -46,6 +64,7 @@
                 android:layout_weight="0"
                 android:text="Message"
                 android:textAppearance="?android:attr/textAppearanceSmall"/>
+
         </LinearLayout>
 
     </LinearLayout>

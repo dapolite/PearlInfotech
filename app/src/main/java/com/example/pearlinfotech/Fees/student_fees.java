@@ -2,6 +2,7 @@ package com.example.pearlinfotech.Fees;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class student_fees extends AppCompatActivity {
     private TextView mTvEmpty;
     ArrayList<String> getkey=new ArrayList<>();
     private FirebaseDatabase mFirebaseInstance;
-    String stuname;
+    String stuname,sid;
     private ArrayList<Fee> mUserList = new ArrayList<>();
 
     @Override
@@ -40,6 +40,7 @@ public class student_fees extends AppCompatActivity {
         setContentView(R.layout.activity_student_fees);
         Bundle bundle1 = getIntent().getExtras();
         stuname = bundle1.getString("sname");
+        sid=bundle1.getString("sid");
         Toolbar toolbar1=findViewById(R.id.ftoolbar);
         toolbar1.setTitle("Fee Details");
         toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
@@ -52,38 +53,34 @@ public class student_fees extends AppCompatActivity {
                 finish();
             }
         });
+        Log.d("TAGS",sid);
         mFirebaseInstance = FirebaseDatabase.getInstance();
-        mDatabase = mFirebaseInstance.getReference("Fees");
+        mDatabase = mFirebaseInstance.getReference("Fees/"+sid);
         mDB=mDatabase.child(stuname);
         mRvData = findViewById(R.id.feercv);
         mRvData.setLayoutManager(new LinearLayoutManager(this));
-        Query query=FirebaseDatabase.getInstance().getReference("Fees").orderByChild("sname").equalTo(stuname);
-        query.addValueEventListener(new ValueEventListener() {
+        Query query=FirebaseDatabase.getInstance().getReference("Fees");
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUserList.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    Fee fee = dataSnapshot1.getValue(Fee.class);
-                    if (fee.sname.equals(stuname)) {
-                        mUserList.add(fee);
+                            String lol = dataSnapshot1.getValue().toString();
+                            Log.d("TAGS", lol);
+                            Fee fee = dataSnapshot1.getValue(Fee.class);
+                            mUserList.add(fee);
+                            allDataAdapter = new DisplayAllData(student_fees.this, mUserList);
+                            mRvData.setAdapter(allDataAdapter);
+                            allDataAdapter.notifyDataSetChanged();
+                        }
                     }
-                }
-                for (Fee f : mUserList) {
-                    if (f.getSName() != null && f.getSName().contains(stuname)) {
-                        allDataAdapter = new DisplayAllData(student_fees.this, mUserList);
-                        mRvData.setAdapter(allDataAdapter);
-                        allDataAdapter.notifyDataSetChanged();
-
-                    }
-
-                }
-            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
+
             }
         });
+
     }
 }
 
@@ -132,4 +129,7 @@ class DisplayAllData extends RecyclerView.Adapter<DisplayAllData.ItemViewHolder>
 
         }
     }
+
+
 }
+

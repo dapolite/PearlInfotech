@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import com.example.pearlinfotech.Admin.ProfileStudent;
 import com.example.pearlinfotech.Attendance.AttendanceStudent;
 import com.example.pearlinfotech.ExamDetail.ExamStudent;
 import com.example.pearlinfotech.Fees.student_fees;
@@ -25,14 +26,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DashBoardStudent extends AppCompatActivity {
     androidx.appcompat.widget.Toolbar mActionBarToolbar;
-    CardView cv1,cv2,cv3,cv4,cv5,cv6;
+    CardView cv1,cv2,cv3,cv4,cv5,cv6,cv7;
     FirebaseDatabase db;
     String sname;
     String message;
@@ -67,7 +67,7 @@ public class DashBoardStudent extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
+
             }
         });
         cv1=findViewById(R.id.attendancescard);
@@ -89,6 +89,7 @@ public class DashBoardStudent extends AppCompatActivity {
                 Intent i=new Intent(DashBoardStudent.this, student_fees.class);
                 Bundle basket= new Bundle();
                 basket.putString("sname",sname);
+                basket.putString("sid",message);
                 i.putExtras(basket);
                 startActivity(i);
             }
@@ -127,15 +128,28 @@ public class DashBoardStudent extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        cv6=findViewById(R.id.notifdashscard);
+        cv6=findViewById(R.id.profdashscard);
         cv6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(DashBoardStudent.this, MessageRecieve.class);
+                Intent i=new Intent(DashBoardStudent.this, ProfileStudent.class);
+                Bundle basket= new Bundle();
+                basket.putString("suid",message);
+                i.putExtras(basket);
                 startActivity(i);
             }
         });
-
+        cv7=findViewById(R.id.notifdashscard);
+        cv7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DashBoardStudent.this, MessageRecieve.class);
+                Bundle basket= new Bundle();
+                basket.putString("suid",message);
+                i.putExtras(basket);
+                startActivity(i);
+            }
+        });
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

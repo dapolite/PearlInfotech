@@ -13,6 +13,7 @@ public class Fee {
         this.type2 = type2;
     }
 
+    String course;
     String sname;
     long total;
     long paid;
@@ -72,5 +73,4 @@ public class Fee {
         this.course = course;
     }
 
-    String course;
 }
