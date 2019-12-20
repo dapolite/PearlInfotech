@@ -147,7 +147,7 @@ public class Performance_faculty extends AppCompatActivity {
                     }
                     if (snames.contains(suname)) {
 
-                        Performance performance = new Performance(SPname,class_selected, Correct, Total, Incorrect,Attempted,Tname,cmmt);
+                        Performance performance = new Performance(SPname,class_selected, Correct, Total, Incorrect,Attempted,Totalmarks,Tname,cmmt);
                         databasePerformance.child(suname).push().setValue(performance);
                         FBToast.successToast(getApplicationContext(), "Performance Added Successfully", Toast.LENGTH_LONG);
                         finish();
