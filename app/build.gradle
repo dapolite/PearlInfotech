@@ -6,6 +6,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+    }
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -15,6 +18,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.stepstone.xrunner.AndroidJUnitXRunner"
+
     }
     buildTypes {
         release {
@@ -38,6 +43,8 @@ android {
 }
 
 dependencies {
+    androidTestUtil 'androidx.test:orchestrator:1.2.0'
+    implementation 'com.stepstone.xrunner:xrunner-library:2.1.0'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

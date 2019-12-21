@@ -59,11 +59,6 @@
             android:inputType="none"
             android:hint="Date" />
 
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/btnsstroke" />
 
         <ListView
             android:id="@+id/checkable_list"

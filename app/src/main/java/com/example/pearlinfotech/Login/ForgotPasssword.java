@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +96,9 @@ DatabaseReference dbfac,dbstud;
                     }
                 });
             }
+            else{
+                FBToast.warningToast(ForgotPasssword.this,"Must Be a Faculty",FBToast.LENGTH_SHORT);
+            }
             if (item.equals("Faculty")){
                 dbstud.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -117,7 +121,9 @@ DatabaseReference dbfac,dbstud;
                     }
                 });
             }
-
+            else{
+                FBToast.warningToast(ForgotPasssword.this,"Must Be a Student",FBToast.LENGTH_SHORT);
+            }
         }
 
     }
