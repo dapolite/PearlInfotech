@@ -15,13 +15,15 @@ import com.example.pearlinfotech.Admin.FacultyList;
 import com.example.pearlinfotech.Admin.StudentList;
 import com.example.pearlinfotech.Fees.fees_admin;
 import com.example.pearlinfotech.HomeScreen.MainActivity;
+import com.example.pearlinfotech.Message.MessageSend;
 import com.example.pearlinfotech.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DashboardAdmin extends AppCompatActivity {
-    CardView cv1,cv2,cv3,fee_admin;
+    CardView cv1,cv2,cv3,fee_admin,cv4;
+    Bundle basket = new Bundle();
     String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
     @Override
@@ -72,6 +74,18 @@ public class DashboardAdmin extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i=new Intent(DashboardAdmin.this, StudentList.class);
                 startActivity(i);
+            }
+        });
+        cv4=findViewById(R.id.notifdashacard);
+        cv4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(DashboardAdmin.this, MessageSend.class);
+                basket.putString("tid", "admin");
+                i.putExtras(basket);
+                startActivity(i);
+
+
             }
         });
 
