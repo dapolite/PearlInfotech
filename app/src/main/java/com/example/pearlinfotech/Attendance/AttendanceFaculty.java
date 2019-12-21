@@ -1,9 +1,12 @@
 package com.example.pearlinfotech.Attendance;
 
 import android.app.DatePickerDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,9 +37,11 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class AttendanceFaculty extends AppCompatActivity {
+public class AttendanceFaculty extends AppCompatActivity implements SearchView.OnQueryTextListener {
     DatePickerDialog.OnDateSetListener date1;
     String teacher_id;
+    private SearchView searchView;
+    private MenuItem searchMenuItem;
     String class_selected;
     EditText adate;
     ArrayList<String> selectedItems;
@@ -76,6 +83,7 @@ public class AttendanceFaculty extends AppCompatActivity {
         dbStudent = ref.child("Student");
         Bundle bundle1 = getIntent().getExtras();
         teacher_id = bundle1.getString("tid");
+        class_selected=bundle1.getString("class_selected");
         dbAttendance = ref.child("Attendance");
         dbTeacher=ref.child("Faculty");
         dbTeacher.addValueEventListener(new ValueEventListener() {
@@ -87,7 +95,7 @@ public class AttendanceFaculty extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
         selectedItems = new ArrayList<String>();
@@ -133,7 +141,7 @@ public class AttendanceFaculty extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG).show();
+                FBToast.warningToast(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG);
             }
 
         });
@@ -141,10 +149,7 @@ public class AttendanceFaculty extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
-    }
+
 
     public void OnStart(ArrayList<String> userlist) {
         nonselectedItems = userlist;
@@ -175,11 +180,11 @@ public class AttendanceFaculty extends AppCompatActivity {
             dbAttendance = ref.child("Attendance").child(date).child(class_selected).child(teacher_id);
 
             for (String item : selectedItems) {
-                Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
+                FBToast.successToast(this, "Attendance created Successfully", Toast.LENGTH_SHORT);
                 nonselectedItems.remove(item);
                 dbAttendance.child(item).setValue("Present");
                 stuAttendance=ref.child("StudentAttendance").child(item);
-                stuAttendance.child(dates).setValue("Present");
+                stuAttendance.child(date).setValue("Present");
                 aa.notifyDataSetChanged();
                 if (selItems == "")
                     selItems = item;
@@ -204,11 +209,39 @@ public class AttendanceFaculty extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+
+        SearchManager searchManager = (SearchManager)
+                getSystemService(Context.SEARCH_SERVICE);
+        searchMenuItem = menu.findItem(R.id.search);
+        searchView = (SearchView) searchMenuItem.getActionView();
+
+        searchView.setSearchableInfo(searchManager.
+                getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setOnQueryTextListener(this);
+
+        return true;
+    }
     private void updateLabel() {
         String myFormat = "MM/dd/yy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         adate.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        aa.getFilter().filter(newText);
+        return true;
     }
 }
 

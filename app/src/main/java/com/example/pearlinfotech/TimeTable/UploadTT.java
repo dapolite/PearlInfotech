@@ -22,19 +22,17 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.pearlinfotech.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.raywenderlich.android.validatetor.ValidateTor;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import com.tfb.fbtoast.FBToast;
 
 public class UploadTT extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -86,10 +84,10 @@ public class UploadTT extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (mUploadTask != null && mUploadTask.isInProgress()) {
-                        Toast.makeText(UploadTT.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                        FBToast.infoToast(UploadTT.this, "Upload in progress", Toast.LENGTH_SHORT);
                     } else {
                         uploadFile();
-                        Toast.makeText(UploadTT.this, "Image Uploaded", Toast.LENGTH_SHORT).show();
+                        FBToast.successToast(UploadTT.this, "Image Uploaded", Toast.LENGTH_SHORT);
                     }
                 }
             });
@@ -119,7 +117,7 @@ public class UploadTT extends AppCompatActivity {
 
                         @Override
                         public void onError(Exception e) {
-                            Toast.makeText(UploadTT.this, "Error", Toast.LENGTH_SHORT).show();
+                            FBToast.errorToast(UploadTT.this, "Error", Toast.LENGTH_SHORT);
                         }
                     });
         }
@@ -156,13 +154,13 @@ public class UploadTT extends AppCompatActivity {
                             }
                         }, 500);
 
-                        Toast.makeText(UploadTT.this, "Upload successful", Toast.LENGTH_LONG).show();
+                        FBToast.successToast(UploadTT.this, "Upload successful", Toast.LENGTH_LONG);
                         Upload upload = new Upload(mEditTextFileName.getText().toString().trim(), downloadUri.toString());
                         String uploadId = mDatabaseRef.push().getKey();
                         mDatabaseRef.child(uploadId).setValue(upload);
 
                     } else {
-                        Toast.makeText(UploadTT.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        FBToast.errorToast(UploadTT.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT);
                     }
                 }
             });

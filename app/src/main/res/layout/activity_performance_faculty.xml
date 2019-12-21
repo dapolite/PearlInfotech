@@ -20,7 +20,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-android:layout_margin="10dp"
+        android:layout_margin="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +85,7 @@ android:layout_margin="10dp"
                         tools:layout_editor_absoluteX="8dp" />
 
                     <EditText
-                        android:id="@+id/editText1"
+                        android:id="@+id/editTextsname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -116,6 +116,24 @@ android:layout_margin="10dp"
                         android:textColor="#2B2727"
                         tools:layout_editor_absoluteX="8dp" />
 
+
+
+                    <EditText
+                        android:id="@+id/editTextTotQues"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/btnsstroke"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Total Questions"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:textColor="#2B2727"
+                        tools:layout_editor_absoluteX="8dp" />
+
                     <EditText
                         android:id="@+id/attempted"
                         android:layout_width="match_parent"
@@ -133,23 +151,7 @@ android:layout_margin="10dp"
                         tools:layout_editor_absoluteX="8dp" />
 
                     <EditText
-                        android:id="@+id/editText3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:background="@drawable/btnsstroke"
-                        android:ems="10"
-                        android:gravity="center"
-                        android:hint="Total"
-                        android:importantForAutofill="no"
-                        android:inputType="number"
-                        android:textColor="#2B2727"
-                        tools:layout_editor_absoluteX="8dp" />
-
-                    <EditText
-                        android:id="@+id/editText4"
+                        android:id="@+id/editTextCorrect"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -165,7 +167,7 @@ android:layout_margin="10dp"
                         tools:layout_editor_absoluteX="8dp" />
 
                     <EditText
-                        android:id="@+id/editText5"
+                        android:id="@+id/editTextIncorrect"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -178,6 +180,37 @@ android:layout_margin="10dp"
                         android:importantForAutofill="no"
                         android:inputType="number"
                         android:textColor="#2B2727"
+                        tools:layout_editor_absoluteX="8dp" />
+
+                    <EditText
+                        android:id="@+id/editTextTotalMarks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/btnsstroke"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Total Marks"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:textColor="#2B2727"
+                        tools:layout_editor_absoluteX="8dp" />
+
+                    <EditText
+                        android:id="@+id/pdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/btnsstroke"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:importantForAutofill="no"
+                        android:inputType="textMultiLine"
+                        android:textColor="#2B2727"
+                        android:hint="Date"
                         tools:layout_editor_absoluteX="8dp" />
 
                     <EditText
@@ -195,6 +228,8 @@ android:layout_margin="10dp"
                         android:hint="Comment"
                         tools:layout_editor_absoluteX="8dp" />
 
+
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -205,7 +240,7 @@ android:layout_margin="10dp"
 
                         <com.animation.animpresseffect.PressEffectButton
                             android:id="@+id/button9"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="8dp"

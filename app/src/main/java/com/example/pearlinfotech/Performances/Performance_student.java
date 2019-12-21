@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 
@@ -79,18 +80,11 @@ public class Performance_student extends AppCompatActivity {
                     mRvData.setAdapter(allDataAdapter);
                     allDataAdapter.notifyDataSetChanged();
                 }
-                for (Performance f : mUserList) {
-                    if (f.getPname() != null && f.getPname().contains(stuname)) {
-
-
-                    }
-
-                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
 
@@ -122,7 +116,9 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
         holder.corr.setInnerText(String.valueOf(perf.correct));
         holder.in.setInnerText(String.valueOf(perf.incorrect));
         holder.attmpt.setInnerText(String.valueOf(perf.attempt));
+        holder.tm.setInnerText(String.valueOf(perf.totalm));
         holder.cmmt.setText(perf.comment);
+        holder.pdate.setText(perf.date);
     }
 
     @Override
@@ -131,8 +127,8 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        TextView sname,topic,cmmt;
-        PieView total,corr,in,attmpt,per;
+        TextView sname,topic,cmmt,pdate;
+        PieView total,corr,in,attmpt,tm;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -141,8 +137,11 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
             total = itemView.findViewById(R.id.pieViewTotal);
             corr= itemView.findViewById(R.id.pieViewCorrect);
             attmpt= itemView.findViewById(R.id.pieViewAttempt);
+            tm=itemView.findViewById(R.id.pieViewTotalmarks);
             cmmt=itemView.findViewById(R.id.cmmt);
             in= itemView.findViewById(R.id.pieViewIncoorect);
+            pdate=itemView.findViewById(R.id.tvDate);
+
             PieAngleAnimation animation1 = new PieAngleAnimation(total);
             animation1.setDuration(5000);
             total.startAnimation(animation1);
@@ -155,8 +154,9 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
             PieAngleAnimation animation4 = new PieAngleAnimation(attmpt);
             animation3.setDuration(5000);
             attmpt.startAnimation(animation4);
+            PieAngleAnimation animation5 = new PieAngleAnimation(tm);
+            animation3.setDuration(5000);
+            tm.startAnimation(animation5);
         }
     }
-
-
 }

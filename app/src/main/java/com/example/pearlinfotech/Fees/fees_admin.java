@@ -32,7 +32,8 @@ public class fees_admin extends AppCompatActivity
     Spinner spin1,spin2;
     Toolbar mToolbar;
     DatabaseReference databaseFees;
-    DatabaseReference dbStudent;
+    DatabaseReference dbStudent,dbCourse;
+    ArrayList<String> sunames=new ArrayList<>();
     boolean failFlag=false;
     ValidateTor validateTor = new ValidateTor();
 
@@ -53,6 +54,7 @@ public class fees_admin extends AppCompatActivity
 
         databaseFees = FirebaseDatabase.getInstance().getReference("Fees");
         dbStudent = FirebaseDatabase.getInstance().getReference("Student");
+        dbCourse = FirebaseDatabase.getInstance().getReference("Course");
         Toolbar toolbar1=findViewById(R.id.ftoolbar);
         toolbar1.setTitle("Fee Details");
         toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
@@ -105,6 +107,17 @@ public class fees_admin extends AppCompatActivity
             }
             if(!failFlag) {
                 Log.d("Working","Fail");
+                dbCourse.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
                 dbStudent.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -112,14 +125,22 @@ public class fees_admin extends AppCompatActivity
                         paid = Integer.parseInt(paid1);
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             String id=dataSnapshot1.child("sid").getValue().toString();
+                            String sn=dataSnapshot1.child("sname").getValue().toString();
                             Log.d("WORK",id);
-                            snames.add(dataSnapshot1.child("sid").getValue().toString());
+                            snames.add(id);
+                            sunames.add(sn);
                         }
-                        if (snames.contains(sname)) {
-                            Log.d("Working","Fail2");
-                            Fee fee = new Fee(sid, total, paid, course, type1, type2);
-                            databaseFees.child(sname).setValue(fee);
-                            Toast.makeText(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG).show();
+                        if (snames.contains(sid)) {
+                            if(sunames.contains(sname)) {
+                                Log.d("Working", "Fail2");
+                                Fee fee = new Fee(sname, total, paid, course, type1, type2);
+                                databaseFees.child(sid).push().setValue(fee);
+                                Toast.makeText(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG).show();
+                                finish();
+                            }
+                            else{
+                                e1.setError("Wrong Student Name");
+                            }
 
                         } else {
                             e2.setError("Sorry Student does not Exist");

@@ -17,7 +17,15 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustPan|adjustResize"
         tools:ignore="InnerclassSeparator">
-
+        <activity android:name=".Admin.ProfileFaculty">
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Admin.ProfileStudent" />
 
         <meta-data
             android:name="design_width_in_dp"
@@ -25,35 +33,242 @@
         <meta-data
             android:name="design_height_in_dp"
             android:value="640" />
-        <activity android:name=".ExamDetail.ExamStudent"/>
-        <activity android:name=".ExamDetail.ExamFaculty"/>
-        <activity android:name=".TimeTable.GetTT"/>
-        <activity android:name=".Schedule.Schedule" />
-        <activity android:name=".About.AboutUs_Coaching"/>
-        <activity android:name=".About.List_aboutus" />
-        <activity android:name=".About.AboutUs" />
-        <activity android:name=".About.AboutUs_entrance" />
-        <activity android:name=".TimeTable.UploadTT" />
-        <activity android:name=".Message.MessageRecieve" />
-        <activity android:name=".Message.MessageSend" />
-        <activity android:name=".Fees.student_fees" />
-        <activity android:name=".Attendance.AttendanceExtra" />
-        <activity android:name=".Attendance.AttendanceStudent" />
-        <activity android:name=".Admin.FacultyList" />
-        <activity android:name=".Admin.StudentList" />
-        <activity android:name=".Admin.AddFaculty" />
-        <activity android:name=".Admin.AddStudent" />
-        <activity android:name=".Attendance.AttendanceFaculty" />
-        <activity android:name=".Performances.Performance_faculty" />
-        <activity android:name=".Dashbard.DashboardFaculty" />
-        <activity android:name=".Dashbard.DashboardAdmin" />
-        <activity android:name=".Login.ForgotPasssword" />
-        <activity android:name=".HomeScreen.MainActivity" />
-        <activity android:name=".Dashbard.DashBoardStudent" />
-        <activity android:name=".Login.Login" />
-        <activity android:name=".Fees.fees_admin" />
-        <activity android:name=".Performances.Performance_student" />
+
+        <activity android:name=".ExamDetail.ExamStudent" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".ExamDetail.ExamFaculty" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".TimeTable.GetTT" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Schedule.Schedule" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".About.AboutUs_Coaching" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".About.List_aboutus" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".About.AboutUs" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".About.AboutUs_entrance" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".TimeTable.UploadTT" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Message.MessageRecieve" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Message.MessageSend" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Fees.student_fees" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Attendance.AttendanceExtra" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Attendance.AttendanceStudent" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Admin.FacultyList" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Admin.StudentList" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Admin.AddFaculty" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Admin.AddStudent" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Attendance.AttendanceFaculty" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable">
+            </meta-data>
+        </activity>
+        <activity android:name=".Performances.Performance_faculty" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Dashbard.DashboardFaculty" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Dashbard.DashboardAdmin" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Login.ForgotPasssword" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".HomeScreen.MainActivity" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Dashbard.DashBoardStudent" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Login.Login" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Fees.fees_admin" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
+        <activity android:name=".Performances.Performance_student" >
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
+        </activity>
         <activity android:name=".HomeScreen.SplashScreen">
+            <meta-data
+                android:name="design_width_in_dp"
+                android:value="360" />
+            <meta-data
+                android:name="design_height_in_dp"
+                android:value="640" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

@@ -7,9 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import com.example.pearlinfotech.Admin.ProfileFaculty;
 import com.example.pearlinfotech.Attendance.AttendanceFaculty;
 import com.example.pearlinfotech.ExamDetail.ExamFaculty;
 import com.example.pearlinfotech.HomeScreen.MainActivity;
@@ -29,15 +27,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class DashboardFaculty extends AppCompatActivity {
 Toolbar mActionBarToolbar;
-CardView atten,timetable,perf,notif,exam;
+CardView atten,timetable,perf,notif,exam,prof;
 String message,class_selected;
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference dbTeacher;
@@ -61,7 +58,7 @@ String message,class_selected;
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
 
@@ -92,7 +89,19 @@ String message,class_selected;
                 startActivity(intent);
             }
         });
+        prof=findViewById(R.id.profdashfcard);
+        prof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                //basket.putString("class_selected", item);
+                basket.putString("tid", message);
+                basket.putString("class_selected", class_selected);
+                Intent intent = new Intent(DashboardFaculty.this, ProfileFaculty.class);
+                intent.putExtras(basket);
+                startActivity(intent);
+            }
+        });
         atten = findViewById(R.id.attendancefcard);
         atten.setOnClickListener(new View.OnClickListener() {
             @Override

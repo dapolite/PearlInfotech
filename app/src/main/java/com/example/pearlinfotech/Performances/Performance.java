@@ -8,26 +8,45 @@ public class Performance {
         return comment;
     }
 
-    public Performance(String pname, String topic, int correct, int total, int incorrect,int attempt, String tname, String comment)
+    public Performance(String uname,String sname, String topic, int total, int attempt, int correct,int incorrect,int totalm, String comment,String date,String tname)
     {
         this.comment=comment;
-        this.pname= pname;
+        this.uname= uname;
+        this.sname= sname;
         this.topic=topic;
+        this.date=date;
         this.correct=correct;
         this.total=total;
         this.incorrect=incorrect;
         this.tname=tname;
         this.attempt=attempt;
+        this.totalm=totalm;
     }
 
 
 
     String comment;
-    String pname;
+    String uname;
+
+    public String getUname() {
+        return uname;
+    }
+
+    public String getSname() {
+        return sname;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    String sname;
     String tname;
     String topic;
     int correct;
     int total;
+    int totalm;
+    String date;
 
     public int getAttempt() {
         return attempt;
@@ -36,10 +55,6 @@ public class Performance {
     int attempt;
     int incorrect;
 
-    public String getPname()
-    {
-        return pname;
-    }
 
     public String getTopic()
     {
@@ -63,6 +78,11 @@ public class Performance {
     public int getIncorrect()
     {
         return incorrect;
+    }
+
+    public int getTotalm()
+    {
+        return totalm;
     }
 
 }

@@ -23,7 +23,7 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="2"
             app:srcCompat="@drawable/areotri2" />
     </LinearLayout>
@@ -93,8 +93,20 @@
                 android:background="@drawable/btnsstroke"
                 android:ems="10"
                 android:gravity="center"
+                android:inputType="textPassword"
                 android:hint="Enter New Password"
                 android:padding="10dp" />
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btnsstroke"
+                android:textColor="#2B2727"
+                android:textColorHint="#857E7E"
+                tools:layout_editor_absoluteX="8dp" />
 
             <com.animation.animpresseffect.PressEffectButton
                 android:id="@+id/login"

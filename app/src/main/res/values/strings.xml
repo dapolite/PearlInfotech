@@ -73,7 +73,7 @@
     </string-array>
 
     <string-array name="courselist">
-        <item>Select Course</item>
+32
         <item>Java</item>
         <item>Python</item>
         <item>C</item>
@@ -106,8 +106,6 @@
         <item>IELTS</item>
         <item>5-12 GSEB</item>
         <item>5-12 CBSE</item>
-
-
 
 
     </string-array>

@@ -12,10 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import com.example.pearlinfotech.Admin.ProfileStudent;
 import com.example.pearlinfotech.Attendance.AttendanceStudent;
 import com.example.pearlinfotech.ExamDetail.ExamStudent;
 import com.example.pearlinfotech.Fees.student_fees;
 import com.example.pearlinfotech.HomeScreen.MainActivity;
+import com.example.pearlinfotech.Message.MessageRecieve;
 import com.example.pearlinfotech.Performances.Performance_student;
 import com.example.pearlinfotech.R;
 import com.example.pearlinfotech.TimeTable.GetTT;
@@ -30,7 +32,7 @@ import java.util.Date;
 
 public class DashBoardStudent extends AppCompatActivity {
     androidx.appcompat.widget.Toolbar mActionBarToolbar;
-    CardView cv1,cv2,cv3,cv4,cv5;
+    CardView cv1,cv2,cv3,cv4,cv5,cv6,cv7;
     FirebaseDatabase db;
     String sname;
     String message;
@@ -87,6 +89,7 @@ public class DashBoardStudent extends AppCompatActivity {
                 Intent i=new Intent(DashBoardStudent.this, student_fees.class);
                 Bundle basket= new Bundle();
                 basket.putString("sname",sname);
+                basket.putString("sid",message);
                 i.putExtras(basket);
                 startActivity(i);
             }
@@ -121,6 +124,28 @@ public class DashBoardStudent extends AppCompatActivity {
                 Intent i=new Intent(DashBoardStudent.this, GetTT.class);
                 Bundle basket= new Bundle();
                 basket.putString("sname",sname);
+                i.putExtras(basket);
+                startActivity(i);
+            }
+        });
+        cv6=findViewById(R.id.profdashscard);
+        cv6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DashBoardStudent.this, ProfileStudent.class);
+                Bundle basket= new Bundle();
+                basket.putString("suid",message);
+                i.putExtras(basket);
+                startActivity(i);
+            }
+        });
+        cv7=findViewById(R.id.notifdashscard);
+        cv7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DashBoardStudent.this, MessageRecieve.class);
+                Bundle basket= new Bundle();
+                basket.putString("suid",message);
                 i.putExtras(basket);
                 startActivity(i);
             }

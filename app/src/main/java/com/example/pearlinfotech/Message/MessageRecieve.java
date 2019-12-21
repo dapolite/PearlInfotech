@@ -17,7 +17,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 
@@ -30,9 +32,11 @@ public class MessageRecieve extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_recieve);
-        mRvData = findViewById(R.id.messageRecyclerView);
-        mRvData.setLayoutManager(new LinearLayoutManager(this));
+        mRvData = findViewById(R.id.messageSendRecyclerView);
+        mRvData.setLayoutManager(new LinearLayoutManager(MessageRecieve.this));
         dbMessage= FirebaseDatabase.getInstance().getReference("Message");
+        Query query=FirebaseDatabase.getInstance().getReference("Message");
+
         dbMessage.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -50,7 +54,7 @@ public class MessageRecieve extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
     }
@@ -77,6 +81,7 @@ class DisplayMsgData extends RecyclerView.Adapter<DisplayMsgData.ItemViewHolder>
         Message message=mUserLsit.get(position);
         holder.sid.setText(message.id);
         holder.mssg.setText(message.text);
+        holder.time.setText(message.time);
     }
 
     @Override
@@ -85,13 +90,13 @@ class DisplayMsgData extends RecyclerView.Adapter<DisplayMsgData.ItemViewHolder>
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        TextView sid,mssg;
+        TextView sid,mssg,time;
         public ItemViewHolder(View itemView) {
             super(itemView);
             sid=itemView.findViewById(R.id.messageTextView);
             mssg=itemView.findViewById(R.id.messengerTextView);
+            time=itemView.findViewById(R.id.timeText);
+
         }
     }
-
-
 }

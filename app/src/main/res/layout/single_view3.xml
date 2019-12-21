@@ -21,7 +21,6 @@
         android:layout_marginLeft="30dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_gravity="center"
         android:textColor="@color/colorPrimary"
         android:id="@+id/textView9"/>
 </LinearLayout>

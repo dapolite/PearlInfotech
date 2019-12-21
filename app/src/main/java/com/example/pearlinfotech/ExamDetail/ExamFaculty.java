@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -67,7 +68,6 @@ public class ExamFaculty extends AppCompatActivity
         exdate  = new DatePickerDialog.OnDateSetListener(){    @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-            // TODO Auto-generated method stub
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -84,7 +84,6 @@ public class ExamFaculty extends AppCompatActivity
 
         extime  = new TimePickerDialog.OnTimeSetListener(){    @Override
         public void onTimeSet(TimePicker view, int hour, int min) {
-            // TODO Auto-generated method stub
             myCalendar.set(Calendar.HOUR_OF_DAY, hour);
             myCalendar.set(Calendar.MINUTE, min);
             updateLabel2();
@@ -122,14 +121,17 @@ public class ExamFaculty extends AppCompatActivity
                 {
                     Exam exam = new Exam(ename,date,time);
                     databaseExam.child(ename).push().setValue(exam);
-                    Toast.makeText(getApplicationContext(), "Exam Details added successfully", Toast.LENGTH_LONG).show();
+                    FBToast.successToast(getApplicationContext(), "Exam Details added successfully", Toast.LENGTH_LONG);
+                }
+                else {
+                    FBToast.errorToast(getApplicationContext(), "Sorry! could not add exam details",Toast.LENGTH_LONG );
                 }
                 }
 
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
             }
         });
     }
