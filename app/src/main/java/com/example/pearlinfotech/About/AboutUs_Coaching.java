@@ -17,7 +17,7 @@ public class AboutUs_Coaching extends AppCompatActivity
     RecyclerView.LayoutManager layoutManager3;
     RecyclerViewAdapter recyclerViewAdapter2;
 
-    int[] arr4={R.drawable.cmat,R.drawable.gseb};
+    int[] arr4={R.drawable.cbse,R.drawable.gseb};
     String[] arr5={"5-12","5-12"};
 
     @Override

@@ -1,6 +1,5 @@
 package com.example.pearlinfotech.Login;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pearlinfotech.R;
@@ -108,7 +106,8 @@ DatabaseReference dbfac,dbstud;
                             dbstud.child(un).child("spass").setValue(up);
                             Toast.makeText(ForgotPasssword.this, "Password Changed", Toast.LENGTH_SHORT).show();
                             finish();
-                        } else {
+                        }
+                        else {
                             uid.setError("Invalid userid");
                         }
 
