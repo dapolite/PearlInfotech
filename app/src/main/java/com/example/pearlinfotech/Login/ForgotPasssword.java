@@ -63,7 +63,6 @@ DatabaseReference dbfac,dbstud;
     public void onNothingSelected(AdapterView<?> arg0) {
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void changepassword(View view) {
         un=uid.getText().toString();
         up=pas.getText().toString();
@@ -99,7 +98,7 @@ DatabaseReference dbfac,dbstud;
             else{
                 FBToast.warningToast(ForgotPasssword.this,"Must Be a Faculty",FBToast.LENGTH_SHORT);
             }
-            if (item.equals("Faculty")){
+            if (item.equals("Student")){
                 dbstud.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
