@@ -80,13 +80,6 @@ public class Performance_student extends AppCompatActivity {
                     mRvData.setAdapter(allDataAdapter);
                     allDataAdapter.notifyDataSetChanged();
                 }
-                for (Performance f : mUserList) {
-                    if (f.getPname() != null && f.getPname().contains(stuname)) {
-
-
-                    }
-
-                }
             }
 
             @Override
@@ -125,6 +118,7 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
         holder.attmpt.setInnerText(String.valueOf(perf.attempt));
         holder.tm.setInnerText(String.valueOf(perf.totalm));
         holder.cmmt.setText(perf.comment);
+        holder.pdate.setText(perf.date);
     }
 
     @Override
@@ -133,8 +127,8 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        TextView sname,topic,cmmt;
-        PieView total,corr,in,attmpt,per,tm;
+        TextView sname,topic,cmmt,pdate;
+        PieView total,corr,in,attmpt,tm;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -146,6 +140,7 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
             tm=itemView.findViewById(R.id.pieViewTotalmarks);
             cmmt=itemView.findViewById(R.id.cmmt);
             in= itemView.findViewById(R.id.pieViewIncoorect);
+            pdate=itemView.findViewById(R.id.tvDate);
 
             PieAngleAnimation animation1 = new PieAngleAnimation(total);
             animation1.setDuration(5000);
