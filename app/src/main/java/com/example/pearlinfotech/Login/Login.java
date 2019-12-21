@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.pearlinfotech.Admin.CheckNetwork;
 import com.example.pearlinfotech.Dashbard.DashBoardStudent;
 import com.example.pearlinfotech.Dashbard.DashboardAdmin;
 import com.example.pearlinfotech.Dashbard.DashboardFaculty;
@@ -85,65 +86,72 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
     }
 
 
-    public void onButtonClick(View v) {
+    public void onButtonClick(View v)
+    {
+        if(CheckNetwork.isInternetAvailable(Login.this)) //returns true if internet available
+        {
 
+            userid = username.getText().toString();
+            pass = password.getText().toString();
 
-        userid = username.getText().toString();
-        pass = password.getText().toString();
+            if (validateTor.isEmpty(pass))
+            {
+                password.setError("field Empty");
+            }
+            if (validateTor.isEmpty(userid))
+            {
+                username.setError("field Empty");
+            }
+            mDialog = new ProgressDialog(this);
+            mDialog.setMessage("Please Wait..." + userid);
+            mDialog.setTitle("Loading");
+            mDialog.show();
+            basket = new Bundle();
+            basket.putString("message", userid);
 
-        if (validateTor.isEmpty(pass)) {
-            password.setError("field Empty");
-        }
-        if (validateTor.isEmpty(userid)) {
-            username.setError("field Empty");
-        }
-        mDialog = new ProgressDialog(this);
-        mDialog.setMessage("Please Wait..." + userid);
-        mDialog.setTitle("Loading");
-        mDialog.show();
-        basket = new Bundle();
-        basket.putString("message", userid);
+            ref = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference dbuser = ref.child(item).child(userid);
 
-        ref = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference dbuser = ref.child(item).child(userid);
+            dbuser.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot)
+                {
+                    String dbchild = null;
+                    try {
+                        if (item.equals("Admin")) {
+                            mDialog.dismiss();
+                            dbpassword = dataSnapshot.getValue(String.class);
+                            verify(dbpassword);
+                        } else {
+                            mDialog.dismiss();
+                            if (item.equals("Student")) {
+                                dbchild = "spass";
+                            }
+                            if (item.equals("Faculty")) {
+                                dbchild = "tpass";
+                            }
 
-        dbuser.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String dbchild = null;
-                try {
-                    if (item.equals("Admin")) {
-                        mDialog.dismiss();
-                        dbpassword = dataSnapshot.getValue(String.class);
-                        verify(dbpassword);
-
-
-                    } else {
-                        mDialog.dismiss();
-                        if (item.equals("Student")) {
-                            dbchild = "spass";
+                            dbpassword = dataSnapshot.child(dbchild).getValue(String.class);
+                            verify(dbpassword);
                         }
-                        if (item.equals("Faculty")) {
-                            dbchild = "tpass";
-                        }
-
-                        dbpassword = dataSnapshot.child(dbchild).getValue(String.class);
-                        verify(dbpassword);
+                    } catch (Exception e) {
+                        FBToast.errorToast(Login.this, "Something went wrong", Toast.LENGTH_SHORT);
                     }
-                } catch (Exception e) {
-                    FBToast.errorToast(Login.this, "Something went wrong", Toast.LENGTH_SHORT);
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                FBToast.errorToast(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG);
-            }
-        });
-        //Toast.makeText(getApplicationContext(), dbpassword, Toast.LENGTH_LONG).show();
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    FBToast.errorToast(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG);
+                }
+            });
+            //Toast.makeText(getApplicationContext(), dbpassword, Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Toast.makeText(Login.this,"No Internet Connection",1000).show();
+
+        }
     }
-
-
     public void verify(String dbpassword) {
         if (validateTor.isEmpty(userid)) {
             username.setError("Field is empty!");
