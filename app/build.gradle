@@ -74,6 +74,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
     implementation 'com.github.NaimishTrivedi:FBToast:1.0'
+    implementation 'me.himanshusoni.chatmessageview:chat-message-view:1.0.7'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
 
 }
 apply plugin: 'com.android.application'
