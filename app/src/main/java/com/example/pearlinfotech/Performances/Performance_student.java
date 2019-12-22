@@ -1,6 +1,7 @@
 package com.example.pearlinfotech.Performances;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -146,15 +147,19 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
             animation1.setDuration(3000);
             total.startAnimation(animation1);
             PieAngleAnimation animation2 = new PieAngleAnimation(corr);
+            corr.setPercentageBackgroundColor(Color.MAGENTA);
             animation2.setDuration(3000);
             corr.startAnimation(animation2);
             PieAngleAnimation animation3 = new PieAngleAnimation(in);
+            in.setPercentageBackgroundColor(Color.GREEN);
             animation3.setDuration(3000);
             in.startAnimation(animation3);
             PieAngleAnimation animation4 = new PieAngleAnimation(attmpt);
+            attmpt.setPercentageBackgroundColor(Color.YELLOW);
             animation3.setDuration(3000);
             attmpt.startAnimation(animation4);
             PieAngleAnimation animation5 = new PieAngleAnimation(tm);
+            tm.setPercentageBackgroundColor(Color.CYAN);
             animation3.setDuration(3000);
             tm.startAnimation(animation5);
         }

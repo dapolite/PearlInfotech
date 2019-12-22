@@ -22,6 +22,7 @@
             app:layout_constraintTop_toBottomOf="@id/faclistbar"
             android:orientation="vertical">
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/stulistview"
                 android:layout_width="match_parent"
@@ -55,7 +56,7 @@
                 android:background="@drawable/btnbg"
                 android:onClick="showSelectedItems"
                 android:padding="10dp"
-                android:text="ADD"
+                android:text="Add Student"
                 android:textColor="#fff" />
 
         </LinearLayout>

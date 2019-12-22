@@ -1,5 +1,6 @@
 package com.example.pearlinfotech.Attendance;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -54,9 +55,7 @@ public class AttendanceStudent extends AppCompatActivity {
         sid = bundle1.getString("sname");
         mDatabase = FirebaseDatabase.getInstance().getReference("StudentAttendance"+"/"+sid);
 
-
-       // Log.d("TAG",String.valueOf(count));
-         mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
              @Override
              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                  for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -78,9 +77,11 @@ public class AttendanceStudent extends AppCompatActivity {
                  PieAngleAnimation animation1 = new PieAngleAnimation(prs);
                  animation1.setDuration(3000);
                  abs.setInnerText(String.valueOf(counta));
+                 abs.setPercentageBackgroundColor(Color.MAGENTA);
                  PieAngleAnimation animation2 = new PieAngleAnimation(abs);
                  animation2.setDuration(3000);
                  tota.setInnerText(String.valueOf(tot));
+                 tota.setPercentageBackgroundColor(Color.GREEN);
                  PieAngleAnimation animation3 = new PieAngleAnimation(tota);
                  animation3.setDuration(3000);
              }
