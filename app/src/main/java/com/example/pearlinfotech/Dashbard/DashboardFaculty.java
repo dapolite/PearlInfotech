@@ -1,6 +1,8 @@
 package com.example.pearlinfotech.Dashbard;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,7 +29,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -58,7 +59,7 @@ String message,class_selected;
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
+
             }
         });
 
@@ -177,6 +178,10 @@ String message,class_selected;
 
         Intent logout=new Intent(DashboardFaculty.this, MainActivity.class);
         logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        SharedPreferences sharedpreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.clear();
+        editor.apply();
         startActivity(logout);
 
     }

@@ -4,7 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
+import android.telephony.PhoneNumberUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -93,15 +93,13 @@ public class AddFaculty extends AppCompatActivity {
     }
 
     public void addTeacher(View v) {
-        tdate=Tdate.getText().toString();
         temail=Temail.getText().toString();
         tphno=Tphno.getText().toString();
         tname = Tname.getText().toString();
         tid = Tid.getText().toString();
-        //sub = subject.getText().toString();
         classname = classes.getSelectedItem().toString();
         tpass = tpassword.getText().toString();
-
+        tdate=Tdate.getText().toString();
         if (validateTor.isEmpty(temail)) {
             failFlag = true;
             Temail.setError("Field is empty!");
@@ -110,7 +108,7 @@ public class AddFaculty extends AppCompatActivity {
             failFlag = true;
             Temail.setError("Not Valid Email!");
         }
-        if (!android.util.Patterns.PHONE.matcher(tphno).matches()) {
+        if (!PhoneNumberUtils.isGlobalPhoneNumber(tphno)) {
             failFlag = true;
             Tphno.setError("Not Valid Number!");
         }
@@ -126,6 +124,10 @@ public class AddFaculty extends AppCompatActivity {
             failFlag = true;
             Tid.setError("Field is empty!");
         }
+        if (validateTor.isEmpty(tdate)) {
+            failFlag = true;
+            Tdate.setError("Field is empty!");
+        }
         if (!validateTor.isAtleastLength(tpass, 8)
                 && !validateTor.hasAtleastOneDigit(tpass)
                 && !validateTor.hasAtleastOneUppercaseCharacter(tpass)
@@ -135,41 +137,24 @@ public class AddFaculty extends AppCompatActivity {
                     "atleast 1 digit, 1 upppercase letter and 1 special character ");
 
         }
-        databaseTeacher.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String fsid=dataSnapshot.child("tid").toString();
-                String fsemail=dataSnapshot.child("temail").toString();
-                String fspass=dataSnapshot.child("tpass").toString();
-                String fsphno=dataSnapshot.child("tphno").toString();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
-
-            }
-        });
-        if(!failFlag) {
+        if(failFlag == false) {
             databaseTeacher.orderByChild("tid").equalTo(tid).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()){
+                    if (dataSnapshot.exists()) {
                         AlertDialog.Builder builder=new AlertDialog.Builder(AddFaculty.this);
                         builder.setMessage("User Exists Do You Want to Update Details?")
                                 .setCancelable(false)
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
+                                        Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tphno, tdate);
                                         databaseTeacher.child(tid).setValue(faculty);
-                                        FBToast.successToast(getApplicationContext(), "Teacher Updated successfully", Toast.LENGTH_LONG);
+                                        FBToast.successToast(getApplicationContext(), "Faculty Updated successfully", Toast.LENGTH_LONG);
                                         finish();
-
                                     }
                                 })
                                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        //  Action for 'NO' Button
                                         dialog.cancel();
                                     }
                                 });
@@ -178,9 +163,9 @@ public class AddFaculty extends AppCompatActivity {
                         alert.show();
                     }
                     else{
-                        Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
-                        databaseTeacher.child(tid).setValue(faculty);
-                        FBToast.successToast(getApplicationContext(), "Teacher added successfully", Toast.LENGTH_LONG);
+                        Student student = new Student(tname, tid, classname, tpass, temail, tphno, tdate);
+                        databaseTeacher.child(tid).setValue(student);
+                        FBToast.successToast(getApplicationContext(), "Faculty added successfully", Toast.LENGTH_LONG);
                         finish();
                     }
                 }
@@ -193,95 +178,10 @@ public class AddFaculty extends AppCompatActivity {
             });
 
         }
-    }
-
-    public void updateTeacher(View v) {
-        tdate=Tdate.getText().toString();
-        temail=Temail.getText().toString();
-        tphno=Tphno.getText().toString();
-        tname = Tname.getText().toString();
-        tid = Tid.getText().toString();
-        //sub = subject.getText().toString();
-        classname = classes.getSelectedItem().toString();
-        tpass = tpassword.getText().toString();
-        Log.d("TAG",tname);
-        Log.d("TAG",tid);
-        Log.d("TAG",classname);
-        Log.d("TAG",tpass);
-        Log.d("TAG",temail);
-        Log.d("TAG",tphno);
-        Log.d("TAG",tdate);
-        databaseTeacher.orderByChild("tid").equalTo(tid).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(!dataSnapshot.exists()){
-                    failFlag=true;
-                    Tid.setError("User  Does Not Exist");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
-
-            }
-        });
-        databaseTeacher.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String fsid=dataSnapshot.child("tid").toString();
-                String fsemail=dataSnapshot.child("temail").toString();
-                String fspass=dataSnapshot.child("tpass").toString();
-                String fsphno=dataSnapshot.child("tphno").toString();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                FBToast.errorToast(getApplicationContext(), "Database Error", FBToast.LENGTH_LONG);
-
-            }
-        });
-        if (validateTor.isEmpty(temail)) {
-            failFlag = true;
-            Temail.setError("Field is empty!");
-        }
-        if (!validateTor.isEmail(temail)) {
-            failFlag = true;
-            Temail.setError("Not Valid Email!");
-        }
-        if (!android.util.Patterns.PHONE.matcher(tphno).matches()) {
-            failFlag = true;
-            Tphno.setError("Not Valid Number!");
-        }
-        if (validateTor.isEmpty(tphno)) {
-            failFlag = true;
-            Tphno.setError("Field is empty!");
-        }
-        if (validateTor.isEmpty(tname)) {
-            failFlag = true;
-            Tname.setError("Field is empty!");
-        }
-        if (validateTor.isEmpty(tid)) {
-            failFlag = true;
-            Tid.setError("Field is empty!");
-        }
-        if (!validateTor.isAtleastLength(tpass, 8)
-                && !validateTor.hasAtleastOneDigit(tpass)
-                && !validateTor.hasAtleastOneUppercaseCharacter(tpass)
-                && !validateTor.hasAtleastOneSpecialCharacter(tpass)) {
-            failFlag = true;
-            tpassword.setError("Password needs to be of minimum length of 8 characters and should have " +
-                    "atleast 1 digit, 1 upppercase letter and 1 special character ");
-
-        }
-        if(failFlag == false) {
-            Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tdate, tphno);
-            databaseTeacher.child(tid).setValue(faculty);
-            FBToast.successToast(getApplicationContext(), "Teacher updated successfully", Toast.LENGTH_LONG);
-            finish();
+        else{
+            FBToast.warningToast(AddFaculty.this,"Make Sure All Feilds are Proper",FBToast.LENGTH_SHORT);
         }
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

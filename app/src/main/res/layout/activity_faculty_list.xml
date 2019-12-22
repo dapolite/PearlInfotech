@@ -25,22 +25,9 @@
         app:layout_constraintTop_toBottomOf="@id/faclistbar"
         app:layout_constraintStart_toStartOf="parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
 
-            <Button
-                android:id="@+id/addfac"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="10dp"
-                android:background="@drawable/btnbg"
-                android:onClick="showSelectedItems"
-                android:padding="10dp"
-                android:text="ADD"
-                android:textColor="#fff" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,11 +37,23 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/faclist"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/addfac"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/btnbg"
+                    android:onClick="showSelectedItems"
+                    android:padding="10dp"
+                    android:text="ADD"
+                    android:textColor="#fff" />
             </LinearLayout>
 
 
-        </RelativeLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

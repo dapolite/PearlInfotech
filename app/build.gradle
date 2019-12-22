@@ -43,32 +43,17 @@ android {
 }
 
 dependencies {
-    androidTestUtil 'androidx.test:orchestrator:1.2.0'
-    implementation 'com.stepstone.xrunner:xrunner-library:2.1.0'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     implementation "com.squareup.okhttp3:okhttp:4.1.1"
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'me.himanshusoni.chatmessageview:chat-message-view:1.0.7'
-    implementation 'com.applandeo:material-calendar-view:1.0.1'
-    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
     implementation 'com.github.mahimrocky:EventCalender:v1.0.0'
     implementation 'com.github.NaimishTrivedi:FBToast:1.0'
-    implementation 'com.github.VladimirWrites:Lemniscate:2.0.2'
-    implementation 'com.github.mmoamenn:ProgressWindow_Android:0.0.2'
     implementation 'com.github.saurabhdhillon:anim-press-view:0.0.1'
-    implementation 'com.thoughtbot:expandablerecyclerview:1.3'
-    implementation 'com.github.psinetron:slycalendarview:0.0.9'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50'
-    implementation 'com.github.florent37:shapeofview:1.4.7'
     implementation 'com.github.nisrulz:validatetor:1.0.0'
-    implementation 'com.github.IamIsPra:Sheriff:1.0.0'
     implementation 'com.github.zurche:plain-pie:v0.2.9'
-    implementation 'com.github.IntruderShanky:Frisson:2.1.1'
-    implementation 'com.kingja.loadsir:loadsir:1.3.6'
     implementation 'me.jessyan:autosize:1.1.2'
-    implementation 'com.savvi.datepicker:rangepicker:1.3.0'
     implementation 'com.android.support:multidex:1.0.3'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'

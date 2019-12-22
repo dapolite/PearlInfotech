@@ -25,6 +25,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dshstudentbar">
 
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Select Your Class"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollViewdashs"
             android:layout_width="match_parent"
@@ -40,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="50dp"
                 android:orientation="vertical">
+
 
                 <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/profdashscard"

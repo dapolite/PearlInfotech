@@ -11,10 +11,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="70dp"
+        android:layout_margin="50dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,8 +24,8 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
             android:layout_marginStart="-1dp"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
@@ -38,17 +35,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/logo" />
 
-        <com.vlad1m1r.lemniscate.BernoullisProgressView
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:duration="1000"
-            app:hasHole="false"
-            app:lineColor="@color/colorPrimary"
-            app:maxLineLength="0.8"
-            app:minLineLength="0.4"
-            app:sizeMultiplier="1"
-            app:strokeWidth="5dp"/>
+
 
     </LinearLayout>
 

@@ -1,11 +1,14 @@
 package com.example.pearlinfotech.Dashbard;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +38,7 @@ public class DashBoardStudent extends AppCompatActivity {
     CardView cv1,cv2,cv3,cv4,cv5,cv6,cv7;
     FirebaseDatabase db;
     String sname;
+    TextView textView;
     String message;
     DatabaseReference ref;
     @Override
@@ -58,7 +62,8 @@ public class DashBoardStudent extends AppCompatActivity {
         });
         db=FirebaseDatabase.getInstance();
         ref=db.getReference("Student").child(message);
-//        txtView.setText("Welcome :"+message);
+        textView=findViewById(R.id.txt1);
+        textView.setText("Welcome :"+message);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -89,7 +94,6 @@ public class DashBoardStudent extends AppCompatActivity {
                 Intent i=new Intent(DashBoardStudent.this, student_fees.class);
                 Bundle basket= new Bundle();
                 basket.putString("sname",sname);
-                basket.putString("sid",message);
                 i.putExtras(basket);
                 startActivity(i);
             }
@@ -160,6 +164,10 @@ public class DashBoardStudent extends AppCompatActivity {
 
         Intent logout=new Intent(DashBoardStudent.this, MainActivity.class);
         logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        SharedPreferences sharedpreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.clear();
+        editor.apply();
         startActivity(logout);
 
     }

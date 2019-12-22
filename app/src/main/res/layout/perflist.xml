@@ -91,7 +91,7 @@
             android:padding="15dp"
             plainpie:inner_pie_padding="15"
             plainpie:inner_text_visibility="true"
-            plainpie:percentage="75"
+            plainpie:percentage="100"
             plainpie:percentage_size="10" />
 
     </LinearLayout>
@@ -214,7 +214,7 @@
             android:layout_width="50dp"
             android:layout_height="55dp"
             plainpie:inner_pie_padding="15"
-            plainpie:percentage="75"
+            plainpie:percentage="100"
             plainpie:percentage_size="10"
             plainpie:inner_text_visibility="true"/>
 

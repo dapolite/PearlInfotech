@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
             android:layout_weight="1"
+            android:layout_gravity="center"
             android:background="@drawable/rectanglehomescreen"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"

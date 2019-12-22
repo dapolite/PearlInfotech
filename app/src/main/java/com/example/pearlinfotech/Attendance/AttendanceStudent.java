@@ -19,6 +19,7 @@ import com.tfb.fbtoast.FBToast;
 import java.util.ArrayList;
 
 import az.plainpie.PieView;
+import az.plainpie.animation.PieAngleAnimation;
 
 public class AttendanceStudent extends AppCompatActivity {
     private DatabaseReference mDatabase;
@@ -72,9 +73,16 @@ public class AttendanceStudent extends AppCompatActivity {
                  tot=counta+countp;
                  //Log.d("TAG",String.valueOf(count));
                  Log.d("TAG",num + " " + countp);
+
                  prs.setInnerText(String.valueOf(countp));
+                 PieAngleAnimation animation1 = new PieAngleAnimation(prs);
+                 animation1.setDuration(3000);
                  abs.setInnerText(String.valueOf(counta));
+                 PieAngleAnimation animation2 = new PieAngleAnimation(abs);
+                 animation2.setDuration(3000);
                  tota.setInnerText(String.valueOf(tot));
+                 PieAngleAnimation animation3 = new PieAngleAnimation(tota);
+                 animation3.setDuration(3000);
              }
 
              @Override

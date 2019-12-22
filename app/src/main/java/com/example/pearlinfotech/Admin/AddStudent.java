@@ -5,8 +5,8 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -29,7 +29,6 @@ import com.raywenderlich.android.validatetor.ValidateTor;
 import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -40,10 +39,6 @@ public class AddStudent extends AppCompatActivity {
     EditText Sname, Sphno, Semail, Sdate;
     EditText Sid, spassword;
     boolean ff=false;
-    ArrayList<String> fsid = new ArrayList<>();
-    ArrayList<String> fspass = new ArrayList<>();
-    ArrayList<String> fsemail = new ArrayList<>();
-    ArrayList<String> fsphno = new ArrayList<>();
     String sname, sid, classname, spass, sphno, semail, sdate;
     Spinner classes;
     DatabaseReference databaseStudent,databaseCourse;
@@ -108,21 +103,6 @@ public class AddStudent extends AppCompatActivity {
         sid = Sid.getText().toString();
         classname = classes.getSelectedItem().toString();
         spass = spassword.getText().toString();
-        Log.d("TAG", sdate);
-
-
-        if (fsemail.contains(semail)) {
-            failFlag = true;
-            Semail.setError("Email Aleady Exists");
-        }
-        if (fspass.contains(spass)) {
-            failFlag = true;
-            spassword.setError("Password Taken");
-        }
-        if (fsphno.contains(sphno)) {
-            failFlag = true;
-            Sid.setError("Phone Number Aready Exists");
-        }
         if (validateTor.isEmpty(semail)) {
             failFlag = true;
             Semail.setError("Field is empty!");
@@ -133,7 +113,7 @@ public class AddStudent extends AppCompatActivity {
             Semail.setError("Not Valid Email!");
 
         }
-        if (!android.util.Patterns.PHONE.matcher(sphno).matches()) {
+        if (!PhoneNumberUtils.isGlobalPhoneNumber(sphno)) {
             failFlag = true;
             Sphno.setError("Invalid phone number");
 
@@ -149,8 +129,14 @@ public class AddStudent extends AppCompatActivity {
 
         }
         if (validateTor.isEmpty(sid)) {
+            failFlag = true;
+
             Sid.setError("Field is empty!");
 
+        }
+        if(validateTor.isEmpty(sdate)){
+            failFlag = true;
+            Sdate.setError("Field Is Empty");
         }
         if (!validateTor.isAtleastLength(spass, 8)
                 && !validateTor.hasAtleastOneDigit(spass)
@@ -210,7 +196,7 @@ public class AddStudent extends AppCompatActivity {
         }
     }
 
-    public void removeStudent(View v) {
+    public void addCourse(View v) {
         if (!TextUtils.isEmpty(Sid.getText().toString())) {
             sid = Sid.getText().toString();
 
@@ -237,9 +223,9 @@ public class AddStudent extends AppCompatActivity {
                                             String c=ds.getValue().toString();
                                             if(c.equals(classe)){
                                                 ff=true;
+                                                FBToast.errorToast(AddStudent.this,"Course Taken By User",FBToast.LENGTH_SHORT);
                                             }
                                             else{
-                                                FBToast.errorToast(AddStudent.this,"Course Taken By User",FBToast.LENGTH_SHORT);
                                             }
                                         }
                                         if(!ff) {
@@ -265,9 +251,6 @@ public class AddStudent extends AppCompatActivity {
                         mBuilder.setView(mview);
                         AlertDialog dialog = mBuilder.create();
                         dialog.show();
-                    }
-                    else{
-                        Sid.setError("User Does Not Exist");
                     }
                 }
                     @Override

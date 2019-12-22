@@ -143,19 +143,19 @@ class DisplayData extends RecyclerView.Adapter<DisplayData.ItemViewHolder>{
             pdate=itemView.findViewById(R.id.tvDate);
 
             PieAngleAnimation animation1 = new PieAngleAnimation(total);
-            animation1.setDuration(5000);
+            animation1.setDuration(3000);
             total.startAnimation(animation1);
             PieAngleAnimation animation2 = new PieAngleAnimation(corr);
-            animation2.setDuration(5000);
+            animation2.setDuration(3000);
             corr.startAnimation(animation2);
             PieAngleAnimation animation3 = new PieAngleAnimation(in);
-            animation3.setDuration(5000);
+            animation3.setDuration(3000);
             in.startAnimation(animation3);
             PieAngleAnimation animation4 = new PieAngleAnimation(attmpt);
-            animation3.setDuration(5000);
+            animation3.setDuration(3000);
             attmpt.startAnimation(animation4);
             PieAngleAnimation animation5 = new PieAngleAnimation(tm);
-            animation3.setDuration(5000);
+            animation3.setDuration(3000);
             tm.startAnimation(animation5);
         }
     }

@@ -1,6 +1,8 @@
 package com.example.pearlinfotech.Dashbard;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -109,6 +111,10 @@ public class DashboardAdmin extends AppCompatActivity {
 
         Intent logout=new Intent(DashboardAdmin.this, MainActivity.class);
         logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        SharedPreferences sharedpreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.clear();
+        editor.apply();
         startActivity(logout);
 
     }

@@ -57,7 +57,7 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
     DatabaseReference dbTeacher;
     DatabaseReference stuAttendance;
     DatabaseReference dbStudent;
-    String dates;
+    String atdates;
     Calendar myCalendar= Calendar.getInstance();
     String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     private ArrayAdapter adapter;
@@ -90,7 +90,6 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 class_selected=dataSnapshot.child(teacher_id).child("classes").getValue().toString();
-                Log.d("TAG",class_selected);
             }
 
             @Override
@@ -99,13 +98,11 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
             }
         });
         selectedItems = new ArrayList<String>();
-        dates=adate.getText().toString();
         TextView classname = findViewById(R.id.textView);
 
         date1  = new DatePickerDialog.OnDateSetListener(){    @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-            // TODO Auto-generated method stub
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -119,6 +116,7 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+
         classname.setText(class_selected);
 
 
@@ -152,6 +150,7 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
 
 
     public void OnStart(ArrayList<String> userlist) {
+
         nonselectedItems = userlist;
         ListView chl = findViewById(R.id.checkable_list);
         chl.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -165,7 +164,6 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
                     selectedItems.remove(selectedItem);
                 else
                     selectedItems.add(selectedItem);
-
             }
 
         });
@@ -176,28 +174,38 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
     public void showSelectedItems(View view) {
         String selItems = "";
             ref = FirebaseDatabase.getInstance().getReference();
+            atdates=adate.getText().toString();
 
-            dbAttendance = ref.child("Attendance").child(date).child(class_selected).child(teacher_id);
+            dbAttendance = ref.child("Attendance/"+atdates).child(class_selected).child(teacher_id);
 
             for (String item : selectedItems) {
-                FBToast.successToast(this, "Attendance created Successfully", Toast.LENGTH_SHORT);
+                Log.d("TAGSS",atdates);
+                Log.d("TAGSS",item);
+                Log.d("TAGSS",teacher_id);
                 nonselectedItems.remove(item);
                 dbAttendance.child(item).setValue("Present");
-                stuAttendance=ref.child("StudentAttendance").child(item);
-                stuAttendance.child(date).setValue("Present");
+                stuAttendance=ref.child("StudentAttendance/"+item+"/"+atdates);
+                stuAttendance.setValue("Present");
                 aa.notifyDataSetChanged();
-                if (selItems == "")
+                if (selItems == "") {
                     selItems = item;
-                else
+                    Log.d("TAGSS",item);
+                    Log.d("TAGSS",teacher_id);
+                }
+                else {
                     selItems += "/" + item;
+                    Log.d("TAGSS",item);
+                    Log.d("TAGSS",teacher_id);
+                }
             }
             for (String item : nonselectedItems) {
-                Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
-                dbAttendance.child(item).setValue("Absent");
-                stuAttendance=ref.child("StudentAttendance").child(item);
-                stuAttendance.child(date).setValue("Absent");
-                aa.notifyDataSetChanged();
 
+
+                dbAttendance.child(item).setValue("Absent");
+                stuAttendance=ref.child("StudentAttendance/"+item);
+                stuAttendance.child(atdates).setValue("Absent");
+                aa.notifyDataSetChanged();
+                Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -227,7 +235,7 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
         return true;
     }
     private void updateLabel() {
-        String myFormat = "MM/dd/yy";
+        String myFormat = "dd-MM-yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         adate.setText(sdf.format(myCalendar.getTime()));
