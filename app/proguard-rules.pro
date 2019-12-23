@@ -16,9 +16,16 @@
 # debugging stack traces.
 #-keepattributes SourceFile,LineNumberTable
 -keep class androidx.core.app.CoreComponentFactory { *; }
--optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/*
 -optimizationpasses 5
--allowaccessmodification
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+-verbose
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+-keepattributes *Annotation*
+-keepattributes Signature
+-keepattributes SourceFile,LineNumberTable
+-keepattributes Exceptions,InnerClasses,Signature
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
@@ -27,7 +34,7 @@
 -keep public class * extends android.app.backup.BackupAgent
 -keep public class * extends android.preference.Preference
 -keep public class Admin.Student.** { *; }
--keep public class Admin.Faculty.** { *; }
+-keep public class com.example.pearlinfotech.Admin.Faculty.** { *; }
 -keep public class Admin.Course.** { *; }
 -keep class com.example.pearlinfotech.Admin.** { *; }
 -keep class com.example.pearlinfotech.About.** { *; }
@@ -39,13 +46,21 @@
 -keep class com.example.pearlinfotech.Message.** { *; }
 -keep class com.example.pearlinfotech.Performance.** { *; }
 -keep class com.example.pearlinfotech.TimeTable.** { *; }
+# Preserve the special static methods that are required in all enumeration classes.
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
 
-
-
-
-
-
-
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+-keep class * implements android.os.Serializable {
+  public static final android.os.Serializable$Creator *;
+}
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile

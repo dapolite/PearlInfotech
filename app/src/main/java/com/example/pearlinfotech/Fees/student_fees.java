@@ -53,7 +53,6 @@ public class student_fees extends AppCompatActivity {
                 finish();
             }
         });
-        Log.d("TAGS",sid);
         mFirebaseInstance = FirebaseDatabase.getInstance();
         mDatabase = mFirebaseInstance.getReference("Fees/"+sid);
         mDB=mDatabase.child(stuname);
@@ -103,7 +102,6 @@ class DisplayAllData extends RecyclerView.Adapter<DisplayAllData.ItemViewHolder>
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         Fee fee=mUserLsit.get(position);
-        //holder.sname.setText(fee.sname);
         holder.subject.setText(fee.course);
         holder.total.setText(String.valueOf(fee.total));
         holder.paid.setText(String.valueOf(fee.paid));
@@ -120,7 +118,6 @@ class DisplayAllData extends RecyclerView.Adapter<DisplayAllData.ItemViewHolder>
         TextView sname,subject,total,paid,t1,t2;
         public ItemViewHolder(View itemView) {
             super(itemView);
-            //sname=itemView.findViewById(R.id.sname);
             subject=itemView.findViewById(R.id.sub);
             total=itemView.findViewById(R.id.total);
             paid=itemView.findViewById(R.id.paid);

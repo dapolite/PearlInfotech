@@ -75,8 +75,7 @@ public class FacultyList extends AppCompatActivity {
                 }
                 allDataAdapter = new DisplayFacData(FacultyList.this, mUserList);
                 mRvData.setAdapter(allDataAdapter);
-                Log.d("TAG","Adapter Set");
-                //allDataAdapter.notifyDataSetChanged();
+                allDataAdapter.notifyDataSetChanged();
             }
 
             @Override

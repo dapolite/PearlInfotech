@@ -11,7 +11,10 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="70dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,8 +27,8 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/colorPrimary"
+
+
             android:layout_marginStart="-1dp"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
@@ -34,7 +37,6 @@
             android:maxHeight="350dp"
             android:scaleType="fitCenter"
             android:src="@drawable/logo" />
-
 
 
     </LinearLayout>

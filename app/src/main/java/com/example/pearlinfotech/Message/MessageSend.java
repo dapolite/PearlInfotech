@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,6 +55,18 @@ EditText msg;
         Date currentLocalTime = cal.getTime();
         DateFormat date = new SimpleDateFormat("HH:mm a");
         date.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("Fee Details");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         String localTime = date.format(currentLocalTime);
         dbMessage=FirebaseDatabase.getInstance().getReference("Message");

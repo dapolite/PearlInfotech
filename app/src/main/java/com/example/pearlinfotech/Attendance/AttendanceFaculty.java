@@ -36,7 +36,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-
+@SuppressWarnings("unchecked")
 public class AttendanceFaculty extends AppCompatActivity implements SearchView.OnQueryTextListener {
     DatePickerDialog.OnDateSetListener date1;
     String teacher_id;

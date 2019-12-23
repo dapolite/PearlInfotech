@@ -69,14 +69,11 @@ public class StudentList extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUserList.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String lol=ds.getValue().toString();
-                    Log.d("TAG",lol);
                     Student sry = ds.getValue(Student.class);
                     mUserList.add(sry);
                 }
                 allDataAdapter = new DisplayStuData(StudentList.this, mUserList);
                 mRvData.setAdapter(allDataAdapter);
-                Log.d("TAG","Adapter Set");
                 allDataAdapter.notifyDataSetChanged();
             }
 

@@ -9,19 +9,8 @@ public class Faculty {
     public String tpass;
     public boolean expanded;
     public String classes;
-    public String sub;
 
-    public String getTemail() {
-        return temail;
-    }
 
-    public String getTdate() {
-        return tdate;
-    }
-
-    public String getTphno() {
-        return tphno;
-    }
 
 public Faculty(){}
 
@@ -33,6 +22,18 @@ public Faculty(){}
         this.temail=temail;
         this.tdate=tdate;
         this.tphno=tphno;
+    }
+
+    public String getTemail() {
+        return temail;
+    }
+
+    public String getTdate() {
+        return tdate;
+    }
+
+    public String getTphno() {
+        return tphno;
     }
 
     public String getTname() {
