@@ -53,7 +53,7 @@ EditText msg;
         mRvData.setLayoutManager(new LinearLayoutManager(this));
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+5:30"));
         Date currentLocalTime = cal.getTime();
-        DateFormat date = new SimpleDateFormat("HH:mm a");
+        DateFormat date = new SimpleDateFormat("MM-dd-yyyy HH:mm a");
         date.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
         Toolbar toolbar1=findViewById(R.id.ftoolbar);
         toolbar1.setTitle("Fee Details");

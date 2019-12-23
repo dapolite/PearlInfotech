@@ -131,6 +131,7 @@ public class ExamFaculty extends AppCompatActivity
                     Exam exam = new Exam(ename,date,time);
                     databaseExam.child(ename).push().setValue(exam);
                     FBToast.successToast(getApplicationContext(), "Exam Details added successfully", Toast.LENGTH_LONG);
+                    finish();
                 }
                 else {
                     FBToast.errorToast(getApplicationContext(), "Sorry! could not add exam details",Toast.LENGTH_LONG );

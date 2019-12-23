@@ -16,7 +16,6 @@ public class AboutUs extends AppCompatActivity
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     RecyclerViewAdapter recyclerViewAdapter;
-
     int[] arr={R.drawable.java1,R.drawable.python,R.drawable.langc,R.drawable.cpp,R.drawable.sql,R.drawable.mysql,R.drawable.oracle,R.drawable.php,R.drawable.js,R.drawable.jq,R.drawable.android,R.drawable.asp,R.drawable.bootstrap,R.drawable.dj,R.drawable.htmll,R.drawable.css,R.drawable.visual,R.drawable.tally,R.drawable.xcel};
     String[] arry={"Java","Python","C","C++","SQL","MySql","Oracle","php","JavaScript","JQuery","Android","Asp.net","Bootstrap","Django","HTML","CSS","VB.net","Tally","Excel"};
 
@@ -46,5 +45,6 @@ public class AboutUs extends AppCompatActivity
         recyclerViewAdapter = new RecyclerViewAdapter(arr,arry);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
+        System.gc();
     }
 }

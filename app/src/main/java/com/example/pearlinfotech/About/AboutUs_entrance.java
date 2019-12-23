@@ -43,5 +43,6 @@ public class  AboutUs_entrance extends AppCompatActivity
         recyclerViewAdapter1 = new RecyclerViewAdapter(arr2,arr3);
         recyclerView2.setAdapter(recyclerViewAdapter1);
         recyclerView2.setHasFixedSize(true);
+        System.gc();
     }
 }

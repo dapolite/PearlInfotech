@@ -45,5 +45,6 @@ public class AboutUs_Coaching extends AppCompatActivity
         recyclerViewAdapter2 = new RecyclerViewAdapter(arr4,arr5);
         recyclerView3.setAdapter(recyclerViewAdapter2);
         recyclerView3.setHasFixedSize(true);
+        System.gc();
     }
 }

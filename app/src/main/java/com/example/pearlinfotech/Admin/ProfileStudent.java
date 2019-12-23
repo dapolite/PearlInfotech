@@ -6,11 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +27,6 @@ public class ProfileStudent extends AppCompatActivity {
     TextView stuname,sid,spass,sphno,semail,sdate;
     RecyclerView recyclerView;
     ArrayList<String> courseNames = new ArrayList<>();
-    Button button;
     String tid;
     MyRecyclerViewAdapter adapter;
     DatabaseReference mRef;
@@ -47,6 +46,18 @@ public class ProfileStudent extends AppCompatActivity {
         sphno=findViewById(R.id.suphno);
         semail=findViewById(R.id.suemail);
         sdate=findViewById(R.id.sudate);
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("Student Profile");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mRef = FirebaseDatabase.getInstance().getReference("Student/"+tid);
         mRef.addValueEventListener(new ValueEventListener() {
             @Override

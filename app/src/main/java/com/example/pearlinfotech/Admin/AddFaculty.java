@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -38,10 +37,9 @@ public class AddFaculty extends AppCompatActivity {
     EditText subject, tpassword,Tphno,Temail,Tdate;
     String tname, tid, sub, classname, tpass,tphno,temail,tdate;
     Spinner classes;
-    Button addButton;
     Calendar myCalendar = Calendar.getInstance();
     DatabaseReference databaseTeacher;
-    Toolbar mToolbar;
+
     boolean failFlag = false;
     ValidateTor validateTor = new ValidateTor();
 
@@ -69,7 +67,6 @@ public class AddFaculty extends AppCompatActivity {
         Tdate=findViewById(R.id.dateaf);
         Tname = findViewById(R.id.editText1);
         Tid = findViewById(R.id.editText3);
-        //subject = findViewById(R.id.editText4);
         classes = findViewById(R.id.spinner3);
         tpassword = findViewById(R.id.editText5);
         date  = new DatePickerDialog.OnDateSetListener(){    @Override
@@ -81,6 +78,7 @@ public class AddFaculty extends AppCompatActivity {
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateLabel();
         }};
+
         Tdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +87,7 @@ public class AddFaculty extends AppCompatActivity {
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+
 
     }
 

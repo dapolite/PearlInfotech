@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="70dp"
         android:orientation="vertical"
@@ -37,7 +37,6 @@
             android:maxHeight="350dp"
             android:scaleType="fitCenter"
             android:src="@drawable/logo" />
-
 
     </LinearLayout>
 
