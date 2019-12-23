@@ -1,5 +1,4 @@
 package com.example.pearlinfotech.Admin;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -28,21 +27,19 @@ import com.tfb.fbtoast.FBToast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-
-
 public class AddFaculty extends AppCompatActivity {
     EditText Tname;
     DatePickerDialog.OnDateSetListener date;
     EditText Tid;
     EditText subject, tpassword,Tphno,Temail,Tdate;
     String tname, tid, sub, classname, tpass,tphno,temail,tdate;
-    Spinner classes;
+
     Calendar myCalendar = Calendar.getInstance();
     DatabaseReference databaseTeacher;
 
-    boolean failFlag = false;
+    Spinner classes;
     ValidateTor validateTor = new ValidateTor();
-
+    boolean failFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +84,6 @@ public class AddFaculty extends AppCompatActivity {
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-
     }
 
     public void addTeacher(View v) {
@@ -183,10 +178,11 @@ public class AddFaculty extends AppCompatActivity {
                         AlertDialog alert = builder.create();
                         alert.setTitle("Woops!");
                         alert.show();
+                        alert.dismiss();
                     }
                     else{
-                        Student student = new Student(tname, tid, classname, tpass, temail, tphno, tdate);
-                        databaseTeacher.child(tid).setValue(student);
+                        Faculty faculty = new Faculty(tname,tid,temail,classname,tpass,tdate,tphno);
+                        databaseTeacher.child(tid).setValue(faculty);
                         FBToast.successToast(getApplicationContext(), "Faculty added successfully", Toast.LENGTH_LONG);
                         finish();
                     }

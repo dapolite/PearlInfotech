@@ -28,8 +28,6 @@ public class student_fees extends AppCompatActivity {
     private RecyclerView mRvData;
     private DisplayAllData allDataAdapter;
     private DatabaseReference mDatabase,mDB;
-    private TextView mTvEmpty;
-    ArrayList<String> getkey=new ArrayList<>();
     private FirebaseDatabase mFirebaseInstance;
     String stuname,sid;
     private ArrayList<Fee> mUserList = new ArrayList<>();
@@ -55,6 +53,8 @@ public class student_fees extends AppCompatActivity {
         });
         mFirebaseInstance = FirebaseDatabase.getInstance();
         mDatabase = mFirebaseInstance.getReference("Fees/"+sid);
+        Log.d("TAGS",stuname);
+        Log.d("TAGS",sid);
         mDB=mDatabase.child(stuname);
         mRvData = findViewById(R.id.feercv);
         mRvData.setLayoutManager(new LinearLayoutManager(this));
@@ -64,7 +64,7 @@ public class student_fees extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUserList.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                            String lol = dataSnapshot1.getValue().toString();
+                            String lol = dataSnapshot.getValue().toString();
                             Log.d("TAGS", lol);
                             Fee fee = dataSnapshot1.getValue(Fee.class);
                             mUserList.add(fee);

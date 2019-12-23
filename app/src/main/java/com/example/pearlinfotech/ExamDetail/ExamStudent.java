@@ -2,7 +2,6 @@ package com.example.pearlinfotech.ExamDetail;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +62,6 @@ public class ExamStudent extends AppCompatActivity
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     for(DataSnapshot ds:dataSnapshot1.getChildren()) {
                         String lol = ds.getValue().toString();
-                        Log.d("TAG", lol);
                         Exam exam = ds.getValue(Exam.class);
                         mUserList.add(exam);
                         allDataAdapter = new DisplayExamData(ExamStudent.this, mUserList);

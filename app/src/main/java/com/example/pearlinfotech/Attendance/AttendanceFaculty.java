@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -180,23 +179,18 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
             dbAttendance = ref.child("Attendance/"+atdates).child(class_selected).child(teacher_id);
 
             for (String item : selectedItems) {
-                Log.d("TAGSS",atdates);
-                Log.d("TAGSS",item);
-                Log.d("TAGSS",teacher_id);
                 nonselectedItems.remove(item);
                 dbAttendance.child(item).setValue("Present");
                 stuAttendance=ref.child("StudentAttendance/"+item+"/"+atdates);
                 stuAttendance.setValue("Present");
+                FBToast.successToast(AttendanceFaculty.this, "Students Marked Present", FBToast.LENGTH_SHORT);
                 aa.notifyDataSetChanged();
                 if (selItems == "") {
                     selItems = item;
-                    Log.d("TAGSS",item);
-                    Log.d("TAGSS",teacher_id);
+
                 }
                 else {
                     selItems += "/" + item;
-                    Log.d("TAGSS",item);
-                    Log.d("TAGSS",teacher_id);
                 }
             }
             for (String item : nonselectedItems) {
@@ -206,7 +200,7 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
                 stuAttendance=ref.child("StudentAttendance/"+item);
                 stuAttendance.child(atdates).setValue("Absent");
                 aa.notifyDataSetChanged();
-                Toast.makeText(this, "Attendance created Successfully", Toast.LENGTH_SHORT).show();
+                FBToast.successToast(AttendanceFaculty.this, "Students Marked Absent", FBToast.LENGTH_SHORT);
             }
         }
 

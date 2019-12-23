@@ -43,7 +43,6 @@ public class UploadTT extends AppCompatActivity {
     private ImageView mImageView;
     private ProgressBar mProgressBar;
     private Uri mImageUri;
-    Toolbar mToolbar;
     ValidateTor validateTor=new ValidateTor();
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
@@ -86,12 +85,10 @@ public class UploadTT extends AppCompatActivity {
                     if (mUploadTask != null && mUploadTask.isInProgress()) {
                         FBToast.infoToast(UploadTT.this, "Upload in progress", Toast.LENGTH_SHORT);
                     } else {
-                        if(validateTor.isEmpty(title)){
                             mEditTextFileName.setError("Field Empty");
-                        }
-                        else{
+
                         uploadFile();
-                        FBToast.successToast(UploadTT.this, "Image Uploaded", Toast.LENGTH_SHORT);}
+                        FBToast.successToast(UploadTT.this, "Image Uploaded", Toast.LENGTH_SHORT);
                     }
                 }
             });

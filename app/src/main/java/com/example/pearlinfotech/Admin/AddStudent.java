@@ -199,6 +199,7 @@ public class AddStudent extends AppCompatActivity {
                         AlertDialog alert = builder.create();
                         alert.setTitle("Woops!");
                         alert.show();
+                        alert.dismiss();
                     }
                     else{
                         Student student = new Student(sname, sid, classname, spass, semail, sphno, sdate);

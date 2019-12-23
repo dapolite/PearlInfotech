@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raywenderlich.android.validatetor.ValidateTor;
+import com.tfb.fbtoast.FBToast;
 
 import java.util.ArrayList;
 
@@ -81,13 +81,6 @@ public class fees_admin extends AppCompatActivity
 
             type1 = spin1.getSelectedItem().toString();
             type2 = spin2.getSelectedItem().toString();
-            Log.d("Working?",sname);
-            Log.d("Working?",sid);
-            Log.d("Working?",total1);
-            Log.d("Working?",course);
-            Log.d("Working?",type2);
-            Log.d("Working?",type1);
-            Log.d("Working?",paid1);
             if (validateTor.isEmpty(sid)) {
                 failFlag=true;
                 e2.setError("Field is empty!");
@@ -146,7 +139,7 @@ public class fees_admin extends AppCompatActivity
                                 Log.d("Working", "Fail2");
                                 Fee fee = new Fee(sname, total, paid, course, type1, type2);
                                 databaseFees.child(sid).push().setValue(fee);
-                                Toast.makeText(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG).show();
+                                FBToast.successToast(getApplicationContext(), "Fees added successfully", FBToast.LENGTH_SHORT);
                             }
                             else{
                                 e1.setError("Wrong Student Name");

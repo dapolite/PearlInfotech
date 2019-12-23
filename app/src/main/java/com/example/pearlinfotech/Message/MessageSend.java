@@ -56,7 +56,7 @@ EditText msg;
         DateFormat date = new SimpleDateFormat("MM-dd-yyyy HH:mm a");
         date.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
         Toolbar toolbar1=findViewById(R.id.ftoolbar);
-        toolbar1.setTitle("Fee Details");
+        toolbar1.setTitle("Notice");
         toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
         setSupportActionBar(toolbar1);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -100,6 +100,7 @@ EditText msg;
                     Message message = new Message(tid, text,localTime);
                     dbMessage.child(localTime).push().setValue(message);
                 }
+                msg.setText("");
             }
         });
 

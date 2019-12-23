@@ -1,28 +1,13 @@
 package com.example.pearlinfotech.Admin;
 
 public class Faculty {
-    public String tname;
-    public String tid;
-    public String temail;
-    public String tdate;
-    public String tphno;
-    public String tpass;
-    public boolean expanded;
-    public String classes;
-
-
-
-public Faculty(){}
-
-    public Faculty(String tname, String tid , String classes, String tpass,String temail,String tdate,String tphno) {
-        this.tname = tname;
-        this.tid = tid;
-        this.classes = classes;
-        this.tpass = tpass;
-        this.temail=temail;
-        this.tdate=tdate;
-        this.tphno=tphno;
-    }
+    String tname;
+    String tid;
+    String temail;
+    String tdate;
+    String tphno;
+    String classes;
+    public Faculty(){}
 
     public String getTemail() {
         return temail;
@@ -34,6 +19,23 @@ public Faculty(){}
 
     public String getTphno() {
         return tphno;
+    }
+
+    public String getTpass() {
+        return tpass;
+    }
+
+    String tpass;
+    boolean expanded;
+
+    public Faculty(String tname, String tid, String temail, String classes, String tpass,String tdate,String tphno) {
+        this.tname = tname;
+        this.tid = tid;
+        this.classes = classes;
+        this.tpass = tpass;
+        this.temail=temail;
+        this.tdate=tdate;
+        this.tphno=tphno;
     }
 
     public String getTname() {
@@ -48,9 +50,6 @@ public Faculty(){}
         return classes;
     }
 
-    public String gettpass() {
-        return tpass;
-    }
     public boolean isExpanded() {
         return expanded;
     }
