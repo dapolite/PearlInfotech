@@ -8,7 +8,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pearlinfotech.R;
@@ -19,10 +18,6 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        ActionBar bar = getSupportActionBar();
-        if(bar!=null){
-            bar.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg1));
-        }
 
 
         Animation anim1 = AnimationUtils.loadAnimation(this,R.anim.anim_down);
@@ -41,4 +36,5 @@ public class SplashScreen extends AppCompatActivity {
                 }
             },3000);
     }
+
 }

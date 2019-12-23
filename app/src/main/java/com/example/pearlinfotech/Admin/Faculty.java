@@ -1,27 +1,16 @@
 package com.example.pearlinfotech.Admin;
 
 public class Faculty {
-    String tname;
-    String tid;
-    String temail;
-    String tdate;
-    String tphno;
-    String tpass;
-    boolean expanded;
-    String classes;
-    String sub;
+    public String tname;
+    public String tid;
+    public String temail;
+    public String tdate;
+    public String tphno;
+    public String tpass;
+    public boolean expanded;
+    public String classes;
 
-    public String getTemail() {
-        return temail;
-    }
 
-    public String getTdate() {
-        return tdate;
-    }
-
-    public String getTphno() {
-        return tphno;
-    }
 
 public Faculty(){}
 
@@ -33,6 +22,18 @@ public Faculty(){}
         this.temail=temail;
         this.tdate=tdate;
         this.tphno=tphno;
+    }
+
+    public String getTemail() {
+        return temail;
+    }
+
+    public String getTdate() {
+        return tdate;
+    }
+
+    public String getTphno() {
+        return tphno;
     }
 
     public String getTname() {

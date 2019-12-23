@@ -104,29 +104,50 @@ public class AddFaculty extends AppCompatActivity {
             failFlag = true;
             Temail.setError("Field is empty!");
         }
+        else{
+            failFlag = false;
+        }
         if (!validateTor.isEmail(temail)) {
             failFlag = true;
             Temail.setError("Not Valid Email!");
+        }
+        else{
+            failFlag = false;
         }
         if (!PhoneNumberUtils.isGlobalPhoneNumber(tphno)) {
             failFlag = true;
             Tphno.setError("Not Valid Number!");
         }
+        else{
+            failFlag = false;
+        }
         if (validateTor.isEmpty(tphno)) {
             failFlag = true;
             Tphno.setError("Field is empty!");
+        }
+        else{
+            failFlag = false;
         }
         if (validateTor.isEmpty(tname)) {
             failFlag = true;
             Tname.setError("Field is empty!");
         }
+        else{
+            failFlag = false;
+        }
         if (validateTor.isEmpty(tid)) {
             failFlag = true;
             Tid.setError("Field is empty!");
         }
+        else{
+            failFlag = false;
+        }
         if (validateTor.isEmpty(tdate)) {
             failFlag = true;
             Tdate.setError("Field is empty!");
+        }
+        else{
+            failFlag = false;
         }
         if (!validateTor.isAtleastLength(tpass, 8)
                 && !validateTor.hasAtleastOneDigit(tpass)
@@ -135,9 +156,11 @@ public class AddFaculty extends AppCompatActivity {
             failFlag = true;
             tpassword.setError("Password needs to be of minimum length of 8 characters and should have " +
                     "atleast 1 digit, 1 upppercase letter and 1 special character ");
-
         }
-        if(failFlag == false) {
+        else{
+            failFlag = false;
+        }
+        if(!failFlag) {
             databaseTeacher.orderByChild("tid").equalTo(tid).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

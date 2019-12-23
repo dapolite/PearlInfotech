@@ -109,13 +109,22 @@ public class ExamFaculty extends AppCompatActivity
                     failFlag=true;
                     e1.setError("Field is empty!");
                 }
+                else{
+                    failFlag = false;
+                }
                 if (validateTor.isEmpty(date)) {
                     failFlag=true;
                     e2.setError("Field is empty!");
                 }
+                else{
+                    failFlag = false;
+                }
                 if (validateTor.isEmpty(time)) {
                     failFlag=true;
                     e3.setError("Field is empty!");
+                }
+                else{
+                    failFlag = false;
                 }
                 if(!failFlag)
                 {

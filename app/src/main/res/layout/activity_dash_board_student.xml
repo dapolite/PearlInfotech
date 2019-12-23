@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginTop="10dp"
             android:text="Select Your Class"
             android:textColor="@color/colorAccent"
             android:textSize="20sp"
@@ -52,7 +51,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="50dp"
                 android:orientation="vertical">
-
 
                 <com.animation.animpresseffect.PressEffectCardView
                     android:id="@+id/profdashscard"

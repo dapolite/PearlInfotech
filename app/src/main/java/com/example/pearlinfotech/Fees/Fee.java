@@ -13,11 +13,11 @@ public class Fee {
         this.type2 = type2;
     }
 
-    String course;
-    String sname;
-    long total;
-    long paid;
-    String type1;
+    public String course;
+    public String sname;
+    public long total;
+    public long paid;
+    public String type1;
 
     public String getType1() {
         return type1;
@@ -39,7 +39,7 @@ public class Fee {
 
     }
 
-    String type2;
+    public String type2;
 
     public String getSName() {
         return sname;

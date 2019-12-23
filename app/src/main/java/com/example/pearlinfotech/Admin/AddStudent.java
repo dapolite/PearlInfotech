@@ -5,8 +5,9 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -104,51 +105,76 @@ public class AddStudent extends AppCompatActivity {
         classname = classes.getSelectedItem().toString();
         spass = spassword.getText().toString();
         if (validateTor.isEmpty(semail)) {
-            failFlag = true;
             Semail.setError("Field is empty!");
-
-        }
-        if (!validateTor.isEmail(semail)) {
             failFlag = true;
+            Log.d("TAG","semail");
+        }
+        else{
+            failFlag = false;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(semail).matches()) {
             Semail.setError("Not Valid Email!");
-
-        }
-        if (!PhoneNumberUtils.isGlobalPhoneNumber(sphno)) {
+            Log.d("TAG","semail");
             failFlag = true;
+        }
+        else{
+            failFlag = false;
+        }
+        if (!Patterns.PHONE.matcher(sphno).matches()) {
             Sphno.setError("Invalid phone number");
-
+            Log.d("TAG","sphno");
+            failFlag = true;
+        }
+        else{
+            failFlag = false;
         }
         if (validateTor.isEmpty(sphno)) {
-            failFlag = true;
             Sphno.setError("Field is empty!");
-
+            Log.d("TAG","sphno");
+            failFlag = true;
+        }
+        else{
+            failFlag = false;
         }
         if (validateTor.isEmpty(sname)) {
-            failFlag = true;
             Sname.setError("Field is empty!");
-
+            Log.d("TAG","sname");
+            failFlag = true;
+        }
+        else{
+            failFlag = false;
         }
         if (validateTor.isEmpty(sid)) {
-            failFlag = true;
-
             Sid.setError("Field is empty!");
-
+            Log.d("TAG","sid");
+            failFlag = true;
+        }
+        else{
+            failFlag = false;
         }
         if(validateTor.isEmpty(sdate)){
-            failFlag = true;
             Sdate.setError("Field Is Empty");
+            Log.d("TAG","sdate");
+            failFlag = true;
+        }
+        else{
+            failFlag = false;
         }
         if (!validateTor.isAtleastLength(spass, 8)
                 && !validateTor.hasAtleastOneDigit(spass)
                 && !validateTor.hasAtleastOneUppercaseCharacter(spass)
                 && !validateTor.hasAtleastOneSpecialCharacter(spass)) {
-            failFlag = true;
+
             spassword.setError("Password needs to be of minimum length of 8 characters and should have " +
                     "atleast 1 digit, 1 upppercase letter and 1 special character ");
-
+            Log.d("TAG","spass");
+            failFlag = true;
         }
-
-        if (!failFlag) {
+        else{
+            failFlag = false;
+        }
+        if (failFlag==false) {
+            Log.d("TAG","FINE");
             databaseStudent.orderByChild("sid").equalTo(sid).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

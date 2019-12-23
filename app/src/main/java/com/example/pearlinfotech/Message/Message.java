@@ -1,7 +1,5 @@
 package com.example.pearlinfotech.Message;
 
-import java.util.Date;
-
 public class Message {
 
    public String id;

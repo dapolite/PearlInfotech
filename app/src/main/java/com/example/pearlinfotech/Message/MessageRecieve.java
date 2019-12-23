@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +33,18 @@ public class MessageRecieve extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_recieve);
+        Toolbar toolbar1=findViewById(R.id.ftoolbar);
+        toolbar1.setTitle("Notices");
+        toolbar1.setTitleTextColor(getResources().getColor(R.color.colorAccent));
+        setSupportActionBar(toolbar1);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mRvData = findViewById(R.id.messageSendRecyclerView);
         mRvData.setLayoutManager(new LinearLayoutManager(MessageRecieve.this));
         dbMessage= FirebaseDatabase.getInstance().getReference("Message");

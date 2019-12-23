@@ -25,8 +25,8 @@ public class Performance {
 
 
 
-    String comment;
-    String uname;
+    public String comment;
+    public String uname;
 
     public String getUname() {
         return uname;
@@ -40,20 +40,20 @@ public class Performance {
         return date;
     }
 
-    String sname;
-    String tname;
-    String topic;
-    int correct;
-    int total;
-    int totalm;
-    String date;
+    public String sname;
+    public String tname;
+    public String topic;
+    public int correct;
+    public int total;
+    public int totalm;
+    public String date;
 
     public int getAttempt() {
         return attempt;
     }
 
-    int attempt;
-    int incorrect;
+    public int attempt;
+    public int incorrect;
 
 
     public String getTopic()

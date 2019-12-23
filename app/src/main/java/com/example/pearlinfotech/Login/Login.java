@@ -1,9 +1,7 @@
 package com.example.pearlinfotech.Login;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,7 +37,6 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
     TextView fg;
     EditText username, password;
     String item;
-    SharedPreferences sharedpreferences;
     String userid, pass;
     DatabaseReference ref;
     String dbpassword;
@@ -50,7 +47,6 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        sharedpreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
 
         fg=findViewById(R.id.fp);
         username = findViewById(R.id.uname);
@@ -68,9 +64,12 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
 
-        fg.setOnClickListener(v -> {
-            Intent intent=new Intent(Login.this,ForgotPasssword.class);
-            startActivity(intent);
+        fg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Login.this,ForgotPasssword.class);
+                startActivity(intent);
+            }
         });
 
     }
@@ -141,6 +140,7 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
                 FBToast.errorToast(getApplicationContext(), "something went wrong", Toast.LENGTH_LONG);
             }
         });
+        //Toast.makeText(getApplicationContext(), dbpassword, Toast.LENGTH_LONG).show();
     }
 
 
@@ -152,27 +152,17 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
             mDialog.dismiss();
             Intent intent = new Intent(this, DashboardFaculty.class);
             intent.putExtras(basket);
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putString(userid, "id");
-            editor.putString(pass, "pass");
             startActivity(intent);
 
         } else if (item.equals("Admin") && pass.equalsIgnoreCase(this.dbpassword)) {
             mDialog.dismiss();
             Intent intent = new Intent(this, DashboardAdmin.class);
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putString(userid, "id");
-            editor.putString(pass, "pass");
             intent.putExtras(basket);
             startActivity(intent);
         } else if (item.equals("Student") && pass.equalsIgnoreCase(this.dbpassword)) {
             mDialog.dismiss();
             Intent intent = new Intent(this, DashBoardStudent.class);
             intent.putExtras(basket);
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putString(userid, "id");
-            editor.putString(pass, "pass");
-            editor.commit();
             startActivity(intent);
         } else if (!pass.equalsIgnoreCase(this.dbpassword)) {
             password.setError("Username and Password Incorrect");

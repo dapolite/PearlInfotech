@@ -1,13 +1,13 @@
 package com.example.pearlinfotech.Admin;
 
 public class Student {
-    String sname;
-    String sid;
-    String classes;
-    String spass;
-    String sphno;
-    String sdate;
-    boolean expanded;
+    public String sname;
+    public String sid;
+    public String classes;
+    public String spass;
+    public String sphno;
+    public String sdate;
+    public boolean expanded;
 
     public String getSphno() {
         return sphno;
@@ -21,11 +21,11 @@ public class Student {
         return semail;
     }
 
-    String semail;
+    public String semail;
 
-    Student(){}
+    public Student(){}
 
-    Student(String sname, String sid, String classes, String spass,String semail,String sphno,String sdate) {
+    public Student(String sname, String sid, String classes, String spass,String semail,String sphno,String sdate) {
         this.sname = sname;
         this.sid = sid;
         this.classes = classes;

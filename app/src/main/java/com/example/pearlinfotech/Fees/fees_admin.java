@@ -24,15 +24,15 @@ import java.util.ArrayList;
 
 public class fees_admin extends AppCompatActivity
 {
-    String sname,course,type1,type2,paid1,total1,sid,dbget;
+    String sname,course,type1,type2,paid1,total1,sid;
     int total,paid;
     ArrayList<String> snames=new ArrayList<>();
     EditText e1,e2,e3,e5;
     Spinner e4;
     Spinner spin1,spin2;
+    Toolbar mToolbar;
     DatabaseReference databaseFees;
     DatabaseReference dbStudent,dbCourse;
-    ArrayList<String> coursnames=new ArrayList<>();
     ArrayList<String> sunames=new ArrayList<>();
     boolean failFlag=false;
     ValidateTor validateTor = new ValidateTor();
@@ -76,46 +76,59 @@ public class fees_admin extends AppCompatActivity
             sname = e1.getText().toString();
             total1=e3.getText().toString();
             sid=e2.getText().toString();
+            course = e4.getSelectedItem().toString();
             paid1=e5.getText().toString();
+
             type1 = spin1.getSelectedItem().toString();
             type2 = spin2.getSelectedItem().toString();
-            course = e4.getSelectedItem().toString();
-            dbCourse.child(sid).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for(DataSnapshot ds:dataSnapshot.getChildren()){
-                        dbget=ds.getValue().toString();
-                        coursnames.add(dbget);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
+            Log.d("Working?",sname);
+            Log.d("Working?",sid);
+            Log.d("Working?",total1);
+            Log.d("Working?",course);
+            Log.d("Working?",type2);
+            Log.d("Working?",type1);
+            Log.d("Working?",paid1);
             if (validateTor.isEmpty(sid)) {
                 failFlag=true;
                 e2.setError("Field is empty!");
+            }
+            else{
+                failFlag = false;
             }
             if (validateTor.isEmpty(sname)) {
                 failFlag=true;
                 e1.setError("Field is empty!");
             }
-            if(!coursnames.contains(course)){
-                failFlag=true;
-                Toast.makeText(this, "NO", Toast.LENGTH_SHORT).show();
+            else{
+                failFlag = false;
             }
             if (validateTor.isEmpty(total1)) {
                 failFlag=true;
                 e3.setError("Field is empty!");
             }
-
+            else{
+                failFlag = false;
+            }
             if (validateTor.isEmpty(paid1)) {
                 failFlag=true;
                 e5.setError("Field is empty!");
             }
+            else{
+                failFlag = false;
+            }
             if(!failFlag) {
+                Log.d("Working","Fail");
+                dbCourse.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
                 dbStudent.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -134,7 +147,6 @@ public class fees_admin extends AppCompatActivity
                                 Fee fee = new Fee(sname, total, paid, course, type1, type2);
                                 databaseFees.child(sid).push().setValue(fee);
                                 Toast.makeText(getApplicationContext(), "Fees added successfully", Toast.LENGTH_LONG).show();
-                                finish();
                             }
                             else{
                                 e1.setError("Wrong Student Name");
