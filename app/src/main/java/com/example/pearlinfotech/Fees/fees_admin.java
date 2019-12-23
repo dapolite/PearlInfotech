@@ -72,7 +72,6 @@ public class fees_admin extends AppCompatActivity
 
 
         public void addFees(View v) {
-            Log.d("Working?","Working");
             sname = e1.getText().toString();
             total1=e3.getText().toString();
             sid=e2.getText().toString();
@@ -110,18 +109,6 @@ public class fees_admin extends AppCompatActivity
                 failFlag = false;
             }
             if(!failFlag) {
-                Log.d("Working","Fail");
-                dbCourse.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
                 dbStudent.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -130,7 +117,7 @@ public class fees_admin extends AppCompatActivity
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             String id=dataSnapshot1.child("sid").getValue().toString();
                             String sn=dataSnapshot1.child("sname").getValue().toString();
-                            Log.d("WORK",id);
+                            //Log.d("WORK",id);
                             snames.add(id);
                             sunames.add(sn);
                         }

@@ -10,11 +10,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 
 import com.example.pearlinfotech.Admin.ProfileFaculty;
 import com.example.pearlinfotech.Attendance.AttendanceFaculty;
@@ -29,12 +31,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DashboardFaculty extends AppCompatActivity {
-Toolbar mActionBarToolbar;
+    private static long back_pressed;
+    Toolbar mActionBarToolbar;
 CardView atten,timetable,perf,notif,exam,prof;
 String message,class_selected;
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
@@ -184,5 +188,18 @@ String message,class_selected;
         editor.apply();
         startActivity(logout);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+            finish();
+            ActivityCompat.finishAffinity(this);
+            System.exit(0);
+        } else {
+            FBToast.infoToast(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT);
+            back_pressed = System.currentTimeMillis();
+        }
     }
 }

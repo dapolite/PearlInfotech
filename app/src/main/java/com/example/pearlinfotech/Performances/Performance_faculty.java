@@ -90,9 +90,11 @@ public class Performance_faculty extends AppCompatActivity {
         pdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(Performance_faculty.this, date1, myCalendar
+                DatePickerDialog dp=new DatePickerDialog(Performance_faculty.this, date1, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                dp.getDatePicker().setMaxDate(myCalendar.getTimeInMillis());
+                dp.show();
             }
         });
     }

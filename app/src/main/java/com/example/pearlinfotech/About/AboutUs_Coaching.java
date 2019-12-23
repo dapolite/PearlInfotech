@@ -18,7 +18,7 @@ public class AboutUs_Coaching extends AppCompatActivity
     RecyclerViewAdapter recyclerViewAdapter2;
 
     int[] arr4={R.drawable.cbse,R.drawable.gseb};
-    String[] arr5={"5-12","5-12"};
+    String[] arr5={"5-12 CBSE","5-12 GSEB"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

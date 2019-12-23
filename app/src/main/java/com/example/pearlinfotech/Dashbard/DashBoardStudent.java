@@ -9,11 +9,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 
 import com.example.pearlinfotech.Admin.ProfileStudent;
 import com.example.pearlinfotech.Attendance.AttendanceStudent;
@@ -29,11 +31,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DashBoardStudent extends AppCompatActivity {
+    private static long back_pressed;
     CardView cv1,cv2,cv3,cv4,cv5,cv6,cv7;
     FirebaseDatabase db;
     String sname;
@@ -171,5 +175,18 @@ public class DashBoardStudent extends AppCompatActivity {
         editor.apply();
         startActivity(logout);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+            finish();
+            ActivityCompat.finishAffinity(this);
+            System.exit(0);
+        } else {
+            FBToast.infoToast(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT);
+            back_pressed = System.currentTimeMillis();
+        }
     }
 }

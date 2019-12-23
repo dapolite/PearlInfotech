@@ -79,9 +79,11 @@ public class AddFaculty extends AppCompatActivity {
         Tdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(AddFaculty.this, date, myCalendar
+                DatePickerDialog dp=new DatePickerDialog(AddFaculty.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                dp.getDatePicker().setMaxDate(myCalendar.getTimeInMillis());
+                dp.show();
             }
         });
     }
@@ -161,7 +163,7 @@ public class AddFaculty extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         AlertDialog.Builder builder=new AlertDialog.Builder(AddFaculty.this);
                         builder.setMessage("User Exists Do You Want to Update Details?")
-                                .setCancelable(false)
+                                .setCancelable(true)
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         Faculty faculty = new Faculty(tname, tid, classname, tpass, temail, tphno, tdate);
@@ -178,7 +180,6 @@ public class AddFaculty extends AppCompatActivity {
                         AlertDialog alert = builder.create();
                         alert.setTitle("Woops!");
                         alert.show();
-                        alert.dismiss();
                     }
                     else{
                         Faculty faculty = new Faculty(tname,tid,temail,classname,tpass,tdate,tphno);

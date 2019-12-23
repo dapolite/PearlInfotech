@@ -38,7 +38,6 @@ import java.util.Locale;
 @SuppressWarnings("unchecked")
 public class AttendanceFaculty extends AppCompatActivity implements SearchView.OnQueryTextListener {
     DatePickerDialog.OnDateSetListener date1;
-    DatePickerDialog datePickerDialog;
     String teacher_id;
     private SearchView searchView;
     private MenuItem searchMenuItem;
@@ -111,9 +110,11 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
         adate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(AttendanceFaculty.this, date1, myCalendar
+                DatePickerDialog dp=new DatePickerDialog(AttendanceFaculty.this, date1, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                dp.getDatePicker().setMaxDate(myCalendar.getTimeInMillis());
+                dp.show();
             }
         });
 

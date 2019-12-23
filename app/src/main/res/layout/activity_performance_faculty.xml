@@ -240,7 +240,7 @@
 
                         <com.animation.animpresseffect.PressEffectButton
                             android:id="@+id/button9"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="8dp"
@@ -249,11 +249,10 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
                             android:layout_marginBottom="8dp"
-                            android:layout_weight="1"
                             android:background="@drawable/btnbg"
                             android:gravity="center"
                             android:onClick="add_performance"
-                            android:text="SUBMIT"
+                            android:text="Submit"
                             android:textAllCaps="false"
                             android:textColor="#fff" />
 

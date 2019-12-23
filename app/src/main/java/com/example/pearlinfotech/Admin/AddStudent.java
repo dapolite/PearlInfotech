@@ -89,9 +89,11 @@ public class AddStudent extends AppCompatActivity {
         Sdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(AddStudent.this, date, myCalendar
+                DatePickerDialog dp=new DatePickerDialog(AddStudent.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                dp.getDatePicker().setMaxDate(myCalendar.getTimeInMillis());
+                dp.show();
             }
         });
     }
@@ -181,7 +183,7 @@ public class AddStudent extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         AlertDialog.Builder builder=new AlertDialog.Builder(AddStudent.this);
                         builder.setMessage("User Exists Do You Want to Update Details?")
-                                .setCancelable(false)
+                                .setCancelable(true)
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         Student student = new Student(sname, sid, classname, spass, semail, sphno, sdate);
@@ -199,7 +201,6 @@ public class AddStudent extends AppCompatActivity {
                         AlertDialog alert = builder.create();
                         alert.setTitle("Woops!");
                         alert.show();
-                        alert.dismiss();
                     }
                     else{
                         Student student = new Student(sname, sid, classname, spass, semail, sphno, sdate);

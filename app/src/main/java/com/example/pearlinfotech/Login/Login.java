@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.example.pearlinfotech.Admin.CheckNetwork;
 import com.example.pearlinfotech.Dashbard.DashBoardStudent;
@@ -174,19 +173,5 @@ public class Login extends AppCompatActivity implements AdapterView.OnItemSelect
         }
 
     }
-
-    @Override
-    public void onBackPressed() {
-        if (back_pressed + 2000 > System.currentTimeMillis()) {
-            super.onBackPressed();
-            finish();
-            ActivityCompat.finishAffinity(this);
-            System.exit(0);
-        } else {
-            FBToast.infoToast(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT);
-            back_pressed = System.currentTimeMillis();
-        }
-    }
-
 
 }

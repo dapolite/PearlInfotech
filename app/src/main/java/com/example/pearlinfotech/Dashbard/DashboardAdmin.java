@@ -8,10 +8,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 
 import com.example.pearlinfotech.Admin.FacultyList;
 import com.example.pearlinfotech.Admin.StudentList;
@@ -19,11 +21,13 @@ import com.example.pearlinfotech.Fees.fees_admin;
 import com.example.pearlinfotech.HomeScreen.MainActivity;
 import com.example.pearlinfotech.Message.MessageSend;
 import com.example.pearlinfotech.R;
+import com.tfb.fbtoast.FBToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DashboardAdmin extends AppCompatActivity {
+    private static long back_pressed;
     CardView cv1,cv2,cv3,fee_admin,cv4;
     Bundle basket = new Bundle();
     String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
@@ -117,6 +121,19 @@ public class DashboardAdmin extends AppCompatActivity {
         editor.apply();
         startActivity(logout);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+            finish();
+            ActivityCompat.finishAffinity(this);
+            System.exit(0);
+        } else {
+            FBToast.infoToast(getBaseContext(), "Press once again to exit", Toast.LENGTH_SHORT);
+            back_pressed = System.currentTimeMillis();
+        }
     }
 
 }
