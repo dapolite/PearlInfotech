@@ -122,7 +122,7 @@ public class AddStudent extends AppCompatActivity {
         else{
             failFlag = false;
         }
-        if (!Patterns.PHONE.matcher(sphno).matches()) {
+        if (!Patterns.PHONE.matcher(sphno).matches() && sphno.length()<10) {
             Sphno.setError("Invalid phone number");
             Log.d("TAG","sphno");
             failFlag = true;
@@ -130,9 +130,8 @@ public class AddStudent extends AppCompatActivity {
         else{
             failFlag = false;
         }
-        if (validateTor.isEmpty(sphno)) {
+        if (validateTor.isEmpty(sphno) ) {
             Sphno.setError("Field is empty!");
-            Log.d("TAG","sphno");
             failFlag = true;
         }
         else{
@@ -162,18 +161,17 @@ public class AddStudent extends AppCompatActivity {
         else{
             failFlag = false;
         }
-        if (!validateTor.isAtleastLength(spass, 8)
-                && !validateTor.hasAtleastOneDigit(spass)
-                && !validateTor.hasAtleastOneUppercaseCharacter(spass)
-                && !validateTor.hasAtleastOneSpecialCharacter(spass)) {
+        if (spass.length() > 8 && validateTor.hasAtleastOneDigit(spass)
+                && validateTor.hasAtleastOneUppercaseCharacter(spass)
+                && validateTor.hasAtleastOneSpecialCharacter(spass)) {
+            failFlag = false;
 
+        }
+        else{
+            failFlag=true;
             spassword.setError("Password needs to be of minimum length of 8 characters and should have " +
                     "atleast 1 digit, 1 upppercase letter and 1 special character ");
             Log.d("TAG","spass");
-            failFlag = true;
-        }
-        else{
-            failFlag = false;
         }
         if (failFlag==false) {
             Log.d("TAG","FINE");

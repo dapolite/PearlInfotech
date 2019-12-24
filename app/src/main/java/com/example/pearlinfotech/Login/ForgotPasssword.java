@@ -72,6 +72,18 @@ DatabaseReference dbfac,dbstud;
             failFlag=true;
             pas.setError("Field Cannot be Empty");
         }
+        if (up.length() > 8 && validateTor.hasAtleastOneDigit(up)
+                && validateTor.hasAtleastOneUppercaseCharacter(up)
+                && validateTor.hasAtleastOneSpecialCharacter(up)) {
+            failFlag = false;
+
+        }
+        else{
+            failFlag=true;
+            pas.setError("Password needs to be of minimum length of 8 characters and should have " +
+                    "atleast 1 digit, 1 upppercase letter and 1 special character ");
+            Log.d("TAG","spass");
+        }
         if(!failFlag) {
             if (item.equals("Faculty")) {
                 dbfac.addValueEventListener(new ValueEventListener() {

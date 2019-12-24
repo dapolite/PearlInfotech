@@ -1,9 +1,11 @@
 package com.example.pearlinfotech.Admin;
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.telephony.PhoneNumberUtils;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
@@ -110,7 +112,7 @@ public class AddFaculty extends AppCompatActivity {
         else{
             failFlag = false;
         }
-        if (!PhoneNumberUtils.isGlobalPhoneNumber(tphno)) {
+        if (Patterns.PHONE.matcher(tphno).matches() && tphno.length()<10) {
             failFlag = true;
             Tphno.setError("Not Valid Number!");
         }
@@ -145,16 +147,17 @@ public class AddFaculty extends AppCompatActivity {
         else{
             failFlag = false;
         }
-        if (!validateTor.isAtleastLength(tpass, 8)
-                && !validateTor.hasAtleastOneDigit(tpass)
-                && !validateTor.hasAtleastOneUppercaseCharacter(tpass)
-                && !validateTor.hasAtleastOneSpecialCharacter(tpass)) {
-            failFlag = true;
-            tpassword.setError("Password needs to be of minimum length of 8 characters and should have " +
-                    "atleast 1 digit, 1 upppercase letter and 1 special character ");
+        if (tpass.length() > 8 && validateTor.hasAtleastOneDigit(tpass)
+                && validateTor.hasAtleastOneUppercaseCharacter(tpass)
+                && validateTor.hasAtleastOneSpecialCharacter(tpass)) {
+            failFlag = false;
+
         }
         else{
-            failFlag = false;
+            failFlag=true;
+            tpassword.setError("Password needs to be of minimum length of 8 characters and should have " +
+                    "atleast 1 digit, 1 upppercase letter and 1 special character ");
+            Log.d("TAG","spass");
         }
         if(!failFlag) {
             databaseTeacher.orderByChild("tid").equalTo(tid).addValueEventListener(new ValueEventListener() {

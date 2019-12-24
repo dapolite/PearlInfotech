@@ -130,8 +130,6 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                     Userlist.add(dsp.child("sid").getValue().toString());
                     Usernames.add(dsp.child("sid").getValue().toString());
-
-
                 }
                 OnStart(Userlist);
 
@@ -147,8 +145,6 @@ public class AttendanceFaculty extends AppCompatActivity implements SearchView.O
 
 
     }
-
-
 
     public void OnStart(ArrayList<String> userlist) {
 
